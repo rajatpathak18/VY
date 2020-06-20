@@ -17,3 +17,4 @@ public class VihangamYogaApplication {
     SpringApplication.run(VihangamYogaApplication.class,args);
   }
 }
+
