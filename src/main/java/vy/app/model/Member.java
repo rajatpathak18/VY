@@ -9,7 +9,7 @@ public class Member {
     @Column(name = "member_id")
     @Id
     @GeneratedValue
-    private int memberID;
+    private int id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -89,7 +89,7 @@ public class Member {
     @Override
     public String toString() {
         return "Member{" +
-                "memberID=" + memberID +
+                "memberID=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dob=" + dob +
@@ -116,14 +116,6 @@ public class Member {
                 ", createSource='" + createSource + '\'' +
                 ", updateSource='" + updateSource + '\'' +
                 '}';
-    }
-
-    public int getMemberID() {
-        return memberID;
-    }
-
-    public void setMemberID(int memberID) {
-        this.memberID = memberID;
     }
 
     public String getFirstName() {
@@ -324,5 +316,13 @@ public class Member {
 
     public void setUpdateSource(String updateSource) {
         this.updateSource = updateSource;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

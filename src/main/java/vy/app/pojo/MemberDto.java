@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class MemberDto {
 
-    private int memberID;
+    private int id;
     private String firstName;
     private String lastName;
     private Date dob;
@@ -33,11 +33,11 @@ public class MemberDto {
     private String updateSource;
 
     public int getMemberID() {
-        return memberID;
+        return id;
     }
 
-    public void setMemberID(int memberID) {
-        this.memberID = memberID;
+    public void setMemberID(int id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -243,7 +243,7 @@ public class MemberDto {
     @Override
     public String toString() {
         return "Member{" +
-                "memberID=" + memberID +
+                "memberID=" + id +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", dob=" + dob +
