@@ -1,6 +1,9 @@
 package vy.app.pojo;
 
+import vy.app.model.Address;
+
 import java.sql.Date;
+import java.util.Set;
 
 
 public class MemberDto {
@@ -18,6 +21,7 @@ public class MemberDto {
     private String memberPhotoPath;
     private String govtIDPhotoPath;
     private Date associatedSince;
+    private Set<AddressDto> address;
     private String profession;
     private int practiceLevel;
     private String sendEmail;
@@ -242,7 +246,7 @@ public class MemberDto {
 
     @Override
     public String toString() {
-        return "Member{" +
+        return "MemberDto{" +
                 "memberID=" + memberID +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
@@ -256,6 +260,7 @@ public class MemberDto {
                 ", memberPhotoPath='" + memberPhotoPath + '\'' +
                 ", govtIDPhotoPath='" + govtIDPhotoPath + '\'' +
                 ", associatedSince=" + associatedSince +
+                ", address=" + address +
                 ", profession='" + profession + '\'' +
                 ", practiceLevel=" + practiceLevel +
                 ", sendEmail='" + sendEmail + '\'' +
@@ -270,5 +275,13 @@ public class MemberDto {
                 ", createSource='" + createSource + '\'' +
                 ", updateSource='" + updateSource + '\'' +
                 '}';
+    }
+
+    public Set<AddressDto> getAddress() {
+        return address;
+    }
+
+    public void setAddress(Set<AddressDto> address) {
+        this.address = address;
     }
 }

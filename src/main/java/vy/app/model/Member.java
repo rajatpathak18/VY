@@ -2,6 +2,7 @@ package vy.app.model;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "vy_member")
@@ -44,6 +45,11 @@ public class Member {
     @Column(name = "govt_id_photo_path")
     private String govtIDPhotoPath;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "member")
+    private Set<Address> address;
+
     @Column(name = "associated_since")
     private Date associatedSince;
 
@@ -85,38 +91,6 @@ public class Member {
 
     @Column(name = "update_source")
     private String updateSource;
-
-    @Override
-    public String toString() {
-        return "Member{" +
-                "memberID=" + memberID +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", dob=" + dob +
-                ", gender='" + gender + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", alternatePhoneNumber='" + alternatePhoneNumber + '\'' +
-                ", govtID='" + govtID + '\'' +
-                ", govtIDType='" + govtIDType + '\'' +
-                ", nationality='" + nationality + '\'' +
-                ", memberPhotoPath='" + memberPhotoPath + '\'' +
-                ", govtIDPhotoPath='" + govtIDPhotoPath + '\'' +
-                ", associatedSince=" + associatedSince +
-                ", profession='" + profession + '\'' +
-                ", practiceLevel=" + practiceLevel +
-                ", sendEmail='" + sendEmail + '\'' +
-                ", callFlag='" + callFlag + '\'' +
-                ", sms='" + sms + '\'' +
-                ", patrikaSubscribed='" + patrikaSubscribed + '\'' +
-                ", updeshtaMemberID='" + updeshtaMemberID + '\'' +
-                ", status='" + status + '\'' +
-                ", trash=" + trash +
-                ", createDate=" + createDate +
-                ", updateDate=" + updateDate +
-                ", createSource='" + createSource + '\'' +
-                ", updateSource='" + updateSource + '\'' +
-                '}';
-    }
 
     public int getMemberID() {
         return memberID;
@@ -324,5 +298,47 @@ public class Member {
 
     public void setUpdateSource(String updateSource) {
         this.updateSource = updateSource;
+    }
+
+
+    public Set<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(Set<Address> address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Member{" +
+                "memberID=" + memberID +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", dob=" + dob +
+                ", gender='" + gender + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", alternatePhoneNumber='" + alternatePhoneNumber + '\'' +
+                ", govtID='" + govtID + '\'' +
+                ", govtIDType='" + govtIDType + '\'' +
+                ", nationality='" + nationality + '\'' +
+                ", memberPhotoPath='" + memberPhotoPath + '\'' +
+                ", govtIDPhotoPath='" + govtIDPhotoPath + '\'' +
+                ", address=" + address +
+                ", associatedSince=" + associatedSince +
+                ", profession='" + profession + '\'' +
+                ", practiceLevel=" + practiceLevel +
+                ", sendEmail='" + sendEmail + '\'' +
+                ", callFlag='" + callFlag + '\'' +
+                ", sms='" + sms + '\'' +
+                ", patrikaSubscribed='" + patrikaSubscribed + '\'' +
+                ", updeshtaMemberID='" + updeshtaMemberID + '\'' +
+                ", status='" + status + '\'' +
+                ", trash=" + trash +
+                ", createDate=" + createDate +
+                ", updateDate=" + updateDate +
+                ", createSource='" + createSource + '\'' +
+                ", updateSource='" + updateSource + '\'' +
+                '}';
     }
 }

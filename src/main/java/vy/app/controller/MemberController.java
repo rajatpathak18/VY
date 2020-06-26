@@ -49,7 +49,9 @@ public class MemberController {
     }
 
     private MemberDto convertToDto(Member member) {
+//        System.out.println("printing sunny1-------------" + member.toString());
         MemberDto memberDto = modelMapper.map(member, MemberDto.class);
+//        System.out.println("printing sunny2-------------" + memberDto.toString());
         return memberDto;
     }
 
