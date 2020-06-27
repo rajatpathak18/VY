@@ -34,24 +34,25 @@ public class MemberController {
     }
 
     @GetMapping(value = "/member/{id}/")
+    @ResponseStatus(HttpStatus.OK)
     public MemberDto getMember(@PathVariable int id) {
         return convertToDto(memberService.getMember(id));
     }
 
     @PutMapping(value = "/member/{id}/")
+    @ResponseStatus(HttpStatus.OK)
     MemberDto updateMember(@RequestBody MemberDto memberDto, @PathVariable int id) {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 
     @DeleteMapping(value = "/member/{id}/")
+    @ResponseStatus(HttpStatus.OK)
     public void deleteMember(@PathVariable int id) {
         memberService.deleteMember(id);
     }
 
     private MemberDto convertToDto(Member member) {
-//        System.out.println("printing sunny1-------------" + member.toString());
         MemberDto memberDto = modelMapper.map(member, MemberDto.class);
-//        System.out.println("printing sunny2-------------" + memberDto.toString());
         return memberDto;
     }
 

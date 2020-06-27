@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import vy.app.repository.MemberRepository;
 import vy.app.model.Member;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +14,7 @@ public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Transactional
     public Member createMember(Member member) {
         return memberRepository.save(member);
     }
@@ -26,11 +28,13 @@ public class MemberService {
         return memberOptional.get();
     }
 
+    @Transactional
     public Member updateMember(int id, Member member) {
         memberRepository.save(member);
         return memberRepository.findById(id).get();
     }
 
+    @Transactional
     public void deleteMember(int id) {
         memberRepository.deleteById(id);
     }
