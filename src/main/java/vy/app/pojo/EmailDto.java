@@ -13,8 +13,7 @@ public class EmailDto {
     private int emailID;
     private String emailAddress1;
     private String emailAddress2;
-    private String status;
-    private boolean trash;
+    private boolean status;
     private Date createDate;
     private Date updateDate;
 }

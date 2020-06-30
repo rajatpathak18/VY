@@ -55,7 +55,7 @@ public class Address {
     private String alternateLandmark;
 
     @Column(name = "status")
-    private String status;
+    private boolean status;
 
     @Column(name = "trash")
     private boolean trash;

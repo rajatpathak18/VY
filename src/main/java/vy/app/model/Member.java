@@ -68,6 +68,10 @@ public class Member {
     @JoinColumn(name = "email_id")
     private Email email;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "akshay_patra_id")
+    private AkshayPatra akshayPatra;
+
     @Column(name = "associated_since")
     private Date associatedSince;
 
@@ -78,25 +82,31 @@ public class Member {
     private int practiceLevel;
 
     @Column(name = "send_email")
-    private String sendEmail;
+    private boolean sendEmail;
 
     @Column(name = "call_flag")
-    private String callFlag;
+    private boolean callFlag;
 
     @Column(name = "sms")
-    private String sms;
+    private boolean sms;
 
     @Column(name = "patrika_subscribed")
-    private String patrikaSubscribed;
+    private boolean patrikaSubscribed;
+
+    @Column(name = "has_swarved")
+    private boolean hasSwarved;
 
     @Column(name = "updeshta_member_id")
     private String updeshtaMemberID;
+
+    @Column(name = "updeshta_name")
+    private String updeshtaName;
 
     @Column(name = "updesh_venue")
     private String updeshVenue;
 
     @Column(name = "status")
-    private String status;
+    private boolean status;
 
     @Column(name = "trash")
     private boolean trash;

@@ -3,6 +3,7 @@ package vy.app.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import vy.app.model.AkshayPatra;
 
 import java.sql.Date;
 
@@ -28,16 +29,18 @@ public class MemberDto {
     private Date associatedSince;
     private AddressDto address;
     private EmailDto email;
+    private AkshayPatraDto akshayPatra;
     private String profession;
     private int practiceLevel;
-    private String sendEmail;
-    private String callFlag;
-    private String sms;
-    private String patrikaSubscribed;
+    private boolean sendEmail;
+    private boolean callFlag;
+    private boolean sms;
+    private boolean patrikaSubscribed;
+    private boolean hasSwarved;
     private String updeshtaMemberID;
+    private String updeshtaName;
     private String updeshVenue;
-    private String status;
-    private boolean trash;
+    private boolean status;
     private Date createDate;
     private Date updateDate;
     private String createSource;

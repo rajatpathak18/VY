@@ -23,8 +23,7 @@ public class AddressDto {
     private String alternateCountry;
     private String alternateState;
     private String alternateLandmark;
-    private String status;
-    private boolean trash;
+    private boolean status;
     private Date createDate;
     private Date updateDate;
 }
