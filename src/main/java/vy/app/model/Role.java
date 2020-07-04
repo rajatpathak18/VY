@@ -1,0 +1,43 @@
+package vy.app.model;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.sql.Date;
+import java.util.Objects;
+import java.util.Set;
+
+@Getter
+@Setter
+@ToString
+@Entity
+@Table(name = "vy_role")
+public class Role {
+    @Column(name = "role_id")
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int roleID;
+
+    @Column(name = "role_name")
+    private String name;
+
+    @Column(name = "status")
+    private boolean status;
+
+    @Column(name = "trash")
+    private boolean trash;
+
+    @Column(name = "create_date")
+    private Date createDate;
+
+    @Column(name = "update_date")
+    private Date updateDate;
+
+    @ManyToMany(cascade = CascadeType.PERSIST)
+    @JoinTable(name = "vy_role_permission",
+            joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
+            inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "permission_id")})
+    private Set<Permission> permissions;
+}
