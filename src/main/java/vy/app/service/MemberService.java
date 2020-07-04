@@ -1,6 +1,8 @@
 package vy.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import vy.app.repository.MemberRepository;
 import vy.app.model.Member;
@@ -19,9 +21,8 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public List<Member> getMembers() {
-//        return memberRepository.findAll();
-        return memberRepository.getByName("test");
+    public List<Member> getMembers(Specification<Member> spec, Sort sort) {
+        return memberRepository.findAll(spec, sort);
     }
 
     public Member getMember(int id) {

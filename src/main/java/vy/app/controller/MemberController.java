@@ -1,7 +1,14 @@
 package vy.app.controller;
 
+import net.kaczmarzyk.spring.data.jpa.domain.Equal;
+import net.kaczmarzyk.spring.data.jpa.domain.Like;
+import net.kaczmarzyk.spring.data.jpa.domain.LikeIgnoreCase;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import vy.app.pojo.MemberDto;
@@ -34,8 +41,15 @@ public class MemberController {
 
     @GetMapping(value = "/member/")
     @ResponseStatus(HttpStatus.OK)
-    public List<MemberDto> getMembers() {
-        List<Member> members = memberService.getMembers();
+    public List<MemberDto> getMembers(@Conjunction({
+            @Or(@Spec(path = "memberID", params = "memberID", spec = Equal.class)),
+            @Or(@Spec(path = "firstName", params = "firstName", spec = LikeIgnoreCase.class)),
+            @Or(@Spec(path = "middleName", params = "middleName", spec = LikeIgnoreCase.class)),
+            @Or(@Spec(path = "lastName", params = "lastName", spec = LikeIgnoreCase.class)),
+            @Or({@Spec(path = "primaryPhoneNumber", params = "phNumber", spec = Equal.class),
+                    @Spec(path = "alternatePhoneNumber", params = "phNumber", spec = Equal.class)})
+    }) Specification<Member> spec, Sort sort) {
+        List<Member> members = memberService.getMembers(spec, sort);
         return members.stream().map(this::convertToDto).collect(Collectors.toList());
     }
 
