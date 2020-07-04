@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import vy.app.pojo.MemberDto;
 import vy.app.model.Member;
 import vy.app.service.MemberService;
+import vy.app.validation.Validation;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -21,9 +22,13 @@ public class MemberController {
     @Autowired
     private ModelMapper modelMapper;
 
+    @Autowired
+    private Validation<MemberDto> memberDtoValidation;
+
     @PostMapping(value = "/member/")
     @ResponseStatus(HttpStatus.CREATED)
-    public MemberDto createMember(@RequestBody MemberDto memberDto) {
+    public MemberDto createMember(@RequestBody MemberDto memberDto) throws Exception {
+        memberDtoValidation.validate(memberDto);
         return convertToDto(memberService.createMember(convertToEntity(memberDto)));
     }
 

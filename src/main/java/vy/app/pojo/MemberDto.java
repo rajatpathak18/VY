@@ -3,7 +3,6 @@ package vy.app.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import vy.app.model.AkshayPatra;
 
 import java.sql.Date;
 
