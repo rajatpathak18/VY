@@ -3,8 +3,10 @@ package vy.app.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import vy.app.model.Designation;
 
 import java.sql.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,6 +31,7 @@ public class MemberDto {
     private AddressDto address;
     private EmailDto email;
     private AkshayPatraDto akshayPatra;
+    private Set<Designation> designation;
     private String profession;
     private int practiceLevel;
     private boolean sendEmail;

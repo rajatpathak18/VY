@@ -19,8 +19,6 @@ import vy.app.model.Member;
 import vy.app.service.MemberService;
 import vy.app.validation.Validation;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -65,6 +63,12 @@ public class MemberController {
     @PutMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
     MemberDto updateMember(@RequestBody MemberDto memberDto, @PathVariable int id) {
+        return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
+    }
+
+    @PostMapping(value = "/member/{id}/assign_designation/")
+    @ResponseStatus(HttpStatus.OK)
+    MemberDto assignDesignation(@RequestBody MemberDto memberDto, @PathVariable int id) {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 

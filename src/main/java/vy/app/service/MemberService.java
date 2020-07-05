@@ -34,7 +34,9 @@ public class MemberService {
 
     @Transactional
     public Member updateMember(int id, Member member) {
-        memberRepository.save(member);
+        Member existingMember = memberRepository.findById(id).get();
+        existingMember.setDesignation(member.getDesignation());
+        memberRepository.save(existingMember);
         return memberRepository.findById(id).get();
     }
 

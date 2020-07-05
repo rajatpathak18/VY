@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -71,6 +72,12 @@ public class Member {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "akshay_patra_id")
     private AkshayPatra akshayPatra;
+
+    @ManyToMany(cascade = CascadeType.MERGE)
+    @JoinTable(name = "vy_member_designation",
+            joinColumns = {@JoinColumn(name = "member_id", referencedColumnName = "member_id")},
+            inverseJoinColumns = {@JoinColumn(name = "designation_id", referencedColumnName = "designation_id")})
+    private Set<Designation> designation;
 
     @Column(name = "associated_since")
     private Date associatedSince;
