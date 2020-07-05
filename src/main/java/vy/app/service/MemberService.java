@@ -1,6 +1,8 @@
 package vy.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
@@ -21,8 +23,8 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-    public List<Member> getMembers(Specification<Member> spec, Sort sort) {
-        return memberRepository.findAll(spec, sort);
+    public Page<Member> getMembers(Specification<Member> spec, Pageable pageable) {
+        return memberRepository.findAll(spec, pageable);
     }
 
     public Member getMember(int id) {

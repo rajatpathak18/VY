@@ -6,8 +6,11 @@ import net.kaczmarzyk.spring.data.jpa.domain.LikeIgnoreCase;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.*;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -41,16 +44,16 @@ public class MemberController {
 
     @GetMapping(value = "/member/")
     @ResponseStatus(HttpStatus.OK)
-    public List<MemberDto> getMembers(@Conjunction({
+    public Page<MemberDto> getMembers(@Conjunction({
             @Or(@Spec(path = "memberID", params = "memberID", spec = Equal.class)),
             @Or(@Spec(path = "firstName", params = "firstName", spec = LikeIgnoreCase.class)),
             @Or(@Spec(path = "middleName", params = "middleName", spec = LikeIgnoreCase.class)),
             @Or(@Spec(path = "lastName", params = "lastName", spec = LikeIgnoreCase.class)),
             @Or({@Spec(path = "primaryPhoneNumber", params = "phNumber", spec = Equal.class),
                     @Spec(path = "alternatePhoneNumber", params = "phNumber", spec = Equal.class)})
-    }) Specification<Member> spec, Sort sort) {
-        List<Member> members = memberService.getMembers(spec, sort);
-        return members.stream().map(this::convertToDto).collect(Collectors.toList());
+    }) Specification<Member> spec, @PageableDefault(size = 5, sort = "memberID") Pageable pageable) {
+        Page<Member> members = memberService.getMembers(spec, pageable);
+        return members.map(this::convertToDto);
     }
 
     @GetMapping(value = "/member/{id}/")
