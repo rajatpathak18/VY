@@ -6,8 +6,7 @@ import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 import vy.app.model.Designation;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -45,21 +44,22 @@ public class MemberDto {
     private Date associatedSince;
     private AddressDto address;
     private EmailDto email;
-    @NotBlank(message = "firstName is mandatory")
     private AkshayPatraDto akshayPatra;
     private Set<Designation> designation;
     private String profession;
-    @NotBlank(message = "firstName is mandatory")
+    @NotNull(message = "practiceLevel is mandatory")
+    @Min(value = 1, message = "practiceLevel must be equal or greater than 1")
+    @Max(value = 5, message = "practiceLevel must be equal or less than 5")
     private int practiceLevel;
-    @NotBlank(message = "firstName is mandatory")
+    @NotNull(message = "sendEmail is mandatory")
     private boolean sendEmail;
-    @NotBlank(message = "firstName is mandatory")
+    @NotNull(message = "callFlag is mandatory")
     private boolean callFlag;
-    @NotBlank(message = "firstName is mandatory")
+    @NotNull(message = "sms is mandatory")
     private boolean sms;
-    @NotBlank(message = "firstName is mandatory")
+    @NotNull(message = "patrikaSubscribed is mandatory")
     private boolean patrikaSubscribed;
-    @NotBlank(message = "firstName is mandatory")
+    @NotNull(message = "hasSwarved is mandatory")
     private boolean hasSwarved;
     private String updeshtaMemberID;
     private String updeshtaName;
