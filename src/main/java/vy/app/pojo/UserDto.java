@@ -8,6 +8,7 @@ import vy.app.model.Role;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Getter
@@ -20,7 +21,7 @@ public class UserDto {
     private String password;
     private String status;
     private boolean trash;
-    private Date createDate;
-    private Date updateDate;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     private Set<RoleDto> roles;
 }

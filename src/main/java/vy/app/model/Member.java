@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Getter
@@ -118,11 +119,11 @@ public class Member {
     @Column(name = "trash")
     private boolean trash;
 
-    @Column(name = "create_date")
-    private Date createDate;
+    @Column(name = "created_at")
+    private Timestamp createdAt;
 
-    @Column(name = "update_date")
-    private Date updateDate;
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
 
     @Column(name = "create_source")
     private String createSource;

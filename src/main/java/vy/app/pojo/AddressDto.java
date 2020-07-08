@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
@@ -24,6 +25,6 @@ public class AddressDto {
     private String alternateState;
     private String alternateLandmark;
     private boolean status;
-    private Date createDate;
-    private Date updateDate;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
 }

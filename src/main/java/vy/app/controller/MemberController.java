@@ -19,6 +19,8 @@ import vy.app.model.Member;
 import vy.app.service.MemberService;
 import vy.app.validation.Validation;
 
+import javax.validation.Valid;
+
 
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
@@ -35,8 +37,8 @@ public class MemberController {
 
     @PostMapping(value = "/member/")
     @ResponseStatus(HttpStatus.CREATED)
-    public MemberDto createMember(@RequestBody MemberDto memberDto) throws Exception {
-        memberDtoValidation.validate(memberDto);
+    public MemberDto createMember(@Valid @RequestBody MemberDto memberDto) throws Exception {
+//        memberDtoValidation.validate(memberDto);
         return convertToDto(memberService.createMember(convertToEntity(memberDto)));
     }
 
@@ -66,9 +68,9 @@ public class MemberController {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 
-    @PostMapping(value = "/member/{id}/assign_designation/")
+    @PostMapping(value = "/member/{id}/designation/")
     @ResponseStatus(HttpStatus.OK)
-    MemberDto assignDesignation(@RequestBody MemberDto memberDto, @PathVariable int id) {
+    MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable int id) {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 

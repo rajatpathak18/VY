@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Getter
@@ -15,7 +16,7 @@ public class RoleDto {
     private String name;
     private String status;
     private boolean trash;
-    private Date createDate;
-    private Date updateDate;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     private Set<PermissionDto> permissions;
 }

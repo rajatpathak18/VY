@@ -3,9 +3,13 @@ package vy.app.pojo;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 import vy.app.model.Designation;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.Set;
 
 @Getter
@@ -13,11 +17,22 @@ import java.util.Set;
 @ToString
 public class MemberDto {
     private int memberID;
+
+    @NotBlank(message = "firstName is mandatory")
     private String firstName;
+
     private String middleName;
+
+    @NotBlank(message = "lastName is mandatory")
     private String lastName;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "dateOfBirth is mandatory")
     private Date dateOfBirth;
+
+    @NotBlank(message = "gender is mandatory")
     private String gender;
+
     private String motherName;
     private String fatherName;
     private String primaryPhoneNumber;
@@ -30,21 +45,28 @@ public class MemberDto {
     private Date associatedSince;
     private AddressDto address;
     private EmailDto email;
+    @NotBlank(message = "firstName is mandatory")
     private AkshayPatraDto akshayPatra;
     private Set<Designation> designation;
     private String profession;
+    @NotBlank(message = "firstName is mandatory")
     private int practiceLevel;
+    @NotBlank(message = "firstName is mandatory")
     private boolean sendEmail;
+    @NotBlank(message = "firstName is mandatory")
     private boolean callFlag;
+    @NotBlank(message = "firstName is mandatory")
     private boolean sms;
+    @NotBlank(message = "firstName is mandatory")
     private boolean patrikaSubscribed;
+    @NotBlank(message = "firstName is mandatory")
     private boolean hasSwarved;
     private String updeshtaMemberID;
     private String updeshtaName;
     private String updeshVenue;
     private boolean status;
-    private Date createDate;
-    private Date updateDate;
+    private Timestamp createdAt;
+    private Timestamp updatedAt;
     private String createSource;
     private String updateSource;
 }
