@@ -12,7 +12,7 @@ import java.util.Set;
 @Setter
 @ToString
 public class RoleDto {
-    private int roleID;
+    private Long roleID;
     private String name;
     private String status;
     private boolean trash;

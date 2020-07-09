@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Setter
 @ToString
 public class EmailDto {
-    private int emailID;
+    private Long emailID;
     private String emailAddress1;
     private String emailAddress2;
     private boolean status;

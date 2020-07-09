@@ -22,7 +22,7 @@ public class Address {
     @Column(name = "address_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int addressID;
+    private Long addressID;
 
     @Column(name = "address")
     private String address;

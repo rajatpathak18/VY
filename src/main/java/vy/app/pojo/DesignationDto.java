@@ -14,7 +14,7 @@ import java.util.Set;
 @Setter
 @ToString
 public class DesignationDto {
-    private int designationID;
+    private Long designationID;
     private String designationName;
     private boolean status;
     private boolean trash;

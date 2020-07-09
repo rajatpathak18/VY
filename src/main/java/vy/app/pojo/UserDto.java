@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @ToString
 public class UserDto {
-    private int userID;
+    private Long userID;
     private Member member;
     private String username;
     private String password;

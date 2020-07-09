@@ -20,7 +20,7 @@ public class UserService {
 
     @Transactional
     public User createUser(User user) {
-        user.setUsername(Integer.toString(user.getMember().getMemberID()));
+        user.setUsername(Long.toString(user.getMember().getMemberID()));
 //        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setPassword("password");
         return userRepository.findById(userRepository.save(user).getUserID()).get();
@@ -30,19 +30,19 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User getUser(int id) {
+    public User getUser(Long id) {
         Optional<User> userOptional = userRepository.findById(id);
         return userOptional.get();
     }
 
     @Transactional
-    public User updateUser(int id, User user) {
+    public User updateUser(Long id, User user) {
         userRepository.save(user);
         return userRepository.findById(id).get();
     }
 
     @Transactional
-    public void deleteUser(int id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
 }

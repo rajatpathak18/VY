@@ -41,19 +41,19 @@ public class UserController {
 
     @GetMapping(value = "/user/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    public UserDto getUser(@PathVariable int id) {
+    public UserDto getUser(@PathVariable Long id) {
         return convertToDto(userService.getUser(id));
     }
 
     @PutMapping(value = "/user/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    UserDto updateUser(@RequestBody UserDto userDto, @PathVariable int id) {
+    UserDto updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {
         return convertToDto(userService.updateUser(id, convertToEntity(userDto)));
     }
 
     @DeleteMapping(value = "/user/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteUser(@PathVariable int id) {
+    public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
 

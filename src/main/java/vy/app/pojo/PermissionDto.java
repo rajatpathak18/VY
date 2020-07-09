@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Setter
 @ToString
 public class PermissionDto {
-    private int permissionID;
+    private Long permissionID;
     private String name;
     private String status;
     private boolean trash;

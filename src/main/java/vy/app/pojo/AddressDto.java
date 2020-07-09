@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 @Setter
 @ToString
 public class AddressDto {
-    private int addressID;
+    private Long addressID;
     private String address;
     private String city;
     private int postalCode;

@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @ToString
 public class MemberDto {
-    private int memberID;
+    private Long memberID;
 
     @NotBlank(message = "firstName is mandatory")
     private String firstName;
@@ -61,7 +61,7 @@ public class MemberDto {
     private boolean patrikaSubscribed;
     @NotNull(message = "hasSwarved is mandatory")
     private boolean hasSwarved;
-    private String updeshtaMemberID;
+    private Long updeshtaMemberID;
     private String updeshtaName;
     private String updeshVenue;
     private boolean status;

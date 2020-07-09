@@ -58,32 +58,32 @@ public class MemberController {
 
     @GetMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    public MemberDto getMember(@PathVariable int id) {
+    public MemberDto getMember(@PathVariable Long id) {
         return convertToDto(memberService.getMember(id));
     }
 
     @PutMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    MemberDto updateMember(@RequestBody MemberDto memberDto, @PathVariable int id) {
+    MemberDto updateMember(@RequestBody MemberDto memberDto, @PathVariable Long id) {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 
     @PostMapping(value = "/member/{id}/designation/")
     @ResponseStatus(HttpStatus.OK)
-    MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable int id) {
+    MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable Long id) {
         return convertToDto(memberService.updateDesignation(id, convertToEntity(memberDto)));
     }
 
     @DeleteMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteMember(@PathVariable int id) {
+    public void deleteMember(@PathVariable Long id) {
         memberService.deleteMember(id);
     }
 
     private MemberDto convertToDto(Member member) {
-        System.out.println("printing sunny------------------1" + member.toString());
+//        System.out.println("printing sunny------------------1" + member.toString());
         MemberDto memberDto = modelMapper.map(member, MemberDto.class);
-        System.out.println("printing sunny------------------2" + memberDto.toString());
+//        System.out.println("printing sunny------------------2" + memberDto.toString());
         return memberDto;
     }
 

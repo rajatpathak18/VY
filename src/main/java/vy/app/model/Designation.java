@@ -18,7 +18,7 @@ public class Designation {
     @Column(name = "designation_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int designationID;
+    private Long designationID;
 
     @Column(name = "designation_name")
     private String designationName;

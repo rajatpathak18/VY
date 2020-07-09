@@ -22,7 +22,7 @@ public class Member {
     @Column(name = "member_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int memberID;
+    private Long memberID;
 
     @Column(name = "first_name")
     private String firstName;
@@ -109,7 +109,7 @@ public class Member {
     private boolean hasSwarved;
 
     @Column(name = "updeshta_member_id")
-    private String updeshtaMemberID;
+    private Long updeshtaMemberID;
 
     @Column(name = "updeshta_name")
     private String updeshtaName;

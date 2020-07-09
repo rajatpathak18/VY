@@ -18,7 +18,7 @@ public class User {
     @Column(name = "user_id")
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userID;
+    private Long userID;
 
     @OneToOne
     @JoinColumn(name = "member_id")

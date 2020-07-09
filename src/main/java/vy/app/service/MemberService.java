@@ -27,20 +27,20 @@ public class MemberService {
         return memberRepository.findAll(spec, pageable);
     }
 
-    public Member getMember(int id) {
+    public Member getMember(Long id) {
         Optional<vy.app.model.Member> memberOptional = memberRepository.findById(id);
         return memberOptional.get();
     }
 
     @Transactional
-    public Member updateMember(int id, Member member) {
+    public Member updateMember(Long id, Member member) {
         member.setMemberID(id);
         memberRepository.save(member);
         return memberRepository.findById(id).get();
     }
 
     @Transactional
-    public Member updateDesignation(int id, Member member) {
+    public Member updateDesignation(Long id, Member member) {
         Member existingMember = memberRepository.findById(id).get();
         existingMember.setDesignation(member.getDesignation());
         memberRepository.save(existingMember);
@@ -49,7 +49,7 @@ public class MemberService {
 
 
     @Transactional
-    public void deleteMember(int id) {
+    public void deleteMember(Long id) {
         memberRepository.deleteById(id);
     }
 }
