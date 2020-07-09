@@ -26,16 +26,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   PasswordEncoder bCryptPasswordEncoder;
 
   public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
-      /*auth.userDetailsService(vyUserDetailsService)
-        .passwordEncoder(bCryptPasswordEncoder);*/
-      auth.jdbcAuthentication()
+      auth.userDetailsService(vyUserDetailsService)
         .passwordEncoder(bCryptPasswordEncoder);
-  }
+      /*auth.jdbcAuthentication()
+        .passwordEncoder(bCryptPasswordEncoder);
+  */}
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.csrf().disable()
-      .authorizeRequests().antMatchers("/authenticate").permitAll()
+      .authorizeRequests()
+      .antMatchers("/authenticate").permitAll()
+      .antMatchers("/register").permitAll()
       .anyRequest().authenticated()
       .and().sessionManagement()
       .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

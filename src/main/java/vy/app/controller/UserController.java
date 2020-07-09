@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import vy.app.Util.JwtUtils;
 import vy.app.pojo.AuthenticationRequest;
 import vy.app.pojo.AuthenticationResponse;
+import vy.app.pojo.UserDto;
+import vy.app.service.UserService;
 import vy.app.service.VyUserDetailsService;
 
 @RestController
@@ -23,6 +25,9 @@ public class UserController {
 
   @Autowired
   JwtUtils jwtUtils;
+
+  @Autowired
+  UserService userService;
 
   @RequestMapping("/hello")
   public String hello(){
@@ -48,5 +53,11 @@ public class UserController {
     final String jwt = "";//jwtUtils.generateToken(userDetails);
 
     return ResponseEntity.ok(new AuthenticationResponse(jwt));
+  }
+
+  @RequestMapping(value = "/register", method = RequestMethod.POST)
+  public void registerUser(@RequestBody UserDto userDto){
+    System.out.println(userDto);
+    userService.registerUser(userDto);
   }
 }
