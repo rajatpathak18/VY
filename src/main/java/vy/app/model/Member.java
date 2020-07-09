@@ -3,6 +3,10 @@ package vy.app.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -113,21 +117,28 @@ public class Member {
     @Column(name = "updesh_venue")
     private String updeshVenue;
 
+    @Column(name = "create_source")
+    private String createSource;
+
+    @Column(name = "update_source")
+    private String updateSource;
+
     @Column(name = "status")
     private boolean status;
 
     @Column(name = "trash")
     private boolean trash;
 
+
+    //    @Temporal(TemporalType.TIMESTAMP)
+//    @CreatedDate
+    @CreationTimestamp
     @Column(name = "created_at")
     private Timestamp createdAt;
 
+    //    @Temporal(TemporalType.TIMESTAMP)
+//    @LastModifiedDate
+    @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
-
-    @Column(name = "create_source")
-    private String createSource;
-
-    @Column(name = "update_source")
-    private String updateSource;
 }

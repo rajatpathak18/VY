@@ -71,7 +71,7 @@ public class MemberController {
     @PostMapping(value = "/member/{id}/designation/")
     @ResponseStatus(HttpStatus.OK)
     MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable int id) {
-        return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
+        return convertToDto(memberService.updateDesignation(id, convertToEntity(memberDto)));
     }
 
     @DeleteMapping(value = "/member/{id}/")
@@ -81,7 +81,9 @@ public class MemberController {
     }
 
     private MemberDto convertToDto(Member member) {
+        System.out.println("printing sunny------------------1" + member.toString());
         MemberDto memberDto = modelMapper.map(member, MemberDto.class);
+        System.out.println("printing sunny------------------2" + memberDto.toString());
         return memberDto;
     }
 

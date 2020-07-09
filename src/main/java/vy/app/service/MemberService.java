@@ -34,11 +34,19 @@ public class MemberService {
 
     @Transactional
     public Member updateMember(int id, Member member) {
+        member.setMemberID(id);
+        memberRepository.save(member);
+        return memberRepository.findById(id).get();
+    }
+
+    @Transactional
+    public Member updateDesignation(int id, Member member) {
         Member existingMember = memberRepository.findById(id).get();
         existingMember.setDesignation(member.getDesignation());
         memberRepository.save(existingMember);
         return memberRepository.findById(id).get();
     }
+
 
     @Transactional
     public void deleteMember(int id) {
