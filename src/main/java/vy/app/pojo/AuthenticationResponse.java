@@ -1,12 +1,16 @@
 package vy.app.pojo;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+@Getter
+@Setter
 public class AuthenticationResponse {
     private String jwt;
-    private UserDto userDto;
+    private UserDto user;
     private Collection<? extends GrantedAuthority> authorities;
 
     AuthenticationResponse() {
@@ -14,15 +18,7 @@ public class AuthenticationResponse {
 
     public AuthenticationResponse(String jwt, UserDto userDto, Collection<? extends GrantedAuthority> authorities) {
         this.jwt = jwt;
-        this.userDto = userDto;
+        this.user = userDto;
         this.authorities = authorities;
-    }
-
-    public String getJwt() {
-        return jwt;
-    }
-
-    public void setJwt(String jwt) {
-        this.jwt = jwt;
     }
 }
