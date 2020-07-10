@@ -1,12 +1,12 @@
 package vy.app.controller;
 
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import vy.app.model.User;
 import vy.app.pojo.UserDto;
 import vy.app.service.UserService;
+import vy.app.util.Converter;
 import vy.app.validation.Validation;
 
 import java.util.List;
@@ -20,50 +20,40 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private ModelMapper modelMapper;
+    private Validation<UserDto> userDtoValidation;
 
     @Autowired
-    private Validation<UserDto> userDtoValidation;
+    private Converter converter;
 
     @PostMapping(value = "/user/")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto createUser(@RequestBody UserDto userDto) throws Exception {
         userDtoValidation.validate(userDto);
-        return convertToDto(userService.createUser(convertToEntity(userDto)));
+        return converter.convertToDto(userService.createUser(converter.convertToEntity(userDto)));
     }
 
     @GetMapping(value = "/user/")
     @ResponseStatus(HttpStatus.OK)
     public List<UserDto> getUsers() {
         List<User> users = userService.getUsers();
-        return users.stream().map(this::convertToDto).collect(Collectors.toList());
+        return users.stream().map(converter::convertToDto).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/user/{id}/")
     @ResponseStatus(HttpStatus.OK)
     public UserDto getUser(@PathVariable Long id) {
-        return convertToDto(userService.getUser(id));
+        return converter.convertToDto(userService.getUser(id));
     }
 
     @PutMapping(value = "/user/{id}/")
     @ResponseStatus(HttpStatus.OK)
     UserDto updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {
-        return convertToDto(userService.updateUser(id, convertToEntity(userDto)));
+        return converter.convertToDto(userService.updateUser(id, converter.convertToEntity(userDto)));
     }
 
     @DeleteMapping(value = "/user/{id}/")
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
-    }
-
-    private UserDto convertToDto(User user) {
-        UserDto UserDto = modelMapper.map(user, UserDto.class);
-        return UserDto;
-    }
-
-    private User convertToEntity(UserDto userDto) {
-        User user = modelMapper.map(userDto, User.class);
-        return user;
     }
 }

@@ -36,7 +36,7 @@ public class Role {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-    @ManyToMany(cascade = CascadeType.PERSIST)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "vy_role_permission",
             joinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")},
             inverseJoinColumns = {@JoinColumn(name = "permission_id", referencedColumnName = "permission_id")})
