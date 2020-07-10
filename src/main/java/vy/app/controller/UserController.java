@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import vy.app.model.User;
+import vy.app.pojo.PasswordRequest;
 import vy.app.pojo.UserDto;
 import vy.app.service.UserService;
 import vy.app.util.Converter;
@@ -25,6 +26,7 @@ public class UserController {
     @Autowired
     private Converter converter;
 
+    // TODO: Implement who can access what endpoint
     @PostMapping(value = "/user/")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto createUser(@RequestBody UserDto userDto) throws Exception {
@@ -55,5 +57,13 @@ public class UserController {
     @ResponseStatus(HttpStatus.OK)
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
+    }
+
+    @PostMapping(value = "/user/{id}/password/")
+    @ResponseStatus(HttpStatus.OK)
+    public void changePassword(@RequestBody PasswordRequest passwordRequest, @PathVariable Long id) {
+        // TODO: Get the current username from ID, check if the logged in user has access to do this
+        System.out.println("printing data-----" + passwordRequest.getOldPassword() + " " + passwordRequest.getNewPassword() + " " + id.toString());
+        userService.changePassword(id, passwordRequest.getOldPassword(), passwordRequest.getNewPassword());
     }
 }

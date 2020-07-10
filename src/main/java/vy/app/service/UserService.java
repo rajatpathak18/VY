@@ -1,6 +1,7 @@
 package vy.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import vy.app.model.User;
 import vy.app.model.User;
@@ -16,7 +17,8 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-//    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
     public User createUser(User user) {
@@ -44,5 +46,12 @@ public class UserService {
     @Transactional
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public void changePassword(Long id, String oldPassword, String newPassword) {
+        User user = userRepository.findById(id).get();
+        // TODO: check if the old password is valid
+        user.setPassword(bCryptPasswordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 }
