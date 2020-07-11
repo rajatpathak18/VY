@@ -61,7 +61,7 @@ public class UserController {
 
     @PostMapping(value = "/user/{id}/password/")
     @ResponseStatus(HttpStatus.OK)
-    public void changePassword(@RequestBody PasswordRequest passwordRequest, @PathVariable Long id) {
+    public void changePassword(@RequestBody PasswordRequest passwordRequest, @PathVariable Long id) throws Exception {
         // TODO: Get the current username from ID, check if the logged in user has access to do this
         System.out.println("printing data-----" + passwordRequest.getOldPassword() + " " + passwordRequest.getNewPassword() + " " + id.toString());
        // userService.changePassword(id, passwordRequest.getOldPassword(), passwordRequest.getNewPassword());

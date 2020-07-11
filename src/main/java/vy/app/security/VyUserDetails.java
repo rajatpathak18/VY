@@ -25,12 +25,6 @@ public class VyUserDetails implements UserDetails {
     VyUserDetails() {
     }
 
-
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.authorities;
-    }
-
     @Override
     public String getPassword() {
         return this.user.getPassword();

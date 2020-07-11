@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import vy.app.model.Designation;
 
 import javax.validation.constraints.*;
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;

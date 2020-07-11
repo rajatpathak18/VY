@@ -3,6 +3,8 @@ package vy.app.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import vy.app.Exception.APIException;
+import vy.app.Exception.Exceptions;
 import vy.app.model.User;
 import vy.app.model.User;
 import vy.app.repository.UserRepository;
@@ -48,9 +50,11 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public void changePassword(Long id, String oldPassword, String newPassword) {
+    public void changePassword(Long id, String oldPassword, String newPassword) throws Exception {
         User user = userRepository.findById(id).get();
-        // TODO: check if the old password is valid
+        if (!bCryptPasswordEncoder.matches(oldPassword, user.getPassword())) {
+            throw Exceptions.UserIncorrectOldPasswordException;
+        }
         user.setPassword(bCryptPasswordEncoder.encode(newPassword));
         userRepository.save(user);
     }

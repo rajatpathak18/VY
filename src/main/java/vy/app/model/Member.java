@@ -9,6 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
