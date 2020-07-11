@@ -17,7 +17,7 @@ import vy.app.security.JwtUtils;
 import vy.app.security.VyUserDetails;
 import vy.app.util.Converter;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class AuthenticationController {
 

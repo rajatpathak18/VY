@@ -11,7 +11,7 @@ import vy.app.service.RoleService;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class RoleController {
 
