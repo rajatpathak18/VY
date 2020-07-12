@@ -4,6 +4,8 @@ import net.kaczmarzyk.spring.data.jpa.domain.Equal;
 import net.kaczmarzyk.spring.data.jpa.domain.Like;
 import net.kaczmarzyk.spring.data.jpa.domain.LikeIgnoreCase;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -35,10 +37,12 @@ public class MemberController {
     @Autowired
     private Validation<MemberDto> memberDtoValidation;
 
+    private static final Logger logger = LogManager.getLogger(MemberController.class);
+
     @PostMapping(value = "/member/")
     @ResponseStatus(HttpStatus.CREATED)
     public MemberDto createMember(@Valid @RequestBody MemberDto memberDto) throws Exception {
-//        memberDtoValidation.validate(memberDto);
+        logger.info("createMember: " + memberDto.toString());
         return convertToDto(memberService.createMember(convertToEntity(memberDto)));
     }
 

@@ -40,8 +40,8 @@ public class MemberDto {
     private String govtID;
     private String govtIDType;
     private String nationality;
-    private String memberPhotoPath;
-    private String govtIDPhotoPath;
+    //    private String memberPhotoPath;
+//    private String govtIDPhotoPath;
     private Date associatedSince;
     private AddressDto address;
     private EmailDto email;

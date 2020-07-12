@@ -18,7 +18,6 @@ public class UserDto {
     private Long userID;
     private Member member;
     private String username;
-    private String password;
     private String status;
     private boolean trash;
     private Timestamp createdAt;
