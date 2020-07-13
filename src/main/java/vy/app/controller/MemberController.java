@@ -57,6 +57,7 @@ public class MemberController {
                     @Spec(path = "alternatePhoneNumber", params = "phNumber", spec = Equal.class)})
     }) Specification<Member> spec, @PageableDefault(size = 5, sort = "memberID") Pageable pageable) {
         Page<Member> members = memberService.getMembers(spec, pageable);
+        logger.info("GetMembers: " + members.toString());
         return members.map(this::convertToDto);
     }
 
