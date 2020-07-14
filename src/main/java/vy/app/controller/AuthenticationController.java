@@ -17,6 +17,9 @@ import vy.app.security.JwtUtils;
 import vy.app.security.VyUserDetails;
 import vy.app.util.Converter;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+
 //@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class AuthenticationController {
@@ -31,7 +34,7 @@ public class AuthenticationController {
     private Converter converter;
 
     @PostMapping(value = "/authenticate/")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest, HttpServletResponse response) {
         AuthenticationResponse authenticationResponse = null;
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -41,6 +44,13 @@ public class AuthenticationController {
             String jwt = jwtUtils.generateToken(userDetails);
             authenticationResponse = new AuthenticationResponse(jwt, converter.convertToDto(userDetails.getUser()), userDetails.getAuthorities());
 
+            Cookie cookie = new Cookie("accessToken", jwt);
+            cookie.setMaxAge(24 * 60 * 60); // expires in 1 day
+            cookie.setSecure(false);
+            cookie.setHttpOnly(true);
+            cookie.setDomain("localhost");
+            cookie.setPath("/"); // global cookie accessible every where
+            response.addCookie(cookie);
             return new ResponseEntity<>(authenticationResponse, HttpStatus.OK);
         } catch (BadCredentialsException e) {
             System.out.println("Bad Credentials Exception " + e);
