@@ -7,17 +7,14 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
-import vy.app.model.User;
+import vy.app.pojo.AuthenticationErrorResponse;
 import vy.app.pojo.AuthenticationRequest;
 import vy.app.pojo.AuthenticationResponse;
-import vy.app.pojo.UserDto;
 import vy.app.security.JwtUtils;
 import vy.app.security.VyUserDetails;
 import vy.app.util.Converter;
 
-//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class AuthenticationController {
 
@@ -44,9 +41,11 @@ public class AuthenticationController {
             return new ResponseEntity<>(authenticationResponse, HttpStatus.OK);
         } catch (BadCredentialsException e) {
             System.out.println("Bad Credentials Exception " + e);
+            authenticationResponse = new AuthenticationErrorResponse(HttpStatus.UNAUTHORIZED.name(),e.getMessage());
             return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {
             System.out.println("Another Exception : " + e);
+            authenticationResponse = new AuthenticationErrorResponse(HttpStatus.UNAUTHORIZED.name(),e.getMessage());
             return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
         }
     }

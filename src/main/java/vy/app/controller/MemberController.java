@@ -24,7 +24,6 @@ import vy.app.validation.Validation;
 import javax.validation.Valid;
 
 
-//@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 public class MemberController {
 
