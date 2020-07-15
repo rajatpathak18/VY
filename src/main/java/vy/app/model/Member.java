@@ -1,5 +1,6 @@
 package vy.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -67,6 +68,11 @@ public class Member {
     @Column(name = "govt_id_photo_path")
     private String govtIDPhotoPath;
 
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "member_photo_id")
+    private MemberPhoto memberPhoto;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
@@ -79,11 +85,9 @@ public class Member {
     @JoinColumn(name = "akshay_patra_id")
     private AkshayPatra akshayPatra;
 
-    @ManyToMany(cascade = CascadeType.MERGE)
-    @JoinTable(name = "vy_member_designation",
-            joinColumns = {@JoinColumn(name = "member_id", referencedColumnName = "member_id")},
-            inverseJoinColumns = {@JoinColumn(name = "designation_id", referencedColumnName = "designation_id")})
-    private Set<Designation> designation;
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties(value = "member")
+    private Set<MemberDesignation> memberDesignations;
 
     @Column(name = "associated_since")
     private Date associatedSince;

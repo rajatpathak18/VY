@@ -1,5 +1,6 @@
 package vy.app.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -37,6 +38,7 @@ public class Designation {
     @Column(name = "updated_at")
     private Timestamp updatedAt;
 
-//    @ManyToMany(mappedBy = "designation", cascade = CascadeType.PERSIST)
-//    private Set<Member> members;
+    @OneToMany(mappedBy = "designation")
+    @JsonIgnoreProperties(value = "designation")
+    private Set<MemberDesignation> memberDesignations;
 }
