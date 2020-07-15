@@ -72,11 +72,11 @@ public class MemberController {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 
-    @PostMapping(value = "/member/{id}/designation/")
-    @ResponseStatus(HttpStatus.OK)
-    MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable Long id) {
-        return convertToDto(memberService.updateDesignation(id, convertToEntity(memberDto)));
-    }
+//    @PostMapping(value = "/member/{id}/designation/")
+//    @ResponseStatus(HttpStatus.OK)
+//    MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable Long id) {
+//        return convertToDto(memberService.updateDesignation(id, convertToEntity(memberDto)));
+//    }
 
     @DeleteMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
@@ -85,9 +85,9 @@ public class MemberController {
     }
 
     private MemberDto convertToDto(Member member) {
-//        System.out.println("printing sunny------------------1" + member.toString());
+        System.out.println("printing sunny------------------1" + member.toString());
         MemberDto memberDto = modelMapper.map(member, MemberDto.class);
-//        System.out.println("printing sunny------------------2" + memberDto.toString());
+        System.out.println("printing sunny------------------2" + memberDto.toString());
         return memberDto;
     }
 

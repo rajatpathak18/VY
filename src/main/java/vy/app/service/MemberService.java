@@ -39,13 +39,13 @@ public class MemberService {
         return memberRepository.findById(id).get();
     }
 
-    @Transactional
-    public Member updateDesignation(Long id, Member member) {
-        Member existingMember = memberRepository.findById(id).get();
-        existingMember.setDesignation(member.getDesignation());
-        memberRepository.save(existingMember);
-        return memberRepository.findById(id).get();
-    }
+//    @Transactional
+//    public Member updateDesignation(Long id, Member member) {
+//        Member existingMember = memberRepository.findById(id).get();
+//        existingMember.setDesignation(member.getDesignation());
+//        memberRepository.save(existingMember);
+//        return memberRepository.findById(id).get();
+//    }
 
 
     @Transactional

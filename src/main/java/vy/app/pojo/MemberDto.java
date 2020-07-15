@@ -5,7 +5,9 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 import vy.app.model.Designation;
+import vy.app.model.MemberDesignation;
 
+import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
 import java.sql.Blob;
 import java.sql.Date;
@@ -37,8 +39,8 @@ public class MemberDto {
     private String fatherName;
     private String primaryPhoneNumber;
     private String alternatePhoneNumber;
-    private String govtID;
-    private String govtIDType;
+    //    private String govtID;
+//    private String govtIDType;
     private String nationality;
     //    private String memberPhotoPath;
 //    private String govtIDPhotoPath;
@@ -46,7 +48,7 @@ public class MemberDto {
     private AddressDto address;
     private EmailDto email;
     private AkshayPatraDto akshayPatra;
-    private Set<Designation> designation;
+    private Set<MemberDesignation> memberDesignations;
     private String profession;
     @NotNull(message = "practiceLevel is mandatory")
     @Min(value = 1, message = "practiceLevel must be equal or greater than 1")
