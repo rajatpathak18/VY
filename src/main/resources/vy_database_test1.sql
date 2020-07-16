@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 07:13 PM
+-- Generation Time: Jul 16, 2020 at 04:28 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -106,7 +106,10 @@ INSERT INTO `vy_address` (`address_id`, `address`, `city`, `postal_code`, `count
 (67, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 10:52:50', '2020-07-09 10:52:50'),
 (68, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-11 18:21:50', '2020-07-11 18:21:50'),
 (69, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-11 18:29:17', '2020-07-11 18:29:17'),
-(72, ' ', '', 0, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 15:32:59', '2020-07-15 15:32:59');
+(72, ' ', '', 0, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 15:32:59', '2020-07-15 15:32:59'),
+(74, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 19:09:36', '2020-07-15 19:09:36'),
+(75, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 19:21:20', '2020-07-15 19:21:20'),
+(76, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 19:41:26', '2020-07-15 19:41:26');
 
 -- --------------------------------------------------------
 
@@ -130,7 +133,10 @@ CREATE TABLE `vy_akshay_patra` (
 
 INSERT INTO `vy_akshay_patra` (`akshay_patra_id`, `akshay_patra_num`, `patra_allocation_date`, `status`, `created_at`, `updated_at`, `trash`) VALUES
 (1, 'fbjdsf', '2020-06-01', 1, '2020-05-31 18:30:00', NULL, 0),
-(2, 'djkf', '2020-05-31', 1, '2020-05-31 18:30:00', NULL, 0);
+(2, 'djkf', '2020-05-31', 1, '2020-05-31 18:30:00', NULL, 0),
+(3, 'hvjb', '2020-07-01', 0, '2020-07-15 19:09:36', NULL, 0),
+(4, 'jhfgj', '2020-07-16', 0, '2020-07-15 19:21:20', NULL, 0),
+(5, 'smjf', '2020-07-30', 0, '2020-07-15 19:41:26', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -225,7 +231,10 @@ INSERT INTO `vy_email` (`email_id`, `email_address_1`, `email_address_2`, `statu
 (66, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-09 10:52:50', NULL),
 (67, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-11 18:21:50', NULL),
 (68, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-11 18:29:17', NULL),
-(69, '', '', 0, 0, '2020-07-15 15:32:59', NULL);
+(69, '', '', 0, 0, '2020-07-15 15:32:59', NULL),
+(70, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-15 19:09:36', NULL),
+(71, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-15 19:21:20', NULL),
+(72, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-15 19:41:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -263,7 +272,7 @@ CREATE TABLE `vy_member` (
   `updeshta_member_id` bigint(20) DEFAULT NULL,
   `updeshta_name` varchar(240) DEFAULT NULL,
   `updesh_venue` varchar(120) DEFAULT NULL,
-  `photo` longblob,
+  `member_photo_id` bigint(20) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT '1',
   `trash` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -276,7 +285,7 @@ CREATE TABLE `vy_member` (
 -- Dumping data for table `vy_member`
 --
 
-INSERT INTO `vy_member` (`member_id`, `first_name`, `middle_name`, `last_name`, `dob`, `gender`, `mother_name`, `father_name`, `phone_no`, `alternate_phone_no`, `address_id`, `email_id`, `akshay_patra_id`, `government_id`, `government_id_type`, `nationality`, `member_photo_path`, `govt_id_photo_path`, `associated_since`, `profession`, `practice_level`, `send_email`, `call_flag`, `sms`, `patrika_subscribed`, `has_swarved`, `updeshta_member_id`, `updeshta_name`, `updesh_venue`, `photo`, `status`, `trash`, `created_at`, `updated_at`, `create_source`, `update_source`) VALUES
+INSERT INTO `vy_member` (`member_id`, `first_name`, `middle_name`, `last_name`, `dob`, `gender`, `mother_name`, `father_name`, `phone_no`, `alternate_phone_no`, `address_id`, `email_id`, `akshay_patra_id`, `government_id`, `government_id_type`, `nationality`, `member_photo_path`, `govt_id_photo_path`, `associated_since`, `profession`, `practice_level`, `send_email`, `call_flag`, `sms`, `patrika_subscribed`, `has_swarved`, `updeshta_member_id`, `updeshta_name`, `updesh_venue`, `member_photo_id`, `status`, `trash`, `created_at`, `updated_at`, `create_source`, `update_source`) VALUES
 (6, 'Sunny', NULL, 'Narayan', '1988-05-04', 'M', NULL, NULL, '+919632330839', '9632330839', 1, 1, NULL, 'Anyrag_giv_id1234', 'PAN', 'Indian', 'memberphoto: path\\', 'gove_id photo :\\ path', '1990-05-04', 'IT Manager', 1, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 0, 0, '2020-06-03 18:30:00', '2020-06-03 18:30:00', 'Bangalore', 'Bangalore'),
 (7, 'Anurag', NULL, 'Deo', '1988-05-05', 'M', NULL, NULL, '9632330839', '9632330839', 1, 1, NULL, 'Anyrag_giv_id1234', 'PAN', 'Indian', 'memberphoto: path\\', 'gove_id photo :\\ path', '1990-05-05', 'IT Manager', 1, 0, 0, 0, 0, 0, 6, NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00', 'Bangalore', 'Bangalore'),
 (8, 'Shashi', NULL, 'Kumar', '1988-05-05', 'M', NULL, NULL, '9632330839', '9632330839', 1, 1, NULL, 'Anyrag_giv_id1234', 'PAN', 'Indian', 'memberphoto: path\\', 'gove_id photo :\\ path', '1990-05-05', 'IT Manager', 1, 0, 0, 0, 0, 0, 6, NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00', 'Bangalore', 'Bangalore'),
@@ -292,7 +301,10 @@ INSERT INTO `vy_member` (`member_id`, `first_name`, `middle_name`, `last_name`, 
 (28, 'sunny', '', 'Na2', '2020-06-24', 'F', 'sdbf', 'sjgfb', '9879899879', '7879987797', 29, 28, NULL, 'hjdf', 'PAN', 'hjs', 'other', 'other', '6566-01-01', 'ksjdd', 2, 0, 0, 0, 0, 0, 6, NULL, 'jgew', NULL, 0, 0, '2020-07-08 16:49:13', NULL, 'Member Form', NULL),
 (52, 'kjdsfs', 'n', '2222', '2020-06-14', 'M', 'jsdfd', 's', '645863487', '746837658', 60, 59, NULL, 'hj', 'Passport', 'indian', 'other', 'other', '2020-06-07', 'm', 3, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 0, 0, '2020-07-08 18:55:12', '2020-07-08 18:55:12', 'Member Form', NULL),
 (53, 'kjdsfs', 'n', 'jsfkdf', '2020-06-14', 'M', 'jsdfd', 's', '645863487', '746837658', 56, 55, NULL, 'hj', 'Passport', 'indian', 'other', 'other', '2020-06-07', 'm', 3, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 1, 0, '2020-07-08 17:59:59', NULL, 'Member Form', NULL),
-(60, 'fdsf', '', 'fdf', '2020-07-08', 'M', '', '', NULL, NULL, 72, 69, NULL, NULL, NULL, '', NULL, NULL, NULL, '', 4, 0, 0, 0, 0, 1, NULL, '', '', NULL, 0, 0, '2020-07-15 15:32:59', '2020-07-15 15:32:59', 'Member Form', NULL);
+(60, 'fdsf', '', 'fdf', '2020-07-08', 'M', '', '', NULL, NULL, 72, 69, NULL, NULL, NULL, '', NULL, NULL, NULL, '', 4, 0, 0, 0, 0, 1, NULL, '', '', NULL, 0, 0, '2020-07-15 15:32:59', '2020-07-15 15:32:59', 'Member Form', NULL),
+(61, 'Sunny', '', 'Narayan', '2020-07-06', 'M', '', '', NULL, NULL, 74, 70, 3, NULL, NULL, '', NULL, NULL, NULL, '', 3, 0, 0, 0, 0, 0, NULL, '', '', NULL, 0, 0, '2020-07-15 19:09:36', '2020-07-15 19:09:36', 'Member Form', NULL),
+(62, 'Sunny', '', 'Narayan', '2020-07-06', 'F', '', '', NULL, NULL, 75, 71, 4, NULL, NULL, '', NULL, NULL, NULL, '', 1, 0, 0, 0, 0, 0, NULL, '', '', NULL, 0, 0, '2020-07-15 19:21:20', '2020-07-15 19:21:20', 'Member Form', NULL),
+(63, 'Sunny', '', 'Narayan', '2020-07-07', 'F', '', '', NULL, NULL, 76, 72, 5, NULL, NULL, '', NULL, NULL, NULL, '', 5, 0, 0, 0, 0, 0, NULL, '', '', NULL, 0, 0, '2020-07-15 19:41:26', '2020-07-15 19:41:26', 'Member Form', NULL);
 
 -- --------------------------------------------------------
 
@@ -320,6 +332,18 @@ CREATE TABLE `vy_member_designation` (
 INSERT INTO `vy_member_designation` (`member_designation_id`, `member_id`, `designation_id`, `honour_date`, `is_global`, `dismiss_date`, `status`, `created_at`, `updated_at`, `trash`) VALUES
 (6, 6, 3, NULL, 0, NULL, 1, '2020-07-08 16:49:13', NULL, 0),
 (7, 13, 1, NULL, 0, NULL, 1, '2020-07-15 11:27:54', NULL, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vy_member_photo`
+--
+
+CREATE TABLE `vy_member_photo` (
+  `member_photo_id` bigint(20) NOT NULL,
+  `type` varchar(60) DEFAULT NULL,
+  `photo_byte` longblob NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -494,7 +518,8 @@ ALTER TABLE `vy_member`
   ADD KEY `updeshta_member_id` (`updeshta_member_id`),
   ADD KEY `address_id` (`address_id`),
   ADD KEY `akshay_patra_id` (`akshay_patra_id`),
-  ADD KEY `email_id` (`email_id`);
+  ADD KEY `email_id` (`email_id`),
+  ADD KEY `member_photo_id` (`member_photo_id`);
 
 --
 -- Indexes for table `vy_member_designation`
@@ -503,6 +528,12 @@ ALTER TABLE `vy_member_designation`
   ADD PRIMARY KEY (`member_designation_id`),
   ADD KEY `member_id` (`member_id`),
   ADD KEY `designation_id` (`designation_id`);
+
+--
+-- Indexes for table `vy_member_photo`
+--
+ALTER TABLE `vy_member_photo`
+  ADD PRIMARY KEY (`member_photo_id`);
 
 --
 -- Indexes for table `vy_permission`
@@ -550,13 +581,13 @@ ALTER TABLE `vy_user_role`
 -- AUTO_INCREMENT for table `vy_address`
 --
 ALTER TABLE `vy_address`
-  MODIFY `address_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `address_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
 
 --
 -- AUTO_INCREMENT for table `vy_akshay_patra`
 --
 ALTER TABLE `vy_akshay_patra`
-  MODIFY `akshay_patra_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `akshay_patra_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `vy_designation`
@@ -568,19 +599,25 @@ ALTER TABLE `vy_designation`
 -- AUTO_INCREMENT for table `vy_email`
 --
 ALTER TABLE `vy_email`
-  MODIFY `email_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `email_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
 
 --
 -- AUTO_INCREMENT for table `vy_member`
 --
 ALTER TABLE `vy_member`
-  MODIFY `member_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `member_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
 -- AUTO_INCREMENT for table `vy_member_designation`
 --
 ALTER TABLE `vy_member_designation`
   MODIFY `member_designation_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `vy_member_photo`
+--
+ALTER TABLE `vy_member_photo`
+  MODIFY `member_photo_id` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `vy_permission`
@@ -622,7 +659,8 @@ ALTER TABLE `vy_user_role`
 ALTER TABLE `vy_member`
   ADD CONSTRAINT `vy_member_ibfk_1` FOREIGN KEY (`address_id`) REFERENCES `vy_address` (`address_id`),
   ADD CONSTRAINT `vy_member_ibfk_2` FOREIGN KEY (`akshay_patra_id`) REFERENCES `vy_akshay_patra` (`akshay_patra_id`),
-  ADD CONSTRAINT `vy_member_ibfk_3` FOREIGN KEY (`email_id`) REFERENCES `vy_email` (`email_id`);
+  ADD CONSTRAINT `vy_member_ibfk_3` FOREIGN KEY (`email_id`) REFERENCES `vy_email` (`email_id`),
+  ADD CONSTRAINT `vy_member_ibfk_4` FOREIGN KEY (`member_photo_id`) REFERENCES `vy_member_photo` (`member_photo_id`);
 
 --
 -- Constraints for table `vy_member_designation`
