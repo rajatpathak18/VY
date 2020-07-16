@@ -3,6 +3,7 @@ package vy.app.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.CreationTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -37,6 +38,7 @@ public class User {
     private boolean trash;
 
     @Column(name = "created_at")
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Column(name = "updated_at")
