@@ -43,7 +43,7 @@ public class MemberDto {
     //    private String govtID;
 //    private String govtIDType;
     private String nationality;
-    private MemberPhoto memberPhoto;
+    private MemberPhotoDto memberPhoto;
     //    private String memberPhotoPath;
 //    private String govtIDPhotoPath;
     private Date associatedSince;

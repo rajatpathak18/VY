@@ -14,5 +14,5 @@ import javax.persistence.Table;
 public class MemberPhotoDto {
     private Long memberPhotoID;
     private String type;
-    private byte[] photoByte;
+    private String fileAsBase64;
 }
