@@ -42,6 +42,7 @@ public class MemberController {
     @ResponseStatus(HttpStatus.CREATED)
     public MemberDto createMember(@Valid @RequestBody MemberDto memberDto) throws Exception {
         logger.info("createMember: " + memberDto.toString());
+        logger.info("Pritning image string " + memberDto.getMemberPhoto().getFileAsBase64());
         return convertToDto(memberService.createMember(convertToEntity(memberDto)));
     }
 

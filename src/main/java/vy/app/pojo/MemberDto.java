@@ -6,6 +6,7 @@ import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 import vy.app.model.Designation;
 import vy.app.model.MemberDesignation;
+import vy.app.model.MemberPhoto;
 
 import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
@@ -42,6 +43,7 @@ public class MemberDto {
     //    private String govtID;
 //    private String govtIDType;
     private String nationality;
+    private MemberPhoto memberPhoto;
     //    private String memberPhotoPath;
 //    private String govtIDPhotoPath;
     private Date associatedSince;

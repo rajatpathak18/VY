@@ -21,5 +21,5 @@ public class MemberPhoto {
     private String type;
 
     @Column(name = "photo_byte")
-    private byte[] photoByte;
+    private String fileAsBase64;
 }
