@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.ToString;
 import vy.app.model.Designation;
 import vy.app.model.Member;
+import vy.app.model.MemberDesignationID;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -15,7 +16,7 @@ import java.sql.Timestamp;
 @Setter
 @ToString
 public class MemberDesignationDto {
-    private Long memberDesignationID;
+    private MemberDesignationIDDto memberDesignationID;
     @ToString.Exclude()
     @JsonIgnoreProperties(value = "memberDesignations")
     private MemberDto member;

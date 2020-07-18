@@ -16,18 +16,18 @@ import java.sql.Timestamp;
 @Entity
 @Table(name = "vy_member_designation")
 public class MemberDesignation {
-    @Column(name = "member_designation_id")
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long memberDesignationID;
+    @EmbeddedId
+    private MemberDesignationID memberDesignationID;
 
     @ManyToOne
+    @MapsId("member_id")
     @JoinColumn(name = "member_id")
     @JsonIgnoreProperties(value = "memberDesignations")
     @ToString.Exclude()
     private Member member;
 
     @ManyToOne
+    @MapsId("designation_id")
     @JoinColumn(name = "designation_id")
     @JsonIgnoreProperties(value = "memberDesignations")
     @ToString.Exclude()

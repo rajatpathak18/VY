@@ -6,6 +6,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import vy.app.model.MemberDesignation;
+import vy.app.repository.DesignationRepository;
+import vy.app.repository.MemberDesignationRepository;
 import vy.app.repository.MemberRepository;
 import vy.app.model.Member;
 
@@ -18,11 +21,17 @@ public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
 
+    @Autowired
+    private DesignationRepository designationRepository;
+
+    @Autowired
+    private MemberDesignationRepository memberDesignationRepository;
+
     @Transactional
     public Member createMember(Member member) {
         return memberRepository.save(member);
     }
-    
+
     public Page<Member> getMembers(Specification<Member> spec, Pageable pageable) {
         return memberRepository.findAll(spec, pageable);
     }
@@ -41,11 +50,10 @@ public class MemberService {
     }
 
     @Transactional
-    public Member updateMemberDesignation(Long id, Member member) {
-        Member existingMember = memberRepository.findById(id).get();
+    public Member createMemberDesignation(Long memberID, Member member) {
+        Member existingMember = memberRepository.findById(memberID).get();
         existingMember.setMemberDesignations(member.getMemberDesignations());
-        memberRepository.save(existingMember);
-        return memberRepository.findById(id).get();
+        return memberRepository.save(existingMember);
     }
 
 

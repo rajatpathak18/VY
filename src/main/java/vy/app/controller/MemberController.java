@@ -16,6 +16,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import vy.app.pojo.MemberDesignationDto;
 import vy.app.pojo.MemberDto;
 import vy.app.model.Member;
 import vy.app.service.MemberService;
@@ -41,7 +42,7 @@ public class MemberController {
     @PostMapping(value = "/member/")
     @ResponseStatus(HttpStatus.CREATED)
     public MemberDto createMember(@Valid @RequestBody MemberDto memberDto) throws Exception {
-        logger.info("createMember: " + memberDto.toString());
+//        logger.info("createMember: " + memberDto.toString());
 //        logger.info("Pritning image string " + memberDto.getMemberPhoto().getFileAsBase64());
         return convertToDto(memberService.createMember(convertToEntity(memberDto)));
     }
@@ -73,11 +74,11 @@ public class MemberController {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 
-    @PostMapping(value = "/member/{id}/designation/")
-    @ResponseStatus(HttpStatus.OK)
-    MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable Long id) {
-        return convertToDto(memberService.updateMemberDesignation(id, convertToEntity(memberDto)));
-    }
+//    @PostMapping(value = "/member/{memberID}/designation/")
+//    @ResponseStatus(HttpStatus.OK)
+//    MemberDto CreateMemberDesignation(@RequestBody MemberDto memberDto, @PathVariable Long memberID) {
+//        return convertToDto(memberService.createMemberDesignation(memberID, convertToEntity(memberDto)));
+//    }
 
     @DeleteMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
@@ -86,9 +87,9 @@ public class MemberController {
     }
 
     private MemberDto convertToDto(Member member) {
-        System.out.println("printing sunny------------------1" + member.toString());
+//        System.out.println("printing sunny------------------1" + member.toString());
         MemberDto memberDto = modelMapper.map(member, MemberDto.class);
-        System.out.println("printing sunny------------------2" + memberDto.toString());
+//        System.out.println("printing sunny------------------2" + memberDto.toString());
         return memberDto;
     }
 
