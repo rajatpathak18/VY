@@ -40,5 +40,6 @@ public class Designation {
 
     @OneToMany(mappedBy = "designation")
     @JsonIgnoreProperties(value = "designation")
+    @ToString.Exclude()
     private Set<MemberDesignation> memberDesignations;
 }

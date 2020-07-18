@@ -1,5 +1,6 @@
 package vy.app.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,8 +16,12 @@ import java.sql.Timestamp;
 @ToString
 public class MemberDesignationDto {
     private Long memberDesignationID;
-    private Member member;
-    private Designation designation;
+    @ToString.Exclude()
+    @JsonIgnoreProperties(value = "memberDesignations")
+    private MemberDto member;
+    @ToString.Exclude()
+    @JsonIgnoreProperties(value = "memberDesignations")
+    private DesignationDto designation;
     private Date honourDate;
     private boolean isGlobal;
     private Date dismissDate;

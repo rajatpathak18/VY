@@ -1,5 +1,6 @@
 package vy.app.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -17,8 +18,9 @@ public class DesignationDto {
     private Long designationID;
     private String designationName;
     private boolean status;
-    private boolean trash;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-//    private Set<Member> members;
+    @JsonIgnoreProperties(value = "designation")
+    @ToString.Exclude()
+    private Set<MemberDesignationDto> memberDesignations;
 }

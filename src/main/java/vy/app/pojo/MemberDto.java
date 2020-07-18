@@ -1,5 +1,6 @@
 package vy.app.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -50,7 +51,9 @@ public class MemberDto {
     private AddressDto address;
     private EmailDto email;
     private AkshayPatraDto akshayPatra;
-    private Set<MemberDesignation> memberDesignations;
+    @JsonIgnoreProperties(value = "member")
+    @ToString.Exclude()
+    private Set<MemberDesignationDto> memberDesignations;
     private String profession;
     @NotNull(message = "practiceLevel is mandatory")
     @Min(value = 1, message = "practiceLevel must be equal or greater than 1")

@@ -23,11 +23,14 @@ public class MemberDesignation {
 
     @ManyToOne
     @JoinColumn(name = "member_id")
+    @JsonIgnoreProperties(value = "memberDesignations")
+    @ToString.Exclude()
     private Member member;
 
     @ManyToOne
     @JoinColumn(name = "designation_id")
     @JsonIgnoreProperties(value = "memberDesignations")
+    @ToString.Exclude()
     private Designation designation;
 
     @Column(name = "honour_date")

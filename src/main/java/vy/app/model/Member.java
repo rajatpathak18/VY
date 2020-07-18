@@ -85,8 +85,9 @@ public class Member {
     @JoinColumn(name = "akshay_patra_id")
     private AkshayPatra akshayPatra;
 
-    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "member")
     @JsonIgnoreProperties(value = "member")
+    @ToString.Exclude()
     private Set<MemberDesignation> memberDesignations;
 
     @Column(name = "associated_since")

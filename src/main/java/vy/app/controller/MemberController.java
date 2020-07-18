@@ -42,7 +42,7 @@ public class MemberController {
     @ResponseStatus(HttpStatus.CREATED)
     public MemberDto createMember(@Valid @RequestBody MemberDto memberDto) throws Exception {
         logger.info("createMember: " + memberDto.toString());
-        logger.info("Pritning image string " + memberDto.getMemberPhoto().getFileAsBase64());
+//        logger.info("Pritning image string " + memberDto.getMemberPhoto().getFileAsBase64());
         return convertToDto(memberService.createMember(convertToEntity(memberDto)));
     }
 
@@ -73,11 +73,11 @@ public class MemberController {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 
-//    @PostMapping(value = "/member/{id}/designation/")
-//    @ResponseStatus(HttpStatus.OK)
-//    MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable Long id) {
-//        return convertToDto(memberService.updateDesignation(id, convertToEntity(memberDto)));
-//    }
+    @PostMapping(value = "/member/{id}/designation/")
+    @ResponseStatus(HttpStatus.OK)
+    MemberDto updateDesignation(@RequestBody MemberDto memberDto, @PathVariable Long id) {
+        return convertToDto(memberService.updateMemberDesignation(id, convertToEntity(memberDto)));
+    }
 
     @DeleteMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
