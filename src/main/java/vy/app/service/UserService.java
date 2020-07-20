@@ -25,8 +25,7 @@ public class UserService {
     @Transactional
     public User createUser(User user) {
         user.setUsername(Long.toString(user.getMember().getMemberID()));
-//        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setPassword("password");
+        user.setPassword(bCryptPasswordEncoder.encode("password"));
         return userRepository.findById(userRepository.save(user).getUserID()).get();
     }
 
