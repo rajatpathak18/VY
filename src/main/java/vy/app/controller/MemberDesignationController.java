@@ -40,7 +40,7 @@ public class MemberDesignationController {
 
     @GetMapping(value = "/member/{memberID}/designation/{designationID}/")
     @ResponseStatus(HttpStatus.OK)
-    public MemberDesignationDto getMemberDesignation(@PathVariable Long memberID, @PathVariable Long designationID) {
+    public MemberDesignationDto getMemberDesignation(@PathVariable Long memberID, @PathVariable Long designationID) throws Exception {
         MemberDesignationID memberDesignationID = new MemberDesignationID(memberID, designationID);
         return convertToDto(memberDesignationService.getMemberDesignation(memberDesignationID));
     }
@@ -54,7 +54,7 @@ public class MemberDesignationController {
 
     @DeleteMapping(value = "/member/{memberID}/designation/{designationID}/")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteMemberDesignation(@PathVariable Long memberID, @PathVariable Long designationID) {
+    public void deleteMemberDesignation(@PathVariable Long memberID, @PathVariable Long designationID) throws Exception {
         MemberDesignationID memberDesignationID = new MemberDesignationID(memberID, designationID);
         memberDesignationService.deleteMemberDesignation(memberDesignationID);
     }

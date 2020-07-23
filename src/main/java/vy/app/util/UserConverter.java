@@ -7,14 +7,14 @@ import vy.app.model.User;
 import vy.app.pojo.UserDto;
 
 @Component
-public class Converter {
+public class UserConverter {
 
     @Autowired
     private ModelMapper modelMapper;
 
     public UserDto convertToDto(User user) {
-        UserDto UserDto = modelMapper.map(user, UserDto.class);
-        return UserDto;
+        UserDto userDto = modelMapper.map(user, UserDto.class);
+        return userDto;
     }
 
     public User convertToEntity(UserDto userDto) {

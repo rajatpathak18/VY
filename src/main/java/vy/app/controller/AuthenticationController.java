@@ -13,7 +13,7 @@ import vy.app.pojo.AuthenticationRequest;
 import vy.app.pojo.AuthenticationResponse;
 import vy.app.security.JwtUtils;
 import vy.app.security.VyUserDetails;
-import vy.app.util.Converter;
+import vy.app.util.UserConverter;
 
 @RestController
 public class AuthenticationController {
@@ -25,7 +25,7 @@ public class AuthenticationController {
     private JwtUtils jwtUtils;
 
     @Autowired
-    private Converter converter;
+    private UserConverter converter;
 
     @PostMapping(value = "/authenticate/")
     public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
@@ -41,11 +41,11 @@ public class AuthenticationController {
             return new ResponseEntity<>(authenticationResponse, HttpStatus.OK);
         } catch (BadCredentialsException e) {
             System.out.println("Bad Credentials Exception " + e);
-            authenticationResponse = new AuthenticationErrorResponse(HttpStatus.UNAUTHORIZED.name(),e.getMessage());
+            authenticationResponse = new AuthenticationErrorResponse(HttpStatus.UNAUTHORIZED.name(), e.getMessage());
             return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
         } catch (Exception e) {
             System.out.println("Another Exception : " + e);
-            authenticationResponse = new AuthenticationErrorResponse(HttpStatus.UNAUTHORIZED.name(),e.getMessage());
+            authenticationResponse = new AuthenticationErrorResponse(HttpStatus.UNAUTHORIZED.name(), e.getMessage());
             return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
         }
     }

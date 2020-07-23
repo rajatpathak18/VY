@@ -7,6 +7,7 @@ import vy.app.model.Member;
 import vy.app.model.Role;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -16,6 +17,7 @@ import java.util.Set;
 @ToString
 public class UserDto {
     private Long userID;
+    @NotNull
     private Member member;
     private String username;
     private String status;

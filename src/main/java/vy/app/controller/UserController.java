@@ -7,7 +7,7 @@ import vy.app.model.User;
 import vy.app.pojo.PasswordRequest;
 import vy.app.pojo.UserDto;
 import vy.app.service.UserService;
-import vy.app.util.Converter;
+import vy.app.util.UserConverter;
 import vy.app.validation.Validation;
 
 import java.util.List;
@@ -23,33 +23,33 @@ public class UserController {
     private Validation<UserDto> userDtoValidation;
 
     @Autowired
-    private Converter converter;
+    private UserConverter userConverter;
 
     // TODO: Implement who can access what endpoint
     @PostMapping(value = "/user/")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDto createUser(@RequestBody UserDto userDto) throws Exception {
         userDtoValidation.validate(userDto);
-        return converter.convertToDto(userService.createUser(converter.convertToEntity(userDto)));
+        return userConverter.convertToDto(userService.createUser(userConverter.convertToEntity(userDto)));
     }
 
     @GetMapping(value = "/user/")
     @ResponseStatus(HttpStatus.OK)
     public List<UserDto> getUsers() {
         List<User> users = userService.getUsers();
-        return users.stream().map(converter::convertToDto).collect(Collectors.toList());
+        return users.stream().map(userConverter::convertToDto).collect(Collectors.toList());
     }
 
     @GetMapping(value = "/user/{id}/")
     @ResponseStatus(HttpStatus.OK)
     public UserDto getUser(@PathVariable Long id) {
-        return converter.convertToDto(userService.getUser(id));
+        return userConverter.convertToDto(userService.getUser(id));
     }
 
     @PutMapping(value = "/user/{id}/")
     @ResponseStatus(HttpStatus.OK)
     UserDto updateUser(@RequestBody UserDto userDto, @PathVariable Long id) {
-        return converter.convertToDto(userService.updateUser(id, converter.convertToEntity(userDto)));
+        return userConverter.convertToDto(userService.updateUser(id, userConverter.convertToEntity(userDto)));
     }
 
     @DeleteMapping(value = "/user/{id}/")

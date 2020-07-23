@@ -23,8 +23,12 @@ public class UserService {
     PasswordEncoder bCryptPasswordEncoder;
 
     @Transactional
-    public User createUser(User user) {
+    public User createUser(User user) throws Exception {
         user.setUsername(Long.toString(user.getMember().getMemberID()));
+        if (userRepository.findByUsername(user.getUsername()).isPresent()) {
+            System.out.println(userRepository.findByUsername(user.getUsername()));
+            throw Exceptions.UserAlreadyExists;
+        }
         user.setPassword(bCryptPasswordEncoder.encode("password"));
         return userRepository.findById(userRepository.save(user).getUserID()).get();
     }
