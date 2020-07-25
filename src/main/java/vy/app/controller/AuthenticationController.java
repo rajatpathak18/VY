@@ -1,5 +1,6 @@
 package vy.app.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +9,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
+import vy.app.Exception.Exceptions;
 import vy.app.pojo.AuthenticationErrorResponse;
 import vy.app.pojo.AuthenticationRequest;
 import vy.app.pojo.AuthenticationResponse;
@@ -15,6 +17,7 @@ import vy.app.security.JwtUtils;
 import vy.app.security.VyUserDetails;
 import vy.app.util.UserConverter;
 
+@Log4j2
 @RestController
 public class AuthenticationController {
 
@@ -28,7 +31,7 @@ public class AuthenticationController {
     private UserConverter converter;
 
     @PostMapping(value = "/authenticate/")
-    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) {
+    public ResponseEntity<AuthenticationResponse> authenticate(@RequestBody AuthenticationRequest authenticationRequest) throws Exception {
         AuthenticationResponse authenticationResponse = null;
         try {
             Authentication authentication = authenticationManager.authenticate(
@@ -41,12 +44,12 @@ public class AuthenticationController {
             return new ResponseEntity<>(authenticationResponse, HttpStatus.OK);
         } catch (BadCredentialsException e) {
             System.out.println("Bad Credentials Exception " + e);
-            authenticationResponse = new AuthenticationErrorResponse(HttpStatus.UNAUTHORIZED.name(), e.getMessage());
-            return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
+            throw Exceptions.BadCredentialException;
+
         } catch (Exception e) {
-            System.out.println("Another Exception : " + e);
-            authenticationResponse = new AuthenticationErrorResponse(HttpStatus.UNAUTHORIZED.name(), e.getMessage());
-            return new ResponseEntity<>(authenticationResponse, HttpStatus.UNAUTHORIZED);
+            log.info("Exceptions in authenticate");
+            log.info(e.getLocalizedMessage());
+            throw Exceptions.GeneralException;
         }
     }
 }

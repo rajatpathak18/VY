@@ -40,7 +40,6 @@ public class MemberController {
     private static final Logger logger = LogManager.getLogger(MemberController.class);
 
     @PostMapping(value = "/member/")
-    @ResponseStatus(HttpStatus.CREATED)
     public MemberDto createMember(@Valid @RequestBody MemberDto memberDto) throws Exception {
 //        logger.info("createMember: " + memberDto.toString());
 //        logger.info("Pritning image string " + memberDto.getMemberPhoto().getFileAsBase64());

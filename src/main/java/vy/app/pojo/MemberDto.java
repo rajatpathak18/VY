@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
 import vy.app.model.Designation;
 import vy.app.model.MemberDesignation;
@@ -22,6 +23,7 @@ import java.util.Set;
 public class MemberDto {
     private Long memberID;
 
+    @Size(min = 1, max = 60, message = "firstName size must be between 1 and 60")
     @NotBlank(message = "firstName is mandatory")
     private String firstName;
 

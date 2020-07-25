@@ -10,6 +10,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
 import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -25,7 +26,7 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberID;
-
+    
     @Column(name = "first_name")
     private String firstName;
 
