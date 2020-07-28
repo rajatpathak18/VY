@@ -40,9 +40,9 @@ public class MemberController {
     private static final Logger logger = LogManager.getLogger(MemberController.class);
 
     @PostMapping(value = "/member/")
+    @ResponseStatus(code = HttpStatus.CREATED)
     public MemberDto createMember(@Valid @RequestBody MemberDto memberDto) throws Exception {
-//        logger.info("createMember: " + memberDto.toString());
-//        logger.info("Pritning image string " + memberDto.getMemberPhoto().getFileAsBase64());
+        logger.info("createMember: " + memberDto.toString());
         return convertToDto(memberService.createMember(convertToEntity(memberDto)));
     }
 
@@ -63,25 +63,19 @@ public class MemberController {
 
     @GetMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    public MemberDto getMember(@PathVariable Long id) {
+    public MemberDto getMember(@PathVariable Long id) throws Exception {
         return convertToDto(memberService.getMember(id));
     }
 
     @PutMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    MemberDto updateMember(@RequestBody MemberDto memberDto, @PathVariable Long id) {
+    MemberDto updateMember(@RequestBody MemberDto memberDto, @PathVariable Long id) throws Exception {
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 
-//    @PostMapping(value = "/member/{memberID}/designation/")
-//    @ResponseStatus(HttpStatus.OK)
-//    MemberDto CreateMemberDesignation(@RequestBody MemberDto memberDto, @PathVariable Long memberID) {
-//        return convertToDto(memberService.createMemberDesignation(memberID, convertToEntity(memberDto)));
-//    }
-
     @DeleteMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteMember(@PathVariable Long id) {
+    public void deleteMember(@PathVariable Long id) throws Exception {
         memberService.deleteMember(id);
     }
 

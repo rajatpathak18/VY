@@ -9,6 +9,7 @@ public interface Exceptions {
 
     APIException MemberFirstNameNullEmptyException = new APIException("First name cannot be null or empty", "/member", HttpStatus.BAD_REQUEST);
     APIException MemberLastNameNullEmptyException = new APIException("Last name cannot be null or empty", "/member", HttpStatus.BAD_REQUEST);
+    APIException MemberDoesNotExistException = new APIException("Member with this ID does not exist", "/member", HttpStatus.BAD_REQUEST);
 
     APIException UserMemberNullException = new APIException("Member cannot be null", "/user", HttpStatus.BAD_REQUEST);
     APIException UserMemberIDInvalidException = new APIException("Invalid member id", "/user", HttpStatus.BAD_REQUEST);
@@ -18,5 +19,8 @@ public interface Exceptions {
 
     APIException MemberDesignationAlreadyExists = new APIException("Designation is already assigned to this member.", "", HttpStatus.BAD_REQUEST);
     APIException MemberDesignationDoesNotExist = new APIException("Designation is not assigned to this member.", "", HttpStatus.BAD_REQUEST);
+
+    APIException DesignationIDDoesNotExistException = new APIException("Designation ID does not exist", "", HttpStatus.BAD_REQUEST);
+    APIException DesignationNameAlreadyExistException = new APIException("Designation name already exist", "", HttpStatus.BAD_REQUEST);
 }
 

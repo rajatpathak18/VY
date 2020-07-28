@@ -30,9 +30,10 @@ public class RoleService {
 
     @Transactional
     public Role updateRole(Long id, Role role) {
+        Role roleFromDB = roleRepository.findById(id).get();
         role.setRoleID(id);
-        roleRepository.save(role);
-        return roleRepository.findById(id).get();
+        role.setCreatedAt(roleFromDB.getCreatedAt()); // TODO: Change this as per designation in future
+        return roleRepository.save(role);
     }
 
     @Transactional

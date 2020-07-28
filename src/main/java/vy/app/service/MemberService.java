@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import vy.app.Exception.Exceptions;
 import vy.app.model.MemberDesignation;
 import vy.app.repository.DesignationRepository;
 import vy.app.repository.MemberDesignationRepository;
@@ -37,28 +38,29 @@ public class MemberService {
     }
 
 
-    public Member getMember(Long id) {
-        Optional<vy.app.model.Member> memberOptional = memberRepository.findById(id);
-        return memberOptional.get();
-    }
-
-    @Transactional
-    public Member updateMember(Long id, Member member) {
-        member.setMemberID(id);
-        memberRepository.save(member);
+    public Member getMember(Long id) throws Exception {
+        if (!memberRepository.existsById(id)) {
+            throw Exceptions.MemberDoesNotExistException;
+        }
         return memberRepository.findById(id).get();
     }
 
     @Transactional
-    public Member createMemberDesignation(Long memberID, Member member) {
-        Member existingMember = memberRepository.findById(memberID).get();
-        existingMember.setMemberDesignations(member.getMemberDesignations());
-        return memberRepository.save(existingMember);
+    public Member updateMember(Long id, Member member) throws Exception {
+        if (!memberRepository.existsById(id)) {
+            throw Exceptions.MemberDoesNotExistException;
+        }
+        Member memberFromDB = memberRepository.findById(id).get();
+        member.setMemberID(id);
+        member.setCreatedAt(memberFromDB.getCreatedAt());
+        return memberRepository.save(member);
     }
 
-
     @Transactional
-    public void deleteMember(Long id) {
+    public void deleteMember(Long id) throws Exception {
+        if (!memberRepository.existsById(id)) {
+            throw Exceptions.MemberDoesNotExistException;
+        }
         memberRepository.deleteById(id);
     }
 }

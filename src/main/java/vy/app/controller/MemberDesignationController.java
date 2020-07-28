@@ -31,13 +31,6 @@ public class MemberDesignationController {
         return convertToDto(memberDesignationService.createMemberDesignation(convertToEntity(memberDesignationDto)));
     }
 
-//    @GetMapping(value = "/member/{memberID}/designation/{designationID}/")
-//    @ResponseStatus(HttpStatus.OK)
-//    public List<MemberDesignationDto> getMemberDesignations(Long memberID) {
-//        List<MemberDesignation> memberDesignations = memberDesignationService.getMemberDesignations(memberID);
-//        return memberDesignations.stream().map(this::convertToDto).collect(Collectors.toList());
-//    }
-
     @GetMapping(value = "/member/{memberID}/designation/{designationID}/")
     @ResponseStatus(HttpStatus.OK)
     public MemberDesignationDto getMemberDesignation(@PathVariable Long memberID, @PathVariable Long designationID) throws Exception {
@@ -47,7 +40,7 @@ public class MemberDesignationController {
 
     @PutMapping(value = "/member/{memberID}/designation/{designationID}/")
     @ResponseStatus(HttpStatus.OK)
-    MemberDesignationDto updateMemberDesignation(@RequestBody MemberDesignationDto memberDesignationDto, @PathVariable Long memberID, @PathVariable Long designationID) {
+    MemberDesignationDto updateMemberDesignation(@RequestBody MemberDesignationDto memberDesignationDto, @PathVariable Long memberID, @PathVariable Long designationID) throws Exception {
         MemberDesignationID memberDesignationID = new MemberDesignationID(memberID, designationID);
         return convertToDto(memberDesignationService.updateMemberDesignation(memberDesignationID, convertToEntity(memberDesignationDto)));
     }

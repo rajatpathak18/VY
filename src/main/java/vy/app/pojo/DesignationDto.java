@@ -7,6 +7,8 @@ import lombok.ToString;
 import vy.app.model.Member;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -16,11 +18,8 @@ import java.util.Set;
 @ToString
 public class DesignationDto {
     private Long designationID;
+    @NotEmpty(message = "Designation name is mandatory")
     private String designationName;
-    private boolean status;
     private Timestamp createdAt;
     private Timestamp updatedAt;
-    @JsonIgnoreProperties(value = "designation")
-    @ToString.Exclude()
-    private Set<MemberDesignationDto> memberDesignations;
 }

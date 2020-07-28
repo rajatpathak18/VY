@@ -2,6 +2,7 @@ package vy.app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import vy.app.Exception.Exceptions;
 import vy.app.model.Designation;
 import vy.app.repository.DesignationRepository;
 import vy.app.repository.DesignationRepository;
@@ -16,7 +17,11 @@ public class DesignationService {
     private DesignationRepository designationRepository;
 
     @Transactional
-    public Designation createDesignation(Designation designation) {
+    public Designation createDesignation(Designation designation) throws Exception {
+        if (designationRepository.existsByDesignationName(designation.getDesignationName())) {
+            throw Exceptions.DesignationNameAlreadyExistException;
+        }
+
         return designationRepository.save(designation);
     }
 
@@ -24,20 +29,29 @@ public class DesignationService {
         return designationRepository.findAll();
     }
 
-    public Designation getDesignation(Long id) {
+    public Designation getDesignation(Long id) throws Exception {
+        if (!designationRepository.existsById(id)) {
+            throw Exceptions.DesignationIDDoesNotExistException;
+        }
         Optional<Designation> designationOptional = designationRepository.findById(id);
         return designationOptional.get();
     }
 
     @Transactional
-    public Designation updateDesignation(Long id, Designation designation) {
-        designation.setDesignationID(id);
-        designationRepository.save(designation);
-        return designationRepository.findById(id).get();
+    public Designation updateDesignation(Long id, Designation designation) throws Exception {
+        if (!designationRepository.existsById(id)) {
+            throw Exceptions.DesignationIDDoesNotExistException;
+        }
+        Designation designationFromDB = designationRepository.findById(id).get();
+        designationFromDB.setDesignationName(designation.getDesignationName());
+        return designationRepository.save(designationFromDB);
     }
 
     @Transactional
-    public void deleteDesignation(Long id) {
+    public void deleteDesignation(Long id) throws Exception {
+        if (!designationRepository.existsById(id)) {
+            throw Exceptions.DesignationIDDoesNotExistException;
+        }
         designationRepository.deleteById(id);
     }
 }

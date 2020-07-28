@@ -44,8 +44,9 @@ public class UserService {
 
     @Transactional
     public User updateUser(Long id, User user) {
-        userRepository.save(user);
-        return userRepository.findById(id).get();
+        User userFromDB = userRepository.findById(id).get();
+        user.setCreatedAt(userFromDB.getCreatedAt());
+        return userRepository.save(user);
     }
 
     @Transactional

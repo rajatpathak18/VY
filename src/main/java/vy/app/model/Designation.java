@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -25,7 +26,7 @@ public class Designation {
     @Column(name = "designation_name")
     private String designationName;
 
-    @Column(name = "status")
+    @Column(name = "status", columnDefinition = "boolean default true")
     private boolean status;
 
     @Column(name = "trash")
@@ -36,6 +37,7 @@ public class Designation {
     private Timestamp createdAt;
 
     @Column(name = "updated_at")
+    @UpdateTimestamp
     private Timestamp updatedAt;
 
     @OneToMany(mappedBy = "designation")

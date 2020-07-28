@@ -48,7 +48,10 @@ public class MemberDesignationService {
     }
 
     @Transactional
-    public MemberDesignation updateMemberDesignation(MemberDesignationID id, MemberDesignation memberDesignation) {
+    public MemberDesignation updateMemberDesignation(MemberDesignationID id, MemberDesignation memberDesignation) throws Exception {
+        if (!memberDesignationRepository.existsById(id)) {
+            throw Exceptions.MemberDesignationDoesNotExist;
+        }
         memberDesignation.setMemberDesignationID(id);
         memberDesignationRepository.save(memberDesignation);
         return memberDesignationRepository.findById(id).get();

@@ -177,7 +177,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         logger.info(ex.getClass().getName());
         logger.error("error", ex);
 
-        final APIExceptionBody apiExceptionBody = new APIExceptionBody(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        final APIExceptionBody apiExceptionBody = new APIExceptionBody(ex.getMessage(), ex.getStatus());
         return new ResponseEntity<Object>(apiExceptionBody, new HttpHeaders(), ex.getStatus());
     }
 

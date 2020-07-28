@@ -1,5 +1,6 @@
 package vy.app.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -12,6 +13,7 @@ import vy.app.validation.Validation;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Log4j2
 @RestController
 public class DesignationController {
 
@@ -36,25 +38,25 @@ public class DesignationController {
 
     @GetMapping(value = "/designation/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    public DesignationDto getDesignation(@PathVariable Long id) {
+    public DesignationDto getDesignation(@PathVariable Long id) throws Exception {
         return convertToDto(designationService.getDesignation(id));
     }
 
     @PutMapping(value = "/designation/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    DesignationDto updateDesignation(@RequestBody DesignationDto designationDto, @PathVariable Long id) {
+    DesignationDto updateDesignation(@RequestBody DesignationDto designationDto, @PathVariable Long id) throws Exception {
         return convertToDto(designationService.updateDesignation(id, convertToEntity(designationDto)));
     }
 
     @DeleteMapping(value = "/designation/{id}/")
     @ResponseStatus(HttpStatus.OK)
-    public void deleteDesignation(@PathVariable Long id) {
+    public void deleteDesignation(@PathVariable Long id) throws Exception {
         designationService.deleteDesignation(id);
     }
 
     private DesignationDto convertToDto(Designation designation) {
-        DesignationDto DesignationDto = modelMapper.map(designation, DesignationDto.class);
-        return DesignationDto;
+        DesignationDto designationDto = modelMapper.map(designation, DesignationDto.class);
+        return designationDto;
     }
 
     private Designation convertToEntity(DesignationDto designationDto) {
