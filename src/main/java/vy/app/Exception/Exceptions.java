@@ -10,6 +10,7 @@ public interface Exceptions {
     APIException MemberFirstNameNullEmptyException = new APIException("First name cannot be null or empty", "/member", HttpStatus.BAD_REQUEST);
     APIException MemberLastNameNullEmptyException = new APIException("Last name cannot be null or empty", "/member", HttpStatus.BAD_REQUEST);
     APIException MemberDoesNotExistException = new APIException("Member with this ID does not exist", "/member", HttpStatus.BAD_REQUEST);
+    APIException InvalidUpdeshtaMemberIDException = new APIException("Updeshta member ID does not exist", "/member", HttpStatus.BAD_REQUEST);
 
     APIException UserMemberNullException = new APIException("Member cannot be null", "/user", HttpStatus.BAD_REQUEST);
     APIException UserMemberIDInvalidException = new APIException("Invalid member id", "/user", HttpStatus.BAD_REQUEST);

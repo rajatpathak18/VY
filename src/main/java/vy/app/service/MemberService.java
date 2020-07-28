@@ -29,7 +29,13 @@ public class MemberService {
     private MemberDesignationRepository memberDesignationRepository;
 
     @Transactional
-    public Member createMember(Member member) {
+    public Member createMember(Member member) throws Exception {
+        // check if the updeshta member id is valid
+        if (member.getUpdeshtaMemberID() != null) {
+            if (!memberRepository.existsById(member.getUpdeshtaMemberID())) {
+                throw Exceptions.InvalidUpdeshtaMemberIDException;
+            }
+        }
         return memberRepository.save(member);
     }
 
