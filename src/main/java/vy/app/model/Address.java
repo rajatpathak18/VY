@@ -31,7 +31,7 @@ public class Address {
     private String city;
 
     @Column(name = "postal_code")
-    private int postalCode;
+    private String postalCode;
 
     @Column(name = "country")
     private String country;
@@ -49,7 +49,7 @@ public class Address {
     private String alternateCity;
 
     @Column(name = "alternate_postal_code")
-    private int alternatePostalCode;
+    private String alternatePostalCode;
 
     @Column(name = "alternate_country")
     private String alternateCountry;
@@ -65,9 +65,7 @@ public class Address {
 
     @Column(name = "trash")
     private boolean trash;
-
-    //    @Temporal(TemporalType.TIMESTAMP)
-//    @CreatedDate
+    
     @CreationTimestamp
     @Column(name = "created_at")
     private Timestamp createdAt;
