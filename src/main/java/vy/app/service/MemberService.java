@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import vy.app.Exception.Exceptions;
 import vy.app.model.MemberDesignation;
+import vy.app.repository.AkshayPatraRepository;
 import vy.app.repository.DesignationRepository;
 import vy.app.repository.MemberDesignationRepository;
 import vy.app.repository.MemberRepository;
@@ -23,6 +24,9 @@ public class MemberService {
     private MemberRepository memberRepository;
 
     @Autowired
+    private AkshayPatraRepository akshayPatraRepository;
+
+    @Autowired
     private DesignationRepository designationRepository;
 
     @Autowired
@@ -34,6 +38,15 @@ public class MemberService {
         if (member.getUpdeshtaMemberID() != null) {
             if (!memberRepository.existsById(member.getUpdeshtaMemberID())) {
                 throw Exceptions.InvalidUpdeshtaMemberIDException;
+            }
+        }
+
+        // check if akshay patra num is unique
+        if (member.getAkshayPatra() != null) {
+            if (member.getAkshayPatra().getAkshayPatraNum() != null) {
+                if (akshayPatraRepository.existsByAkshayPatraNum(member.getAkshayPatra().getAkshayPatraNum())) {
+                    throw Exceptions.DuplicateAkshayPatraNumException;
+                }
             }
         }
         return memberRepository.save(member);

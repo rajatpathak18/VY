@@ -30,8 +30,8 @@ public class MemberDesignationService {
         if (memberDesignationRepository.existsById(memberDesignation.getMemberDesignationID())) {
             throw Exceptions.MemberDesignationAlreadyExists;
         }
-        //        memberDesignation.setDesignation(designationRepository.findById(memberDesignation.getMemberDesignationID().getDesignationID()).get());
-//        memberDesignation.setMember(memberRepository.findById(memberDesignation.getMemberDesignationID().getMemberID()).get());
+        memberDesignation.setDesignation(designationRepository.findById(memberDesignation.getMemberDesignationID().getDesignationID()).get());
+        memberDesignation.setMember(memberRepository.findById(memberDesignation.getMemberDesignationID().getMemberID()).get());
         return memberDesignationRepository.save(memberDesignation);
     }
 
