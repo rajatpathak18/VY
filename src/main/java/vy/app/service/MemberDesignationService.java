@@ -30,6 +30,12 @@ public class MemberDesignationService {
         if (memberDesignationRepository.existsById(memberDesignation.getMemberDesignationID())) {
             throw Exceptions.MemberDesignationAlreadyExists;
         }
+        if (!designationRepository.existsById(memberDesignation.getMemberDesignationID().getDesignationID())) {
+            throw Exceptions.DesignationIDDoesNotExistException;
+        }
+        if (!memberRepository.existsById(memberDesignation.getMemberDesignationID().getMemberID())) {
+            throw Exceptions.MemberDoesNotExistException;
+        }
         memberDesignation.setDesignation(designationRepository.findById(memberDesignation.getMemberDesignationID().getDesignationID()).get());
         memberDesignation.setMember(memberRepository.findById(memberDesignation.getMemberDesignationID().getMemberID()).get());
         return memberDesignationRepository.save(memberDesignation);

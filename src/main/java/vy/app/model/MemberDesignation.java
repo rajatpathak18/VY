@@ -51,10 +51,10 @@ public class MemberDesignation {
     private boolean trash;
 
     @Column(name = "created_at")
-//    @CreationTimestamp
+    @CreationTimestamp
     private Timestamp createdAt;
 
     @Column(name = "updated_at")
-//    @UpdateTimestamp
+    @UpdateTimestamp
     private Timestamp updatedAt;
 }
