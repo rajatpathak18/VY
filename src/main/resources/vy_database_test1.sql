@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 18, 2020 at 02:43 PM
+-- Generation Time: Jul 30, 2020 at 08:31 AM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.3.3
 
@@ -32,13 +32,13 @@ CREATE TABLE `vy_address` (
   `address_id` bigint(20) NOT NULL,
   `address` varchar(2000) DEFAULT NULL,
   `city` varchar(100) DEFAULT NULL,
-  `postal_code` int(11) DEFAULT NULL,
+  `postal_code` varchar(11) DEFAULT NULL,
   `country` varchar(100) DEFAULT NULL,
   `state` varchar(100) DEFAULT NULL,
   `landmark` varchar(2000) DEFAULT NULL,
   `alternate_address` varchar(2000) DEFAULT NULL,
   `alternate_city` varchar(100) DEFAULT NULL,
-  `alternate_postal_code` int(11) DEFAULT NULL,
+  `alternate_postal_code` varchar(11) DEFAULT NULL,
   `alternate_country` varchar(100) DEFAULT NULL,
   `alternate_state` varchar(100) DEFAULT NULL,
   `alternate_landmark` varchar(2000) DEFAULT NULL,
@@ -53,66 +53,75 @@ CREATE TABLE `vy_address` (
 --
 
 INSERT INTO `vy_address` (`address_id`, `address`, `city`, `postal_code`, `country`, `state`, `landmark`, `alternate_address`, `alternate_city`, `alternate_postal_code`, `alternate_country`, `alternate_state`, `alternate_landmark`, `status`, `trash`, `created_at`, `updated_at`) VALUES
-(1, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
-(14, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
-(16, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
-(18, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
-(19, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
-(20, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-06-03 18:30:00', '2020-06-03 18:30:00'),
-(21, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(22, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(23, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(24, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(25, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(26, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(27, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(28, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
-(29, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
-(30, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(31, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(32, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(33, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(34, 'white filed bangalore', 'Bamgalore', 560012, 'Inida', 'Karnataka', 'big tree', NULL, NULL, 0, NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
-(35, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
-(38, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
-(39, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
-(40, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
-(41, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', '', 'Fatima Block, 58, Palace Rd, Abshot Layout ', 'Bangalore', 560052, '', 'Assam', '', 0, 0, '2020-07-08 16:48:40', NULL),
-(42, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'f', ' ', '', 0, '', '', '', 0, 0, '2020-07-08 16:48:40', NULL),
-(43, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
-(44, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
-(45, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
-(46, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
-(47, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
-(48, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
-(49, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 17:06:44', NULL),
-(50, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 17:07:58', NULL),
-(51, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:33:38', NULL),
-(52, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:34:03', NULL),
-(53, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:36:34', NULL),
-(54, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:37:26', NULL),
-(55, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:42:02', NULL),
-(56, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:59:59', NULL),
-(57, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 18:01:31', NULL),
-(58, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 18:05:21', NULL),
-(59, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 18:11:52', NULL),
-(60, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 18:55:12', '2020-07-08 18:55:12'),
-(61, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 19:02:45', '2020-07-08 19:02:45'),
-(62, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 19:03:17', '2020-07-08 19:03:17'),
-(63, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 07:11:37', '2020-07-09 07:11:37'),
-(64, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 07:12:14', '2020-07-09 07:12:14'),
-(65, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 07:13:23', '2020-07-09 07:13:23'),
-(66, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 07:13:53', '2020-07-09 07:13:53'),
-(67, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 10:52:50', '2020-07-09 10:52:50'),
-(68, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-11 18:21:50', '2020-07-11 18:21:50'),
-(69, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', 823003, 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-11 18:29:17', '2020-07-11 18:29:17'),
-(72, ' ', '', 0, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 15:32:59', '2020-07-15 15:32:59'),
-(74, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 19:09:36', '2020-07-15 19:09:36'),
-(75, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 19:21:20', '2020-07-15 19:21:20'),
-(76, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-15 19:41:26', '2020-07-15 19:41:26'),
-(77, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-17 16:22:36', '2020-07-17 16:22:36'),
-(80, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-17 16:40:43', '2020-07-17 16:40:43'),
-(81, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', 823003, '', '', '', ' ', '', 0, '', '', '', 0, 0, '2020-07-17 17:32:11', '2020-07-17 17:32:11');
+(1, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
+(14, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
+(16, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
+(18, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
+(19, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-06-04 18:30:00', '2020-06-04 18:30:00'),
+(20, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-06-03 18:30:00', '2020-06-03 18:30:00'),
+(21, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(22, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(23, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(24, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(25, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(26, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(27, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(28, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
+(29, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
+(30, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(31, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(32, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(33, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(34, 'white filed bangalore', 'Bamgalore', '560012', 'Inida', 'Karnataka', 'big tree', NULL, NULL, '0', NULL, NULL, NULL, 0, 0, '2020-07-08 16:48:40', '2020-06-03 18:30:00'),
+(35, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
+(38, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
+(39, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
+(40, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 0, 0, '2020-07-08 16:48:40', NULL),
+(41, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', '', 'Fatima Block, 58, Palace Rd, Abshot Layout ', 'Bangalore', '560052', '', 'Assam', '', 0, 0, '2020-07-08 16:48:40', NULL),
+(42, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'f', ' ', '', '0', '', '', '', 0, 0, '2020-07-08 16:48:40', NULL),
+(43, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
+(44, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
+(45, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
+(46, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
+(47, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
+(48, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 16:48:40', NULL),
+(49, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 17:06:44', NULL),
+(50, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 17:07:58', NULL),
+(51, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:33:38', NULL),
+(52, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:34:03', NULL),
+(53, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:36:34', NULL),
+(54, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:37:26', NULL),
+(55, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:42:02', NULL),
+(56, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 17:59:59', NULL),
+(57, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 18:01:31', NULL),
+(58, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 18:05:21', NULL),
+(59, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 1, 0, '2020-07-08 18:11:52', NULL),
+(60, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 18:55:12', '2020-07-08 18:55:12'),
+(61, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 19:02:45', '2020-07-08 19:02:45'),
+(62, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-08 19:03:17', '2020-07-08 19:03:17'),
+(63, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 07:11:37', '2020-07-09 07:11:37'),
+(64, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 07:12:14', '2020-07-09 07:12:14'),
+(65, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 07:13:23', '2020-07-09 07:13:23'),
+(66, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 07:13:53', '2020-07-09 07:13:53'),
+(67, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-09 10:52:50', '2020-07-09 10:52:50'),
+(68, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-11 18:21:50', '2020-07-11 18:21:50'),
+(69, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Bihar', 'ghj', 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', 'GAYA', '823003', 'India', 'Arunachal Pradesh', 'kj', 0, 0, '2020-07-11 18:29:17', '2020-07-11 18:29:17'),
+(72, ' ', '', '0', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-15 15:32:59', '2020-07-15 15:32:59'),
+(74, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', '823003', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-15 19:09:36', '2020-07-15 19:09:36'),
+(75, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', '823003', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-15 19:21:20', '2020-07-15 19:21:20'),
+(76, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', '823003', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-15 19:41:26', '2020-07-15 19:41:26'),
+(77, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', '823003', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-17 16:22:36', '2020-07-17 16:22:36'),
+(80, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', '823003', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-17 16:40:43', '2020-07-17 16:40:43'),
+(81, 'Manpur Pehani, Purani Mandarsa P.O. - Buniyadganj', '', '823003', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-17 17:32:11', '2020-07-17 17:32:11'),
+(82, ' ', '', '0', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-25 09:03:58', '2020-07-25 09:03:58'),
+(83, ' ', '', '0', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-25 09:19:41', '2020-07-25 09:19:41'),
+(87, ' ', '', '0', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-25 09:20:26', '2020-07-25 09:20:26'),
+(88, ' ', '', '0', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-25 09:21:51', '2020-07-25 09:21:51'),
+(89, ' ', '', '0', '', '', '', ' ', '', '0', '', '', '', 0, 0, '2020-07-25 09:22:11', '2020-07-25 09:22:11'),
+(90, 'aghfj$#@$34654DGFj aghfj$#@$34654DGFj', 'Adivivaram', '45872', 'India', 'Andhra Pradesh', 'aghfj$#@$34654DGFj', 'aghfj$#@$34654DGFj aghfj$#@$34654DGFj', 'Adrar', '0', 'Algeria', 'Adrar', 'aghfj$#@$34654DGFj', 0, 0, '2020-07-28 04:41:33', '2020-07-28 04:41:33'),
+(93, 'aghfj$#@$34654DGFj aghfj$#@$34654DGFj', 'Adivivaram', '45872', 'India', 'Andhra Pradesh', 'aghfj$#@$34654DGFj', 'aghfj$#@$34654DGFj aghfj$#@$34654DGFj', 'Adrar', '0', 'Algeria', 'Adrar', 'aghfj$#@$34654DGFj', 0, 0, '2020-07-28 15:22:21', '2020-07-28 15:22:48'),
+(94, 'aghfj$#@$34654DGFj aghfj$#@$34654DGFj', 'Adivivaram', '45872', 'India', 'Andhra Pradesh', 'aghfj$#@$34654DGFj', 'aghfj$#@$34654DGFj aghfj$#@$34654DGFj', 'Adrar', '0', 'Algeria', 'Adrar', 'aghfj$#@$34654DGFj', 0, 0, '2020-07-28 17:53:35', '2020-07-28 17:53:35'),
+(95, 'aghfj$#@$34654DGFj aghfj$#@$34654DGFj', 'Adivivaram', '45872', 'India', 'Andhra Pradesh', 'aghfj$#@$34654DGFj', 'aghfj$#@$34654DGFj aghfj$#@$34654DGFj', 'Adrar', NULL, 'Algeria', 'Adrar', 'aghfj$#@$34654DGFj', 0, 0, '2020-07-29 11:07:54', '2020-07-29 11:07:54');
 
 -- --------------------------------------------------------
 
@@ -139,7 +148,11 @@ INSERT INTO `vy_akshay_patra` (`akshay_patra_id`, `akshay_patra_num`, `patra_all
 (2, 'djkf', '2020-05-31', 1, '2020-05-31 18:30:00', NULL, 0),
 (3, 'hvjb', '2020-07-01', 0, '2020-07-15 19:09:36', NULL, 0),
 (4, 'jhfgj', '2020-07-16', 0, '2020-07-15 19:21:20', NULL, 0),
-(5, 'smjf', '2020-07-30', 0, '2020-07-15 19:41:26', NULL, 0);
+(5, 'smjf', '2020-07-30', 0, '2020-07-15 19:41:26', NULL, 0),
+(6, 'aghfj$#@$34654DGFj', '2020-07-22', 0, '2020-07-28 04:41:33', NULL, 0),
+(9, '$#@$34654DGFj', '2020-07-22', 0, '2020-07-28 15:22:21', NULL, 0),
+(10, '$#@$krjhkjfdgj', '2020-07-22', 0, '2020-07-28 17:53:35', NULL, 0),
+(11, '$#@$mjmfg,m', '2020-07-22', 0, '2020-07-29 11:07:54', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -149,8 +162,8 @@ INSERT INTO `vy_akshay_patra` (`akshay_patra_id`, `akshay_patra_num`, `patra_all
 
 CREATE TABLE `vy_designation` (
   `designation_id` bigint(20) NOT NULL,
-  `designation_name` varchar(100) DEFAULT NULL,
-  `status` varchar(1) DEFAULT NULL,
+  `designation_name` varchar(100) NOT NULL,
+  `status` tinyint(1) NOT NULL DEFAULT '1',
   `trash` tinyint(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
@@ -161,8 +174,12 @@ CREATE TABLE `vy_designation` (
 --
 
 INSERT INTO `vy_designation` (`designation_id`, `designation_name`, `status`, `trash`, `created_at`, `updated_at`) VALUES
-(1, NULL, '0', 0, '2020-07-15 11:27:54', NULL),
-(3, NULL, '0', 0, '2020-07-08 16:49:13', NULL);
+(1, 'updeshta', 1, 0, '2020-07-15 11:27:54', '2020-07-26 07:42:23'),
+(3, 'pracharak', 1, 0, '2020-07-08 16:49:13', '2020-07-26 07:42:23'),
+(4, 'test1', 1, 0, '2020-07-26 07:41:33', '2020-07-26 07:42:23'),
+(5, 'test2', 1, 0, '2020-07-26 07:43:30', NULL),
+(6, 'test3', 0, 0, '2020-07-26 07:47:10', '2020-07-26 07:47:10'),
+(10, 'test4-5', 0, 0, '2020-07-26 08:54:51', '2020-07-26 09:23:26');
 
 -- --------------------------------------------------------
 
@@ -240,7 +257,16 @@ INSERT INTO `vy_email` (`email_id`, `email_address_1`, `email_address_2`, `statu
 (72, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-15 19:41:26', NULL),
 (73, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-17 16:22:36', NULL),
 (76, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-17 16:40:43', NULL),
-(77, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-17 17:32:11', NULL);
+(77, 'sunnykumar424@gmail.com', 'sunnykumar424@gmail.com', 0, 0, '2020-07-17 17:32:11', NULL),
+(78, '', '', 0, 0, '2020-07-25 09:03:58', NULL),
+(79, '', '', 0, 0, '2020-07-25 09:19:41', NULL),
+(83, '', '', 0, 0, '2020-07-25 09:20:26', NULL),
+(84, '', '', 0, 0, '2020-07-25 09:21:51', NULL),
+(85, '', '', 0, 0, '2020-07-25 09:22:11', NULL),
+(86, 'muktiranjanpatwa@gmail.com', 'muktiranjanmac@gmail.com', 0, 0, '2020-07-28 04:41:33', NULL),
+(87, 'muktiranjanpatwa@gmail.com', 'muktiranjanmac@gmail.com', 0, 0, '2020-07-28 15:22:21', NULL),
+(88, 'muktiranjanpatwa@gmail.com', 'muktiranjanmac@gmail.com', 0, 0, '2020-07-28 17:53:35', NULL),
+(89, 'muktiranjanpatwa@gmail.com', 'muktiranjanmac@gmail.com', 0, 0, '2020-07-29 11:07:54', NULL);
 
 -- --------------------------------------------------------
 
@@ -304,16 +330,14 @@ INSERT INTO `vy_member` (`member_id`, `first_name`, `middle_name`, `last_name`, 
 (17, 'test', NULL, '4', '1988-05-04', 'M', NULL, NULL, '9632330839', '9632330839', 18, 1, NULL, 'Anyrag_giv_id1234', 'PAN', 'Indian', 'memberphoto: path\\', 'gove_id photo :\\ path', '1990-05-04', 'IT Manager', 1, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 0, 0, '2020-06-03 18:30:00', '2020-06-03 18:30:00', 'Bangalore', 'Bangalore'),
 (18, 'test', NULL, '5', '1988-05-04', 'M', NULL, NULL, '9632330839', '9632330839', 19, 1, NULL, 'Anyrag_giv_id1234', 'PAN', 'Indian', 'memberphoto: path\\', 'gove_id photo :\\ path', '1990-05-04', 'IT Manager', 1, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 0, 0, '2020-06-03 18:30:00', '2020-06-03 18:30:00', 'Bangalore', 'Bangalore'),
 (27, 'sunny', '', 'Na', '2020-06-24', 'F', 'sdbf', 'sjgfb', '9879899879', '7879987797', 28, 27, NULL, 'hjdf', 'PAN', 'hjs', 'other', 'other', '6566-01-01', 'ksjdd', 2, 0, 0, 0, 0, 0, 6, NULL, 'jgew', NULL, 0, 0, '2020-07-08 16:49:13', NULL, 'Member Form', NULL),
-(28, 'sunny', '', 'Na2', '2020-06-24', 'F', 'sdbf', 'sjgfb', '9879899879', '7879987797', 29, 28, NULL, 'hjdf', 'PAN', 'hjs', 'other', 'other', '6566-01-01', 'ksjdd', 2, 0, 0, 0, 0, 0, 6, NULL, 'jgew', NULL, 0, 0, '2020-07-08 16:49:13', NULL, 'Member Form', NULL),
-(52, 'kjdsfs', 'n', '2222', '2020-06-14', 'M', 'jsdfd', 's', '645863487', '746837658', 60, 59, NULL, 'hj', 'Passport', 'indian', 'other', 'other', '2020-06-07', 'm', 3, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 0, 0, '2020-07-08 18:55:12', '2020-07-08 18:55:12', 'Member Form', NULL),
 (53, 'kjdsfs', 'n', 'jsfkdf', '2020-06-14', 'M', 'jsdfd', 's', '645863487', '746837658', 56, 55, NULL, 'hj', 'Passport', 'indian', 'other', 'other', '2020-06-07', 'm', 3, 0, 0, 0, 0, 0, NULL, NULL, NULL, NULL, 1, 0, '2020-07-08 17:59:59', NULL, 'Member Form', NULL),
 (60, 'fdsf', '', 'fdf', '2020-07-08', 'M', '', '', NULL, NULL, 72, 69, NULL, NULL, NULL, '', NULL, NULL, NULL, '', 4, 0, 0, 0, 0, 1, NULL, '', '', NULL, 0, 0, '2020-07-15 15:32:59', '2020-07-15 15:32:59', 'Member Form', NULL),
 (61, 'Sunny', '', 'Narayan', '2020-07-06', 'M', '', '', NULL, NULL, 74, 70, 3, NULL, NULL, '', NULL, NULL, NULL, '', 3, 0, 0, 0, 0, 0, NULL, '', '', NULL, 0, 0, '2020-07-15 19:09:36', '2020-07-15 19:09:36', 'Member Form', NULL),
 (62, 'Sunny', '', 'Narayan', '2020-07-06', 'F', '', '', NULL, NULL, 75, 71, 4, NULL, NULL, '', NULL, NULL, NULL, '', 1, 0, 0, 0, 0, 0, NULL, '', '', NULL, 0, 0, '2020-07-15 19:21:20', '2020-07-15 19:21:20', 'Member Form', NULL),
 (63, 'Sunny', '', 'Narayan', '2020-07-07', 'F', '', '', NULL, NULL, 76, 72, 5, NULL, NULL, '', NULL, NULL, NULL, '', 5, 0, 0, 0, 0, 0, NULL, '', '', NULL, 0, 0, '2020-07-15 19:41:26', '2020-07-15 19:41:26', 'Member Form', NULL),
-(64, 'Sunny', '', 'Narayan', '2020-01-01', 'M', '', '', NULL, NULL, 77, 73, NULL, NULL, NULL, '', NULL, NULL, NULL, '', 2, 0, 0, 0, 0, 0, NULL, '', '', NULL, 0, 0, '2020-07-17 16:22:36', '2020-07-17 16:22:36', 'Member Form', NULL),
-(65, 'Sunny', '', 'Narayan', '2020-01-01', 'M', '', '', NULL, NULL, 80, 76, NULL, NULL, NULL, '', NULL, NULL, NULL, '', 2, 0, 0, 0, 0, 0, NULL, '', '', 1, 0, 0, '2020-07-17 16:40:43', '2020-07-17 16:40:43', 'Member Form', NULL),
-(66, 'Sunny', '', 'Narayan', '2020-01-01', 'M', '', '', NULL, NULL, 81, 77, NULL, NULL, NULL, '', NULL, NULL, NULL, '', 2, 0, 0, 0, 0, 0, NULL, '', '', 2, 0, 0, '2020-07-17 17:32:11', '2020-07-17 17:32:11', 'Member Form', NULL);
+(77, '1111.JHGerGV', 'hfcjhkbk.JHGerGV', 'hfcjhkbk.JHGerGV', '2020-07-01', 'M', 'hfcjhkbk.JHGerGV', 'hfcjhkbk.JHGerGV', '+917708099400', '+918709254347', 93, 87, 9, NULL, NULL, 'hfcjhkbk.JHGerGV', NULL, NULL, '2020-07-02', 'hfcjhkbk.JHGerGV', 1, 0, 0, 0, 1, 1, 6, 'hfcjhkbk.JHGerGV', 'aghfj$#@$34654DGFj', NULL, 0, 0, '2020-07-28 15:22:21', '2020-07-28 15:22:48', 'Member Form', NULL),
+(78, '12121212.JHGerGV', 'hfcjhkbk.JHGerGV', 'hfcjhkbk.JHGerGV', '2020-07-01', 'M', 'hfcjhkbk.JHGerGV', 'hfcjhkbk.JHGerGV', '+917708099400', '+918709254347', 94, 88, 10, NULL, NULL, 'hfcjhkbk.JHGerGV', NULL, NULL, '2020-07-02', 'hfcjhkbk.JHGerGV', 1, 0, 0, 0, 1, 1, 8, 'hfcjhkbk.JHGerGV', 'aghfj$#@$34654DGFj', NULL, 0, 0, '2020-07-28 17:53:35', '2020-07-28 17:53:35', 'Member Form', NULL),
+(79, '12121212.JHGerGV', 'hfcjhkbk.JHGerGV', 'hfcjhkbk.JHGerGV', '2020-07-01', 'M', 'hfcjhkbk.JHGerGV', 'hfcjhkbk.JHGerGV', '+917708099400', '+918709254347', 95, 89, 11, NULL, NULL, 'hfcjhkbk.JHGerGV', NULL, NULL, '2020-07-02', 'hfcjhkbk.JHGerGV', 1, 0, 0, 0, 1, 1, 8, 'hfcjhkbk.JHGerGV', 'aghfj$#@$34654DGFj', NULL, 0, 0, '2020-07-29 11:07:54', '2020-07-29 11:07:54', 'Member Form', NULL);
 
 -- --------------------------------------------------------
 
@@ -338,12 +362,13 @@ CREATE TABLE `vy_member_designation` (
 --
 
 INSERT INTO `vy_member_designation` (`member_id`, `designation_id`, `honour_date`, `is_global`, `dismiss_date`, `status`, `created_at`, `updated_at`, `trash`) VALUES
-(6, 1, '2020-05-04', 0, NULL, 0, '2020-07-18 11:54:50', NULL, 0),
+(6, 1, '2020-05-04', 0, NULL, 0, '2020-07-29 11:12:56', '2020-07-29 11:12:56', 0),
 (6, 3, NULL, 0, NULL, 0, '2020-07-18 11:50:40', NULL, 0),
 (7, 1, '2020-05-04', 0, NULL, 0, '2020-07-18 11:54:32', NULL, 0),
 (7, 3, NULL, 0, NULL, 0, '2020-07-18 11:51:17', NULL, 0),
 (9, 1, NULL, 0, NULL, 1, '2020-07-18 11:44:34', NULL, 0),
-(9, 3, NULL, 0, NULL, 1, '2020-07-18 11:27:47', NULL, 0);
+(9, 3, NULL, 0, NULL, 1, '2020-07-18 11:27:47', NULL, 0),
+(12, 1, '2020-05-04', 0, NULL, 0, '2020-07-29 11:05:38', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -463,13 +488,13 @@ CREATE TABLE `vy_user` (
 
 INSERT INTO `vy_user` (`user_id`, `member_id`, `username`, `password`, `status`, `trash`, `created_at`, `updated_at`) VALUES
 (1, 6, 'sunnykumar424@gmail.com', '$2a$10$CvWTw6MgUePbsD64kVTGcegIx4ncvZvXSLWN/22ClpOarJbclehRG', 1, 0, '2020-06-05 18:30:00', '2020-07-09 17:27:47'),
-(5, 7, '7', 'password', 0, 0, '2020-07-08 16:49:13', NULL),
-(6, 8, '8', 'password', 0, 0, '2020-07-08 16:49:13', NULL),
-(8, 9, '9', 'password', 0, 0, '2020-07-08 16:49:13', NULL),
-(10, 10, '10', 'password', 0, 0, '2020-07-08 16:49:13', NULL),
-(11, 11, '11', 'password', 0, 0, '2020-07-14 19:07:49', NULL),
-(12, 6, '6', 'password', 0, 0, '2020-07-14 19:09:27', NULL),
-(13, 53, '53', 'password', 0, 0, '2020-07-15 04:14:27', NULL);
+(5, 7, '7', '$2a$10$CvWTw6MgUePbsD64kVTGcegIx4ncvZvXSLWN/22ClpOarJbclehRG', 0, 0, '2020-07-08 16:49:13', '2020-07-23 03:54:14'),
+(6, 8, '8', '$2a$10$CvWTw6MgUePbsD64kVTGcegIx4ncvZvXSLWN/22ClpOarJbclehRG', 0, 0, '2020-07-08 16:49:13', '2020-07-23 03:55:24'),
+(8, 9, '9', '$2a$10$CvWTw6MgUePbsD64kVTGcegIx4ncvZvXSLWN/22ClpOarJbclehRG', 0, 0, '2020-07-08 16:49:13', '2020-07-23 03:55:28'),
+(11, 11, '11', '$2a$10$CvWTw6MgUePbsD64kVTGcegIx4ncvZvXSLWN/22ClpOarJbclehRG', 0, 0, '2020-07-14 19:07:49', '2020-07-23 03:55:40'),
+(12, 6, '6', '$2a$10$CvWTw6MgUePbsD64kVTGcegIx4ncvZvXSLWN/22ClpOarJbclehRG', 0, 0, '2020-07-14 19:09:27', '2020-07-23 03:55:43'),
+(13, 53, '53', '$2a$10$CvWTw6MgUePbsD64kVTGcegIx4ncvZvXSLWN/22ClpOarJbclehRG', 0, 0, '2020-07-15 04:14:27', '2020-07-23 03:55:46'),
+(14, 10, '10', '$2a$10$TkEeAsYXO5PmE8x60r8GEOhwmXZOPg3...WnTgErVOjRxjgo0cQ4W', 0, 0, '2020-07-21 15:24:50', NULL);
 
 -- --------------------------------------------------------
 
@@ -496,10 +521,10 @@ INSERT INTO `vy_user_role` (`user_role_id`, `role_id`, `user_id`, `status`, `tra
 (4, 3, 5, 1, 0, '2020-07-08 16:49:14', NULL),
 (5, 3, 6, 1, 0, '2020-07-08 16:49:14', NULL),
 (6, 3, 8, 1, 0, '2020-07-08 16:49:14', NULL),
-(7, 3, 10, 1, 0, '2020-07-08 16:49:14', NULL),
 (8, 3, 11, 1, 0, '2020-07-14 19:07:49', NULL),
 (9, 3, 12, 1, 0, '2020-07-14 19:09:27', NULL),
-(10, 3, 13, 1, 0, '2020-07-15 04:14:27', NULL);
+(10, 3, 13, 1, 0, '2020-07-15 04:14:27', NULL),
+(11, 3, 14, 1, 0, '2020-07-21 15:24:50', NULL);
 
 --
 -- Indexes for dumped tables
@@ -602,31 +627,31 @@ ALTER TABLE `vy_user_role`
 -- AUTO_INCREMENT for table `vy_address`
 --
 ALTER TABLE `vy_address`
-  MODIFY `address_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+  MODIFY `address_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
 
 --
 -- AUTO_INCREMENT for table `vy_akshay_patra`
 --
 ALTER TABLE `vy_akshay_patra`
-  MODIFY `akshay_patra_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `akshay_patra_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `vy_designation`
 --
 ALTER TABLE `vy_designation`
-  MODIFY `designation_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `designation_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `vy_email`
 --
 ALTER TABLE `vy_email`
-  MODIFY `email_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
+  MODIFY `email_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `vy_member`
 --
 ALTER TABLE `vy_member`
-  MODIFY `member_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+  MODIFY `member_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `vy_member_photo`
@@ -656,13 +681,13 @@ ALTER TABLE `vy_role_permission`
 -- AUTO_INCREMENT for table `vy_user`
 --
 ALTER TABLE `vy_user`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `vy_user_role`
 --
 ALTER TABLE `vy_user_role`
-  MODIFY `user_role_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `user_role_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
