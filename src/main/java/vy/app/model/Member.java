@@ -26,7 +26,7 @@ public class Member {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long memberID;
-    
+
     @Column(name = "first_name")
     private String firstName;
 
@@ -136,15 +136,10 @@ public class Member {
     @Column(name = "trash")
     private boolean trash;
 
-
-    //    @Temporal(TemporalType.TIMESTAMP)
-//    @CreatedDate
     @CreationTimestamp
     @Column(name = "created_at")
     private Timestamp createdAt;
-
-    //    @Temporal(TemporalType.TIMESTAMP)
-//    @LastModifiedDate
+    
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;
