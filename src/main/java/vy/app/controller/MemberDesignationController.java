@@ -1,19 +1,17 @@
 package vy.app.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import vy.app.model.Designation;
 import vy.app.model.MemberDesignation;
 import vy.app.model.MemberDesignationID;
 import vy.app.pojo.MemberDesignationDto;
 import vy.app.pojo.MemberDesignationIDDto;
 import vy.app.service.MemberDesignationService;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
+@Log4j2
 @RestController
 public class MemberDesignationController {
 
@@ -26,6 +24,7 @@ public class MemberDesignationController {
     @PostMapping(value = "/member/{memberID}/designation/{designationID}/")
     @ResponseStatus(HttpStatus.CREATED)
     public MemberDesignationDto createMemberDesignation(@RequestBody MemberDesignationDto memberDesignationDto, @PathVariable Long memberID, @PathVariable Long designationID) throws Exception {
+        log.info("createMemberDesignation: memberID " + memberID + " designationID: " + designationID + ", request: " + memberDesignationDto.toString());
         MemberDesignationIDDto memberDesignationIDDto = new MemberDesignationIDDto(memberID, designationID);
         memberDesignationDto.setMemberDesignationID(memberDesignationIDDto);
         return convertToDto(memberDesignationService.createMemberDesignation(convertToEntity(memberDesignationDto)));
@@ -34,6 +33,7 @@ public class MemberDesignationController {
     @GetMapping(value = "/member/{memberID}/designation/{designationID}/")
     @ResponseStatus(HttpStatus.OK)
     public MemberDesignationDto getMemberDesignation(@PathVariable Long memberID, @PathVariable Long designationID) throws Exception {
+        log.info("getMemberDesignation: memberID " + memberID + " designationID: " + designationID);
         MemberDesignationID memberDesignationID = new MemberDesignationID(memberID, designationID);
         return convertToDto(memberDesignationService.getMemberDesignation(memberDesignationID));
     }
@@ -41,6 +41,7 @@ public class MemberDesignationController {
     @PutMapping(value = "/member/{memberID}/designation/{designationID}/")
     @ResponseStatus(HttpStatus.OK)
     MemberDesignationDto updateMemberDesignation(@RequestBody MemberDesignationDto memberDesignationDto, @PathVariable Long memberID, @PathVariable Long designationID) throws Exception {
+        log.info("updateMemberDesignation: memberID " + memberID + " designationID: " + designationID + ", request: " + memberDesignationDto.toString());
         MemberDesignationID memberDesignationID = new MemberDesignationID(memberID, designationID);
         return convertToDto(memberDesignationService.updateMemberDesignation(memberDesignationID, convertToEntity(memberDesignationDto)));
     }
@@ -48,6 +49,7 @@ public class MemberDesignationController {
     @DeleteMapping(value = "/member/{memberID}/designation/{designationID}/")
     @ResponseStatus(HttpStatus.OK)
     public void deleteMemberDesignation(@PathVariable Long memberID, @PathVariable Long designationID) throws Exception {
+        log.info("deleteMemberDesignation: memberID " + memberID + " designationID: " + designationID);
         MemberDesignationID memberDesignationID = new MemberDesignationID(memberID, designationID);
         memberDesignationService.deleteMemberDesignation(memberDesignationID);
     }

@@ -43,7 +43,7 @@ public class AuthenticationController {
             VyUserDetails userDetails = (VyUserDetails) authentication.getPrincipal();
             String jwt = jwtUtils.generateToken(userDetails);
             authenticationResponse = new AuthenticationResponse(jwt, converter.convertToDto(userDetails.getUser()), userDetails.getAuthorities());
-
+            log.info("login for username " + authenticationRequest.getUsername() + " is successful");
             return new ResponseEntity<>(authenticationResponse, HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(" Exception in authentication" + e.getLocalizedMessage());

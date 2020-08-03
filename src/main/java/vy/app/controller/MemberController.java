@@ -1,5 +1,6 @@
 package vy.app.controller;
 
+import lombok.extern.log4j.Log4j2;
 import net.kaczmarzyk.spring.data.jpa.domain.Equal;
 import net.kaczmarzyk.spring.data.jpa.domain.Like;
 import net.kaczmarzyk.spring.data.jpa.domain.LikeIgnoreCase;
@@ -24,7 +25,7 @@ import vy.app.validation.Validation;
 
 import javax.validation.Valid;
 
-
+@Log4j2
 @RestController
 public class MemberController {
 
@@ -37,12 +38,10 @@ public class MemberController {
     @Autowired
     private Validation<MemberDto> memberDtoValidation;
 
-    private static final Logger logger = LogManager.getLogger(MemberController.class);
-
     @PostMapping(value = "/member/")
     @ResponseStatus(code = HttpStatus.CREATED)
     public MemberDto createMember(@Valid @RequestBody MemberDto memberDto) throws Exception {
-        logger.info("createMember: " + memberDto.toString());
+        log.info("createMember: " + memberDto.toString());
         return convertToDto(memberService.createMember(convertToEntity(memberDto)));
     }
 
@@ -56,26 +55,29 @@ public class MemberController {
             @Or({@Spec(path = "primaryPhoneNumber", params = "phNumber", spec = Like.class),
                     @Spec(path = "alternatePhoneNumber", params = "phNumber", spec = Like.class)})
     }) Specification<Member> spec, @PageableDefault(size = 5, sort = "memberID") Pageable pageable) {
+        log.info("getMembers: " + spec);
         Page<Member> members = memberService.getMembers(spec, pageable);
-        logger.info("GetMembers: " + members.toString());
         return members.map(this::convertToDto);
     }
 
     @GetMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
     public MemberDto getMember(@PathVariable Long id) throws Exception {
+        log.info("getMember: memberID " + id);
         return convertToDto(memberService.getMember(id));
     }
 
     @PutMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
     MemberDto updateMember(@RequestBody MemberDto memberDto, @PathVariable Long id) throws Exception {
+        log.info("updateMember: memberID " + id);
         return convertToDto(memberService.updateMember(id, convertToEntity(memberDto)));
     }
 
     @DeleteMapping(value = "/member/{id}/")
     @ResponseStatus(HttpStatus.OK)
     public void deleteMember(@PathVariable Long id) throws Exception {
+        log.info("deleteMember: memberID " + id);
         memberService.deleteMember(id);
     }
 
