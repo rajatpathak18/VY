@@ -20,7 +20,7 @@ public class AkshayPatra {
     @Column(name = "akshay_patra_id")
     private Long akshayPatraID;
 
-    @Column(name = "akshay_patra_num")
+    @Column(name = "akshay_patra_num", unique = true)
     private String akshayPatraNum;
 
     @Column(name = "patra_allocation_date")

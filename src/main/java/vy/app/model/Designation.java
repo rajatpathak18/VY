@@ -23,7 +23,7 @@ public class Designation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long designationID;
 
-    @Column(name = "designation_name")
+    @Column(name = "designation_name", unique = true)
     private String designationName;
 
     @Column(name = "status", columnDefinition = "boolean default true")

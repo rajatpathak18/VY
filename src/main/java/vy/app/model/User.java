@@ -25,7 +25,7 @@ public class User {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @Column(name = "username")
+    @Column(name = "username", unique = true)
     private String username;
 
     @Column(name = "password")

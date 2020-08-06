@@ -20,7 +20,7 @@ public class Permission {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long permissionID;
 
-    @Column(name = "permission_name")
+    @Column(name = "permission_name", unique = true)
     private String name;
 
     @Column(name = "status")
