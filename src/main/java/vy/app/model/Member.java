@@ -6,12 +6,8 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import java.sql.Blob;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
@@ -100,19 +96,19 @@ public class Member {
     @Column(name = "practice_level")
     private int practiceLevel;
 
-    @Column(name = "send_email")
+    @Column(name = "send_email", nullable = false, columnDefinition = "boolean default false")
     private boolean sendEmail;
 
-    @Column(name = "call_flag")
+    @Column(name = "call_flag", nullable = false, columnDefinition = "boolean default false")
     private boolean callFlag;
 
-    @Column(name = "sms")
+    @Column(name = "sms", nullable = false, columnDefinition = "boolean default false")
     private boolean sms;
 
-    @Column(name = "patrika_subscribed")
+    @Column(name = "patrika_subscribed", nullable = false, columnDefinition = "boolean default false")
     private boolean patrikaSubscribed;
 
-    @Column(name = "has_swarved")
+    @Column(name = "has_swarved", nullable = false, columnDefinition = "boolean default false")
     private boolean hasSwarved;
 
     @Column(name = "updeshta_member_id")
@@ -130,16 +126,16 @@ public class Member {
     @Column(name = "update_source")
     private String updateSource;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false, columnDefinition = "boolean default true")
     private boolean status;
 
-    @Column(name = "trash")
+    @Column(name = "trash", nullable = false, columnDefinition = "boolean default false")
     private boolean trash;
 
     @CreationTimestamp
     @Column(name = "created_at")
     private Timestamp createdAt;
-    
+
     @UpdateTimestamp
     @Column(name = "updated_at")
     private Timestamp updatedAt;

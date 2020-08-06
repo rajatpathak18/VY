@@ -31,10 +31,10 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "status")
+    @Column(name = "status", nullable = false, columnDefinition = "boolean default true")
     private boolean status;
 
-    @Column(name = "trash")
+    @Column(name = "trash", nullable = false, columnDefinition = "boolean default false")
     private boolean trash;
 
     @Column(name = "created_at")
