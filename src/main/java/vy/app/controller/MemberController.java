@@ -47,14 +47,18 @@ public class MemberController {
 
     @GetMapping(value = "/member/")
     @ResponseStatus(HttpStatus.OK)
-    public Page<MemberDto> getMembers(@Conjunction({
-            @Or(@Spec(path = "memberID", params = "memberID", spec = Equal.class)),
-            @Or(@Spec(path = "firstName", params = "firstName", spec = LikeIgnoreCase.class)),
-            @Or(@Spec(path = "middleName", params = "middleName", spec = LikeIgnoreCase.class)),
-            @Or(@Spec(path = "lastName", params = "lastName", spec = LikeIgnoreCase.class)),
-            @Or({@Spec(path = "primaryPhoneNumber", params = "phNumber", spec = Like.class),
-                    @Spec(path = "alternatePhoneNumber", params = "phNumber", spec = Like.class)})
-    }) Specification<Member> spec, @PageableDefault(size = 5, sort = "memberID") Pageable pageable) {
+    public Page<MemberDto> getMembers(
+            @Join(path = "memberDesignations", alias = "md")
+            @Conjunction({
+                    @Or(@Spec(path = "memberID", params = "memberID", spec = Equal.class)),
+                    @Or(@Spec(path = "firstName", params = "firstName", spec = LikeIgnoreCase.class)),
+                    @Or(@Spec(path = "middleName", params = "middleName", spec = LikeIgnoreCase.class)),
+                    @Or(@Spec(path = "lastName", params = "lastName", spec = LikeIgnoreCase.class)),
+                    @Or(@Spec(path = "email.emailAddress1", params = "email", spec = LikeIgnoreCase.class)),
+                    @Or(@Spec(path = "md.designation.designationName", params = "designation", spec = LikeIgnoreCase.class)),
+                    @Or({@Spec(path = "primaryPhoneNumber", params = "phNumber", spec = Like.class),
+                            @Spec(path = "alternatePhoneNumber", params = "phNumber", spec = Like.class)})
+            }) Specification<Member> spec, @PageableDefault(size = 5, sort = "memberID") Pageable pageable) {
         log.info("getMembers: " + spec);
         Page<Member> members = memberService.getMembers(spec, pageable);
         return members.map(this::convertToDto);
