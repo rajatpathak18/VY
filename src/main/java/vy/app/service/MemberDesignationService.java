@@ -58,9 +58,9 @@ public class MemberDesignationService {
         if (!memberDesignationRepository.existsById(id)) {
             throw Exceptions.MemberDesignationDoesNotExist;
         }
-        memberDesignation.setMemberDesignationID(id);
-        memberDesignationRepository.save(memberDesignation);
-        return memberDesignationRepository.findById(id).get();
+        MemberDesignation existingMemberDesignation = memberDesignationRepository.findById(id).get();
+        existingMemberDesignation.setHonourDate(memberDesignation.getHonourDate());
+        return memberDesignationRepository.save(existingMemberDesignation);
     }
 
     @Transactional
