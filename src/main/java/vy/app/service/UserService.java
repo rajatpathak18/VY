@@ -62,4 +62,10 @@ public class UserService {
         user.setPassword(bCryptPasswordEncoder.encode(newPassword));
         userRepository.save(user);
     }
+
+    public void resetPassword(Long id) throws Exception {
+        User user = userRepository.findById(id).get();
+        user.setPassword(bCryptPasswordEncoder.encode("password"));
+        userRepository.save(user);
+    }
 }
