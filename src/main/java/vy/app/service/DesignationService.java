@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import vy.app.Exception.Exceptions;
 import vy.app.model.Designation;
 import vy.app.repository.DesignationRepository;
-import vy.app.repository.DesignationRepository;
 
 import javax.transaction.Transactional;
 import java.util.List;

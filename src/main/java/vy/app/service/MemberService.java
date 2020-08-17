@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import vy.app.Exception.Exceptions;
+import vy.app.model.Designation;
 import vy.app.model.MemberDesignation;
 import vy.app.repository.AkshayPatraRepository;
 import vy.app.repository.DesignationRepository;
@@ -15,6 +16,7 @@ import vy.app.repository.MemberRepository;
 import vy.app.model.Member;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,6 +58,10 @@ public class MemberService {
         return memberRepository.findAll(spec, pageable);
     }
 
+    public List<Member> getUpdeshtaMemberList() {
+        List<Member> members = new ArrayList<>();
+        return memberRepository.findByMemberDesignations_Designation_DesignationName("updeshta");
+    }
 
     public Member getMember(Long id) throws Exception {
         if (!memberRepository.existsById(id)) {
