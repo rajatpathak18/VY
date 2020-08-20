@@ -13,7 +13,7 @@ import vy.app.model.MemberPhoto;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
 import java.sql.Blob;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 

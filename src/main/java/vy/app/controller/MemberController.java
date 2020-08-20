@@ -1,10 +1,10 @@
 package vy.app.controller;
 
 import lombok.extern.log4j.Log4j2;
-import net.kaczmarzyk.spring.data.jpa.domain.Equal;
-import net.kaczmarzyk.spring.data.jpa.domain.Like;
-import net.kaczmarzyk.spring.data.jpa.domain.LikeIgnoreCase;
+import net.kaczmarzyk.spring.data.jpa.domain.*;
 import net.kaczmarzyk.spring.data.jpa.web.annotation.*;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.Conjunction;
+import net.kaczmarzyk.spring.data.jpa.web.annotation.Join;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -54,7 +54,16 @@ public class MemberController {
                     @Or(@Spec(path = "middleName", params = "middleName", spec = LikeIgnoreCase.class)),
                     @Or(@Spec(path = "lastName", params = "lastName", spec = LikeIgnoreCase.class)),
                     @Or(@Spec(path = "email.emailAddress1", params = "email", spec = LikeIgnoreCase.class)),
+                    @Or({@Spec(path = "address.country", params = "country", spec = LikeIgnoreCase.class),
+                            @Spec(path = "address.alternateCountry", params = "country", spec = LikeIgnoreCase.class)}),
+                    @Or({@Spec(path = "address.state", params = "state", spec = LikeIgnoreCase.class),
+                            @Spec(path = "address.alternateState", params = "state", spec = LikeIgnoreCase.class)}),
+                    @Or({@Spec(path = "address.city", params = "city", spec = LikeIgnoreCase.class),
+                            @Spec(path = "address.alternateCity", params = "city", spec = LikeIgnoreCase.class)}),
                     @Or(@Spec(path = "md.designation.designationName", params = "designation", spec = LikeIgnoreCase.class)),
+                    @Or(@Spec(path = "updeshtaMemberID", params = "updeshtaMemberID", spec = LikeIgnoreCase.class)),
+                    @Or(@Spec(path = "associatedSince", params = {"associatedAfter", "associatedBefore"}, spec = Between.class)),
+//                    @Or(@Spec(path = "associatedSince", params = "associatedBefore", spec = LessThanOrEqual.class)),
                     @Or({@Spec(path = "primaryPhoneNumber", params = "phNumber", spec = Like.class),
                             @Spec(path = "alternatePhoneNumber", params = "phNumber", spec = Like.class)})
             }) Specification<Member> spec, @PageableDefault(size = 5, sort = "memberID") Pageable pageable) {
