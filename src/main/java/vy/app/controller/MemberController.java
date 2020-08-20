@@ -61,7 +61,7 @@ public class MemberController {
                     @Or({@Spec(path = "address.city", params = "city", spec = LikeIgnoreCase.class),
                             @Spec(path = "address.alternateCity", params = "city", spec = LikeIgnoreCase.class)}),
                     @Or(@Spec(path = "md.designation.designationName", params = "designation", spec = LikeIgnoreCase.class)),
-                    @Or(@Spec(path = "updeshtaMemberID", params = "updeshtaMemberID", spec = LikeIgnoreCase.class)),
+                    @Or(@Spec(path = "updeshtaMemberID", params = "updeshtaMemberID", spec = Equal.class)),
                     @Or(@Spec(path = "associatedSince", params = {"associatedAfter", "associatedBefore"}, spec = Between.class)),
 //                    @Or(@Spec(path = "associatedSince", params = "associatedBefore", spec = LessThanOrEqual.class)),
                     @Or({@Spec(path = "primaryPhoneNumber", params = "phNumber", spec = Like.class),
