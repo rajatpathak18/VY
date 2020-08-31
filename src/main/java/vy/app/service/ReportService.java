@@ -1,51 +1,197 @@
 package vy.app.service;
 
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-import org.apache.poi.ss.usermodel.*;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vy.app.Exception.Exceptions;
-import vy.app.model.Designation;
-import vy.app.pojo.ReportDto;
-import vy.app.repository.DesignationRepository;
-
-import javax.transaction.Transactional;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.List;
-import java.util.Optional;
+import vy.app.model.Member;
+import vy.app.repository.MemberRepository;
 
 @Service
 public class ReportService {
+    @Autowired
+    private MemberService memberService;
 
-    public Workbook memberReport() {
-        Workbook workbook = new XSSFWorkbook();
-        try {
+    public ByteArrayInputStream memberReport() throws Exception{
+        // get list of members from member service
+        Member m = memberService.getMember((long)7);
 
-            writeFinalData(workbook, "Data");
-            //writing to excel file
-            OutputStream fileOut = new FileOutputStream("excel.xlsx");
-            workbook.write(fileOut);
-        } catch (IOException c) {
-            c.printStackTrace();
-//            return new ReportDto("Failed", c.getMessage(), "No file created");
+        try(Workbook workbook = new XSSFWorkbook()){
+            Sheet sheet = workbook.createSheet("Members");
+
+            Row row = sheet.createRow(0);
+            CellStyle headerCellStyle = workbook.createCellStyle();
+            headerCellStyle.setFillForegroundColor(IndexedColors.AQUA.getIndex());
+            headerCellStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+            // Creating header
+            Cell cell = row.createCell(0);
+            cell.setCellValue("S.No.");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(1);
+            cell.setCellValue("Member Id");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(2);
+            cell.setCellValue("National Identifier");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(3);
+            cell.setCellValue("Name");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(4);
+            cell.setCellValue("Father Name");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(5);
+            cell.setCellValue("Mother Name");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(6);
+            cell.setCellValue("Date of Birth");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(7);
+            cell.setCellValue("Gender");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(8);
+            cell.setCellValue("Address");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(9);
+            cell.setCellValue("City");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(10);
+            cell.setCellValue("State");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(11);
+            cell.setCellValue("Pincode");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(12);
+            cell.setCellValue("Contact no.");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(13);
+            cell.setCellValue("Country");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(14);
+            cell.setCellValue("Nationality");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(15);
+            cell.setCellValue("Email-Id");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(16);
+            cell.setCellValue("Member photo Path");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(17);
+            cell.setCellValue("Id photo path");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(18);
+            cell.setCellValue("ID Type");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(19);
+            cell.setCellValue("Associated Since");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(20);
+            cell.setCellValue("Profession");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(21);
+            cell.setCellValue("Updestha");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(22);
+            cell.setCellValue("Practicing Level");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(23);
+            cell.setCellValue("Designation");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(24);
+            cell.setCellValue("Has Akshay Patra?");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(25);
+            cell.setCellValue("Akshay Patra No.");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(26);
+            cell.setCellValue("Patrika Subscribed?");
+            cell.setCellStyle(headerCellStyle);
+
+            cell = row.createCell(27);
+            cell.setCellValue("Akshay Patra Allocation Date");
+            cell.setCellStyle(headerCellStyle);
+
+            // Creating data rows for each customer
+//            for(int i = 0; i < customers.size(); i++) {
+//                Row dataRow = sheet.createRow(i + 1);
+            Row dataRow = sheet.createRow( 1);
+            dataRow.createCell(0).setCellValue(1);
+            dataRow.createCell(1).setCellValue(m.getMemberID());
+            dataRow.createCell(2).setCellValue("NA");
+//            dataRow.createCell(3).setCellValue((m.getFirstName() + " " + m.getMiddleName() + (m.getMiddleName().isEmpty()?"":" ") + m.getLastName()).trim());
+            dataRow.createCell(4).setCellValue(m.getFatherName());
+            dataRow.createCell(5).setCellValue(m.getMotherName());
+            dataRow.createCell(6).setCellValue(m.getDateOfBirth());
+            dataRow.createCell(7).setCellValue(m.getGender());
+            dataRow.createCell(8).setCellValue(m.getAddress().getAddress());
+            dataRow.createCell(9).setCellValue(m.getAddress().getCity());
+            dataRow.createCell(10).setCellValue(m.getAddress().getState());
+            dataRow.createCell(11).setCellValue(m.getAddress().getPostalCode());
+            dataRow.createCell(12).setCellValue(m.getPrimaryPhoneNumber());
+            dataRow.createCell(13).setCellValue(m.getAddress().getCountry());
+            dataRow.createCell(14).setCellValue("NA");
+            dataRow.createCell(15).setCellValue(m.getEmail().getEmailAddress1());
+            dataRow.createCell(16).setCellValue("NA");
+            dataRow.createCell(17).setCellValue("NA");
+            dataRow.createCell(18).setCellValue("NA");
+            dataRow.createCell(19).setCellValue(m.getAssociatedSince());
+            dataRow.createCell(20).setCellValue(m.getProfession());
+            dataRow.createCell(21).setCellValue(m.getUpdeshtaName());
+            dataRow.createCell(22).setCellValue(m.getPracticeLevel());
+            dataRow.createCell(23).setCellValue("NA");
+            dataRow.createCell(24).setCellValue((m.getAkshayPatra()==null)?"No":"Yes");
+            dataRow.createCell(25).setCellValue((m.getAkshayPatra()!=null)?m.getAkshayPatra().getAkshayPatraNum():"");
+            dataRow.createCell(26).setCellValue((m.isPatrikaSubscribed())?"Yes":"No");
+            dataRow.createCell(27).setCellValue((m.getAkshayPatra()!=null)?m.getAkshayPatra().getPatraAllocationDate().toString():"");
+//              }
+
+            // Making size of column auto resize to fit with data
+            for (int i=0; i<28; i++){
+                sheet.autoSizeColumn(i);
+            }
+
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            workbook.write(outputStream);
+            return new ByteArrayInputStream(outputStream.toByteArray());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            return null;
         }
-        System.out.println("Report Generation Success");
-//        return new ReportDto("Success", "URL to the filled excel file is in the path", "filename.xlsx");
-        return workbook;
-    }
-
-    private void writeFinalData(Workbook workbook, String value) {
-        Sheet sheet = workbook.createSheet();
-        sheet.createRow(1);
-        sheet.getRow(1).createCell(1);
-        Row row = sheet.getRow(1);
-        Cell cell = row.getCell(1);
-        cell.setCellValue(value); //value can be any string , int etc
     }
 }

@@ -36,8 +36,9 @@ dependencies {
     compile group: 'net.kaczmarzyk', name: 'specification-arg-resolver', version: '2.4.1'
     // https://mvnrepository.com/artifact/org.flywaydb/flyway-core
 //    compile group: 'org.flywaydb', name: 'flyway-core', version: '6.5.3'
-    compile group: 'org.apache.poi', name: 'poi', version: '3.9'
-    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '3.9'
+    compile group: 'org.apache.poi', name: 'poi', version: '4.0.1'
+    compile group: 'org.apache.poi', name: 'poi-ooxml', version: '4.0.1'
+    compile group: 'commons-io', name: 'commons-io', version: '2.6'
     // QR Code Jar 
     compile "com.google.zxing:core:3.3.0"
     compile 'com.google.zxing:javase:3.3.0'
