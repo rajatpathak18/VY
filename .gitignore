@@ -8,3 +8,5 @@ build
 .settings/
 bin/
 c:/
+out/
+src/main/.DS_Store
