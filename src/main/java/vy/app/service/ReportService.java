@@ -14,6 +14,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import vy.app.model.Member;
 import vy.app.repository.MemberRepository;
@@ -23,9 +24,9 @@ public class ReportService {
     @Autowired
     private MemberService memberService;
 
-    public ByteArrayInputStream memberReport() throws Exception{
+    public ByteArrayInputStream memberReport(Specification<Member> spec) throws Exception{
         // get list of members from member service
-        Member m = memberService.getMember((long)7);
+        List<Member> members = memberService.getMembers(spec);
 
         try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet = workbook.createSheet("Members");
@@ -148,41 +149,45 @@ public class ReportService {
             cell.setCellStyle(headerCellStyle);
 
             // Creating data rows for each customer
-//            for(int i = 0; i < customers.size(); i++) {
-//                Row dataRow = sheet.createRow(i + 1);
-            Row dataRow = sheet.createRow( 1);
-            dataRow.createCell(0).setCellValue(1);
-            dataRow.createCell(1).setCellValue(m.getMemberID());
-            dataRow.createCell(2).setCellValue("NA");
-//            dataRow.createCell(3).setCellValue((m.getFirstName() + " " + m.getMiddleName() + (m.getMiddleName().isEmpty()?"":" ") + m.getLastName()).trim());
-            dataRow.createCell(4).setCellValue(m.getFatherName());
-            dataRow.createCell(5).setCellValue(m.getMotherName());
-            dataRow.createCell(6).setCellValue(m.getDateOfBirth());
-            dataRow.createCell(7).setCellValue(m.getGender());
-            dataRow.createCell(8).setCellValue(m.getAddress().getAddress());
-            dataRow.createCell(9).setCellValue(m.getAddress().getCity());
-            dataRow.createCell(10).setCellValue(m.getAddress().getState());
-            dataRow.createCell(11).setCellValue(m.getAddress().getPostalCode());
-            dataRow.createCell(12).setCellValue(m.getPrimaryPhoneNumber());
-            dataRow.createCell(13).setCellValue(m.getAddress().getCountry());
-            dataRow.createCell(14).setCellValue("NA");
-            dataRow.createCell(15).setCellValue(m.getEmail().getEmailAddress1());
-            dataRow.createCell(16).setCellValue("NA");
-            dataRow.createCell(17).setCellValue("NA");
-            dataRow.createCell(18).setCellValue("NA");
-            dataRow.createCell(19).setCellValue(m.getAssociatedSince());
-            dataRow.createCell(20).setCellValue(m.getProfession());
-            dataRow.createCell(21).setCellValue(m.getUpdeshtaName());
-            dataRow.createCell(22).setCellValue(m.getPracticeLevel());
-            dataRow.createCell(23).setCellValue("NA");
-            dataRow.createCell(24).setCellValue((m.getAkshayPatra()==null)?"No":"Yes");
-            dataRow.createCell(25).setCellValue((m.getAkshayPatra()!=null)?m.getAkshayPatra().getAkshayPatraNum():"");
-            dataRow.createCell(26).setCellValue((m.isPatrikaSubscribed())?"Yes":"No");
-            dataRow.createCell(27).setCellValue((m.getAkshayPatra()!=null)?m.getAkshayPatra().getPatraAllocationDate().toString():"");
-//              }
+            int rowNum=0, colNum = 27;
+            for(Member m : members) {
+                Row dataRow = sheet.createRow(++rowNum);
+                dataRow.createCell(0).setCellValue(rowNum);
+                dataRow.createCell(1).setCellValue(m.getMemberID());
+                dataRow.createCell(2).setCellValue("NA");
+                if (m.getMiddleName() != null){
+                    dataRow.createCell(3).setCellValue((m.getFirstName() + " " + m.getMiddleName() + (m.getMiddleName().isEmpty()?"":" ") + m.getLastName()).trim());
+                }else{
+                    dataRow.createCell(3).setCellValue((m.getFirstName() + " " + m.getLastName()).trim());
+                }
+                dataRow.createCell(4).setCellValue(m.getFatherName());
+                dataRow.createCell(5).setCellValue(m.getMotherName());
+                dataRow.createCell(6).setCellValue(m.getDateOfBirth());
+                dataRow.createCell(7).setCellValue(m.getGender());
+                dataRow.createCell(8).setCellValue(m.getAddress().getAddress());
+                dataRow.createCell(9).setCellValue(m.getAddress().getCity());
+                dataRow.createCell(10).setCellValue(m.getAddress().getState());
+                dataRow.createCell(11).setCellValue(m.getAddress().getPostalCode());
+                dataRow.createCell(12).setCellValue(m.getPrimaryPhoneNumber());
+                dataRow.createCell(13).setCellValue(m.getAddress().getCountry());
+                dataRow.createCell(14).setCellValue("NA");
+                dataRow.createCell(15).setCellValue(m.getEmail().getEmailAddress1());
+                dataRow.createCell(16).setCellValue("NA");
+                dataRow.createCell(17).setCellValue("NA");
+                dataRow.createCell(18).setCellValue("NA");
+                dataRow.createCell(19).setCellValue(m.getAssociatedSince());
+                dataRow.createCell(20).setCellValue(m.getProfession());
+                dataRow.createCell(21).setCellValue(m.getUpdeshtaName());
+                dataRow.createCell(22).setCellValue(m.getPracticeLevel());
+                dataRow.createCell(23).setCellValue("NA");
+                dataRow.createCell(24).setCellValue((m.getAkshayPatra()==null)?"No":"Yes");
+                dataRow.createCell(25).setCellValue((m.getAkshayPatra()!=null)?m.getAkshayPatra().getAkshayPatraNum():"");
+                dataRow.createCell(26).setCellValue((m.isPatrikaSubscribed())?"Yes":"No");
+                dataRow.createCell(27).setCellValue((m.getAkshayPatra()!=null)?m.getAkshayPatra().getPatraAllocationDate().toString():"");
+            }
 
             // Making size of column auto resize to fit with data
-            for (int i=0; i<28; i++){
+            for (int i=0; i<=colNum; i++){
                 sheet.autoSizeColumn(i);
             }
 

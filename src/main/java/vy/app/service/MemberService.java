@@ -58,6 +58,10 @@ public class MemberService {
         return memberRepository.findAll(spec, pageable);
     }
 
+    public List<Member> getMembers(Specification<Member> spec) {
+        return memberRepository.findAll(spec);
+    }
+
     public List<Member> getUpdeshtaMemberList() {
         List<Member> members = new ArrayList<>();
         return memberRepository.findByMemberDesignations_Designation_DesignationName("updeshta");
