@@ -36,18 +36,6 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
-//    @GetMapping(value = "/report/member/")
-//    @ResponseStatus(HttpStatus.OK)
-//    public ResponseEntity<StreamingResponseBody> getMembersReport() throws Exception {
-//        log.info("getMembersReport: called");
-////        return reportService.memberReport();
-//        return ResponseEntity
-//                .ok()
-//                .contentType(MediaType.APPLICATION_OCTET_STREAM)
-//                .header(HttpHeaders.CONTENT_DISPOSITION, "inline;filename=\"myfilename.xlsx\"")
-//                .body(reportService.memberReport()::write);
-//    }
-
     @GetMapping(value = "/report/member/")
     @ResponseStatus(HttpStatus.OK)
     public void downloadCsv(

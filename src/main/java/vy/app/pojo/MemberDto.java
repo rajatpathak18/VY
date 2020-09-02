@@ -1,5 +1,6 @@
 package vy.app.pojo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +33,7 @@ public class MemberDto {
     @NotBlank(message = "lastName is mandatory")
     private String lastName;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "dateOfBirth is mandatory")
     private Date dateOfBirth;
 
@@ -48,6 +49,7 @@ public class MemberDto {
     private String nationality;
     //    private String memberPhotoPath;
 //    private String govtIDPhotoPath;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date associatedSince;
     private AddressDto address;
     private EmailDto email;

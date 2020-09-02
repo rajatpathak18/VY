@@ -3,6 +3,7 @@ package vy.app.service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import org.apache.poi.ss.usermodel.Cell;
@@ -27,6 +28,7 @@ public class ReportService {
     public ByteArrayInputStream memberReport(Specification<Member> spec) throws Exception{
         // get list of members from member service
         List<Member> members = memberService.getMembers(spec);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
         try(Workbook workbook = new XSSFWorkbook()){
             Sheet sheet = workbook.createSheet("Members");
@@ -162,7 +164,7 @@ public class ReportService {
                 }
                 dataRow.createCell(4).setCellValue(m.getFatherName());
                 dataRow.createCell(5).setCellValue(m.getMotherName());
-                dataRow.createCell(6).setCellValue(m.getDateOfBirth());
+                dataRow.createCell(6).setCellValue(dateFormat.format(m.getDateOfBirth()));
                 dataRow.createCell(7).setCellValue(m.getGender());
                 dataRow.createCell(8).setCellValue(m.getAddress().getAddress());
                 dataRow.createCell(9).setCellValue(m.getAddress().getCity());
@@ -175,7 +177,7 @@ public class ReportService {
                 dataRow.createCell(16).setCellValue("NA");
                 dataRow.createCell(17).setCellValue("NA");
                 dataRow.createCell(18).setCellValue("NA");
-                dataRow.createCell(19).setCellValue(m.getAssociatedSince());
+                dataRow.createCell(19).setCellValue((m.getAssociatedSince()!=null)?dateFormat.format(m.getAssociatedSince()):"NA");
                 dataRow.createCell(20).setCellValue(m.getProfession());
                 dataRow.createCell(21).setCellValue(m.getUpdeshtaName());
                 dataRow.createCell(22).setCellValue(m.getPracticeLevel());
