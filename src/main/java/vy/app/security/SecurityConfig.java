@@ -34,12 +34,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeRequests()
+                .antMatchers(GET, "/member/").hasAuthority("MEMBER_READ")
                 .antMatchers(POST, "/member/").hasAuthority("MEMBER_WRITE")
                 .antMatchers(PUT, "/member/*/").hasAuthority("MEMBER_WRITE")
                 .antMatchers(DELETE, "/member/*/").hasAuthority("ALL_PERMISSIONS")
 
                 .antMatchers("/authenticate/").permitAll()
-                .antMatchers("/report/member/").permitAll() // for testing, remove it later
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()

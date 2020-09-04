@@ -11,15 +11,25 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import vy.app.pojo.MemberDetailsDto;
 import vy.app.pojo.MemberDto;
 import vy.app.model.Member;
 import vy.app.pojo.MemberListDto;
+import vy.app.security.VyUserDetails;
 import vy.app.service.MemberService;
+import vy.app.service.ReportService;
+import vy.app.service.RoleService;
 import vy.app.validation.Validation;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Predicate;
+import javax.persistence.criteria.Root;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +40,9 @@ public class MemberController {
 
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    private RoleService roleService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -65,8 +78,20 @@ public class MemberController {
                     @Or(@Spec(path = "associatedSince", params = {"associatedAfter", "associatedBefore"}, spec = Between.class)),
                     @Or({@Spec(path = "primaryPhoneNumber", params = "phNumber", spec = Like.class),
                             @Spec(path = "alternatePhoneNumber", params = "phNumber", spec = Like.class)})
-            }) Specification<Member> spec, @PageableDefault(size = 5, sort = "memberID") Pageable pageable) {
-        log.info("getMembers: " + spec);
+            }) Specification<Member> spec, @PageableDefault(size = 5, sort = "memberID") Pageable pageable, Authentication authentication) {
+        log.info("getMembers: printing roles " + ((VyUserDetails) authentication.getPrincipal()).getRoles());
+
+        if (roleService.hasOnlyUpdeshtaRole(((VyUserDetails) authentication.getPrincipal()).getRoles())) {
+            log.info("reaching here ");
+            Specification<Member> roleBased = new Specification<Member>() {
+                @Override
+                public Predicate toPredicate(Root<Member> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                    return criteriaBuilder.equal(root.get("updeshtaMemberID"), ((VyUserDetails) authentication.getPrincipal()).getUsername());
+                }
+            };
+            spec = spec.and(roleBased);
+        }
+        
         Page<Member> members = memberService.getMembers(spec, pageable);
         return members.map(this::convertToDto);
     }
@@ -129,5 +154,17 @@ public class MemberController {
     private Member convertToEntity(MemberDto memberDto) {
         Member member = modelMapper.map(memberDto, Member.class);
         return member;
+    }
+
+    public static Specification<Member> getEmployeesByNameSpec(String name) {
+        return new Specification<Member>() {
+            @Override
+            public Predicate toPredicate(Root<Member> root,
+                                         CriteriaQuery<?> query,
+                                         CriteriaBuilder criteriaBuilder) {
+                Predicate equalPredicate = criteriaBuilder.equal(root.get("updeshtaMemberID"), name);
+                return equalPredicate;
+            }
+        };
     }
 }

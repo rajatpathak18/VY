@@ -4,9 +4,11 @@ import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
+import vy.app.model.Role;
 import vy.app.model.User;
 
 import java.util.Collection;
+import java.util.Set;
 
 public class VyUserDetails implements UserDetails {
 
@@ -53,6 +55,10 @@ public class VyUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public Set<Role> getRoles() {
+        return user.getRoles();
     }
 }
 
