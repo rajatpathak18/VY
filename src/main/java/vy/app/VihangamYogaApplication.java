@@ -8,13 +8,13 @@ import java.util.TimeZone;
 
 @SpringBootApplication
 public class VihangamYogaApplication {
-  @PostConstruct
-  public void init(){
-    TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
-  }
+    @PostConstruct
+    public void init() {
+        TimeZone.setDefault(TimeZone.getTimeZone("UTC"));
+    }
 
-  public static void main(String[] args) {
-    SpringApplication.run(VihangamYogaApplication.class,args);
-  }
+    public static void main(String[] args) {
+        SpringApplication.run(VihangamYogaApplication.class, args);
+    }
 }
 

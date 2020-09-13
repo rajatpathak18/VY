@@ -1,27 +1,20 @@
 package vy.app.pojo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.hibernate.validator.constraints.Length;
 import org.springframework.format.annotation.DateTimeFormat;
-import vy.app.model.Designation;
-import vy.app.model.MemberDesignation;
-import vy.app.model.MemberPhoto;
 
-import javax.persistence.OneToMany;
 import javax.validation.constraints.*;
-import java.sql.Blob;
-import java.util.Date;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.Set;
 
 @Getter
 @Setter
 @ToString
-public class MemberDto {
+public class MemberDetailsDto {
     private Long memberID;
 
     @Size(min = 1, max = 60, message = "firstName size must be between 1 and 60")
@@ -33,7 +26,7 @@ public class MemberDto {
     @NotBlank(message = "lastName is mandatory")
     private String lastName;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "dateOfBirth is mandatory")
     private Date dateOfBirth;
 
@@ -47,9 +40,9 @@ public class MemberDto {
     //    private String govtID;
 //    private String govtIDType;
     private String nationality;
+    private MemberPhotoDto memberPhoto;
     //    private String memberPhotoPath;
 //    private String govtIDPhotoPath;
-    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date associatedSince;
     private AddressDto address;
     private EmailDto email;
