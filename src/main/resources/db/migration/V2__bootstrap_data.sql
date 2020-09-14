@@ -80,5 +80,8 @@ INSERT INTO `vy_role_permission`(`role_id`, `permission_id`) VALUES ((select rol
 -- Inserting super admin data
 INSERT INTO `vy_member` (`member_id`, `first_name`, `middle_name`, `last_name`, `dob`, `gender`, `mother_name`, `father_name`, `phone_no`, `alternate_phone_no`, `address_id`, `email_id`, `akshay_patra_id`, `government_id`, `government_id_type`, `nationality`, `member_photo_path`, `govt_id_photo_path`, `associated_since`, `profession`, `practice_level`, `send_email`, `call_flag`, `sms`, `patrika_subscribed`, `has_swarved`, `updeshta_member_id`, `updeshta_name`, `updesh_venue`, `member_photo_id`, `status`, `trash`, `created_at`, `updated_at`, `create_source`, `update_source`) VALUES ('1', 'Super', NULL, 'Admin', '1900-09-13', 'M', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '1924-09-13', NULL, '5', '0', '0', '0', '0', '0', '1', NULL, NULL, NULL, '1', '0', CURRENT_TIMESTAMP, NULL, NULL, NULL);
 
+INSERT INTO `vy_user` (`user_id`, `member_id`, `username`, `password`, `status`, `trash`, `created_at`, `updated_at`) VALUES (NULL, '1', '1', '$2a$10$CvWTw6MgUePbsD64kVTGcegIx4ncvZvXSLWN/22ClpOarJbclehRG', '1', '0', CURRENT_TIMESTAMP, NULL);
+
+INSERT INTO `vy_user_role` (`user_role_id`, `role_id`, `user_id`, `status`, `trash`, `created_at`, `updated_at`) VALUES (NULL, '1', '1', '1', '0', CURRENT_TIMESTAMP, NULL);
 
 COMMIT;
