@@ -164,16 +164,16 @@ public class ReportService {
                 }
                 dataRow.createCell(4).setCellValue(m.getFatherName());
                 dataRow.createCell(5).setCellValue(m.getMotherName());
-                dataRow.createCell(6).setCellValue(dateFormat.format(m.getDateOfBirth()));
+                dataRow.createCell(6).setCellValue((m.getDateOfBirth()!=null)?dateFormat.format(m.getDateOfBirth()):"NA");
                 dataRow.createCell(7).setCellValue(m.getGender());
-                dataRow.createCell(8).setCellValue(m.getAddress().getAddress());
-                dataRow.createCell(9).setCellValue(m.getAddress().getCity());
-                dataRow.createCell(10).setCellValue(m.getAddress().getState());
-                dataRow.createCell(11).setCellValue(m.getAddress().getPostalCode());
-                dataRow.createCell(12).setCellValue(m.getPrimaryPhoneNumber());
-                dataRow.createCell(13).setCellValue(m.getAddress().getCountry());
+                dataRow.createCell(8).setCellValue((m.getAddress()!=null)?m.getAddress().getAddress():"");
+                dataRow.createCell(9).setCellValue((m.getAddress()!=null)?m.getAddress().getCity():"");
+                dataRow.createCell(10).setCellValue((m.getAddress()!=null)?m.getAddress().getState():"");
+                dataRow.createCell(11).setCellValue((m.getAddress()!=null)?m.getAddress().getPostalCode():"");
+                dataRow.createCell(12).setCellValue((m.getAddress()!=null)?m.getPrimaryPhoneNumber():"");
+                dataRow.createCell(13).setCellValue((m.getAddress()!=null)?m.getAddress().getCountry():"");
                 dataRow.createCell(14).setCellValue("NA");
-                dataRow.createCell(15).setCellValue(m.getEmail().getEmailAddress1());
+                dataRow.createCell(15).setCellValue((m.getEmail()!=null)?m.getEmail().getEmailAddress1():"");
                 dataRow.createCell(16).setCellValue("NA");
                 dataRow.createCell(17).setCellValue("NA");
                 dataRow.createCell(18).setCellValue("NA");
