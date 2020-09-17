@@ -36,13 +36,20 @@ public class MemberService {
 
     @Transactional
     public Member createMember(Member member) throws Exception {
-        // check if the updeshta member id is valid
-        if (member.getUpdeshtaMemberID() != null) {
-            if (!memberRepository.existsById(member.getUpdeshtaMemberID())) {
-                throw Exceptions.InvalidUpdeshtaMemberIDException;
-            }
-        }
+    	//check for updeshmemberid or updeshta name
+		if (member.getUpdeshtaMemberID() == null && member.getUpdeshtaName() == null) {
+			throw Exceptions.UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
+		}
+		
+         // check if the updeshta member id is valid
+		if (member.getUpdeshtaMemberID() != null && !memberRepository.existsById(member.getUpdeshtaMemberID())) {
+			throw Exceptions.InvalidUpdeshtaMemberIDException;
+		}
 
+		if (member.getUpdeshtaName() == null) {
+			member.setUpdeshtaName(createUpdeshtaName(member));
+		}
+        
         // check if akshay patra num is unique
         if (member.getAkshayPatra() != null) {
             if (member.getAkshayPatra().getAkshayPatraNum() != null) {
@@ -53,6 +60,14 @@ public class MemberService {
         }
         return memberRepository.save(member);
     }
+
+	private String createUpdeshtaName(Member member) {
+		Member memberDetail = memberRepository.findByMemberID(member.getUpdeshtaMemberID());
+		StringBuilder sb = new StringBuilder();
+		sb.append(memberDetail.getFirstName()).append(" ")
+				.append(memberDetail.getLastName());
+		return sb.toString();
+	}
 
     public Page<Member> getMembers(Specification<Member> spec, Pageable pageable) {
         return memberRepository.findAll(spec, pageable);

@@ -13,4 +13,6 @@ public interface MemberRepository extends PagingAndSortingRepository<Member, Lon
 //    @Query("select m from Member m where m.firstName like concat('%', lower(?1), '%') or m.middleName like concat('%', lower(?1), '%') or m.lastName like concat('%', lower(?1), '%')")
 //    List<Member> getByName(String name);
     List<Member> findByMemberDesignations_Designation_DesignationName(String designationName);
+
+    Member findByMemberID(Long updeshtaMemberID);
 }
