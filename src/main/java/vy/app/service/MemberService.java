@@ -64,8 +64,12 @@ public class MemberService {
 	private String createUpdeshtaName(Member member) {
 		Member memberDetail = memberRepository.findByMemberID(member.getUpdeshtaMemberID());
 		StringBuilder sb = new StringBuilder();
-		sb.append(memberDetail.getFirstName()).append(" ")
-				.append(memberDetail.getLastName());
+		sb.append(memberDetail.getFirstName());
+		if (memberDetail.getMiddleName() != null)
+			sb.append(" ").append(memberDetail.getMiddleName());
+		if (memberDetail.getLastName() != null)
+			sb.append(" ").append(memberDetail.getLastName());
+
 		return sb.toString();
 	}
 

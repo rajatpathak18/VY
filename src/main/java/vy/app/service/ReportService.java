@@ -166,7 +166,9 @@ public class ReportService {
                 dataRow.createCell(5).setCellValue(m.getMotherName());
                 dataRow.createCell(6).setCellValue((m.getDateOfBirth()!=null)?dateFormat.format(m.getDateOfBirth()):"NA");
                 dataRow.createCell(7).setCellValue(m.getGender());
-                dataRow.createCell(8).setCellValue((m.getAddress()!=null)?m.getAddress().getAddress():"");
+				dataRow.createCell(8).setCellValue((m.getAddress() != null) ? (m.getAddress().getAddressLine1()
+						+ (m.getAddress().getAddressLine2() != null ? " " + m.getAddress().getAddressLine2() : ""))
+						: "");
                 dataRow.createCell(9).setCellValue((m.getAddress()!=null)?m.getAddress().getCity():"");
                 dataRow.createCell(10).setCellValue((m.getAddress()!=null)?m.getAddress().getState():"");
                 dataRow.createCell(11).setCellValue((m.getAddress()!=null)?m.getAddress().getPostalCode():"");

@@ -24,8 +24,11 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long addressID;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "address_line1")
+    private String addressLine1;
+    
+    @Column(name = "address_line2")
+    private String addressLine2;
 
     @Column(name = "city")
     private String city;
@@ -42,8 +45,11 @@ public class Address {
     @Column(name = "landmark")
     private String landmark;
 
-    @Column(name = "alternate_address")
-    private String alternateAddress;
+    @Column(name = "alternate_address_line1")
+    private String alternateAddressLine1;
+    
+    @Column(name = "alternate_address_line2")
+    private String alternateAddressLine2;
 
     @Column(name = "alternate_city")
     private String alternateCity;

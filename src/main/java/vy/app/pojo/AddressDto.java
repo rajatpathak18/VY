@@ -12,13 +12,15 @@ import java.sql.Timestamp;
 @ToString
 public class AddressDto {
     private Long addressID;
-    private String address;
+    private String addressLine1;
+    private String addressLine2;
     private String city;
     private String postalCode;
     private String country;
     private String state;
     private String landmark;
-    private String alternateAddress;
+    private String alternateAddressLine1;
+    private String alternateAddressLine2;
     private String alternateCity;
     private String alternatePostalCode;
     private String alternateCountry;
