@@ -125,7 +125,7 @@ public class MemberService {
 
         List<UpdeshSummaryDto> updeshSummaryDtos = new ArrayList<>();
         for (Object[] obj: objects){
-            UpdeshSummaryDto updeshSummaryDto = new UpdeshSummaryDto((Long)obj[0], (String)obj[1], (String)obj[2], (String)obj[3], (Long)obj[4]);
+            UpdeshSummaryDto updeshSummaryDto = new UpdeshSummaryDto((Long)obj[0], (String)obj[1], (String)obj[2], (String)obj[3], (String)obj[4], (String)obj[5], (String)obj[6], (Long)obj[7]);
             updeshSummaryDtos.add(updeshSummaryDto);
         }
         return updeshSummaryDtos;

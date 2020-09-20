@@ -18,10 +18,10 @@ public interface MemberRepository extends PagingAndSortingRepository<Member, Lon
     Member findByMemberID(Long updeshtaMemberID);
 
 
-    @Query("select m.updeshtaMemberID, u.firstName, u.middleName, u.lastName, count(m.memberID) from Member m inner join Member u on m.updeshtaMemberID=u.memberID where m.associatedSince between ?1 and ?2 group by m.updeshtaMemberID, u.firstName, u.middleName, u.lastName")
+    @Query("select m.updeshtaMemberID, u.firstName, u.middleName, u.lastName, u.address.city, u.address.state, u.address.country, count(m.memberID) from Member m inner join Member u on m.updeshtaMemberID=u.memberID where m.associatedSince between ?1 and ?2 group by m.updeshtaMemberID, u.firstName, u.middleName, u.lastName, u.address.city, u.address.state, u.address.country")
     List<Object[]> getUpdeshSummaryByAssociatedSince(Date start, Date end);
 
-    @Query("select m.updeshtaMemberID, u.firstName, u.middleName, u.lastName, count(m.memberID) from Member m inner join Member u on m.updeshtaMemberID=u.memberID where m.updeshtaMemberID=?1 AND m.associatedSince between ?2 and ?3 group by m.updeshtaMemberID, u.firstName, u.middleName, u.lastName")
+    @Query("select m.updeshtaMemberID, u.firstName, u.middleName, u.lastName, u.address.city, u.address.state, u.address.country, count(m.memberID) from Member m inner join Member u on m.updeshtaMemberID=u.memberID where m.updeshtaMemberID=?1 AND m.associatedSince between ?2 and ?3 group by m.updeshtaMemberID, u.firstName, u.middleName, u.lastName, u.address.city, u.address.state, u.address.country")
     List<Object[]> getUpdeshSummaryByAssociatedSinceAndUpdeshtamemberID(Long updeshtaMemberID, Date start, Date end);
 
 //    List<Object[]> findByAssociatedSinceBetweenAndUpdeshtaID(Date start, Date end);
