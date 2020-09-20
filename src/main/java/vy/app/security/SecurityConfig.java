@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(GET, "/member/").hasAuthority("MEMBER_READ")
                 .antMatchers(POST, "/member/").hasAuthority("MEMBER_WRITE")
                 .antMatchers(PUT, "/member/*/").hasAuthority("MEMBER_WRITE")
-                .antMatchers(DELETE, "/member/*/").hasAuthority("ALL_PERMISSIONS")
+                .antMatchers(DELETE, "/member/*/").hasAuthority("MEMBER_WRITE")
 
                 .antMatchers("/authenticate/").permitAll()
                 .requestMatchers(CorsUtils::isPreFlightRequest).permitAll()

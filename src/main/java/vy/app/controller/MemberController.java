@@ -20,6 +20,7 @@ import vy.app.pojo.MemberDetailsDto;
 import vy.app.pojo.MemberDto;
 import vy.app.model.Member;
 import vy.app.pojo.MemberListDto;
+import vy.app.pojo.UpdeshSummaryDto;
 import vy.app.security.VyUserDetails;
 import vy.app.service.MemberService;
 import vy.app.service.ReportService;
@@ -101,6 +102,15 @@ public class MemberController {
     public MemberDetailsDto getMember(@PathVariable Long id) throws Exception {
         log.info("getMember: memberID " + id);
         return convertToDetailsDto(memberService.getMember(id));
+    }
+
+    @GetMapping(value = "/member/-/updeshsummary/")
+    @ResponseStatus(HttpStatus.OK)
+    public List<UpdeshSummaryDto> getUpdeshSummary(@RequestParam(required = false) Long updeshtaMemberID,
+                                                   @RequestParam() String associatedAfter,
+                                                   @RequestParam() String associatedBefore) throws Exception{
+        log.info("getUpdeshSummary: updeshtaMemberID: " + updeshtaMemberID + ", associatedAfter: " + associatedAfter + "associatedBefore: " + associatedBefore);
+        return memberService.getUpdeshSummary(updeshtaMemberID, associatedAfter, associatedBefore);
     }
 
     @GetMapping(value = "/member/-/updeshtalist/")

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import vy.app.Exception.Exceptions;
 import vy.app.model.Designation;
 import vy.app.model.MemberDesignation;
+import vy.app.pojo.UpdeshSummaryDto;
 import vy.app.repository.AkshayPatraRepository;
 import vy.app.repository.DesignationRepository;
 import vy.app.repository.MemberDesignationRepository;
@@ -16,9 +17,9 @@ import vy.app.repository.MemberRepository;
 import vy.app.model.Member;
 
 import javax.transaction.Transactional;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class MemberService {
@@ -110,5 +111,23 @@ public class MemberService {
             throw Exceptions.MemberDoesNotExistException;
         }
         memberRepository.deleteById(id);
+    }
+
+    @Transactional
+    public List<UpdeshSummaryDto> getUpdeshSummary(Long updeshtaMemberID, String associatedAfter, String associatedBefore) throws Exception{
+        List<Object[]> objects;
+
+        if (updeshtaMemberID != null){
+            objects = memberRepository.getUpdeshSummaryByAssociatedSinceAndUpdeshtamemberID(updeshtaMemberID, new SimpleDateFormat("yyyy-MM-dd").parse(associatedAfter), new SimpleDateFormat("yyyy-MM-dd").parse(associatedBefore));
+        } else {
+            objects = memberRepository.getUpdeshSummaryByAssociatedSince(new SimpleDateFormat("yyyy-MM-dd").parse(associatedAfter), new SimpleDateFormat("yyyy-MM-dd").parse(associatedBefore));
+        }
+
+        List<UpdeshSummaryDto> updeshSummaryDtos = new ArrayList<>();
+        for (Object[] obj: objects){
+            UpdeshSummaryDto updeshSummaryDto = new UpdeshSummaryDto((Long)obj[0], (String)obj[1], (String)obj[2], (String)obj[3], (Long)obj[4]);
+            updeshSummaryDtos.add(updeshSummaryDto);
+        }
+        return updeshSummaryDtos;
     }
 }
