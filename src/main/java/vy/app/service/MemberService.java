@@ -43,13 +43,20 @@ public class MemberService {
 		}
 		
          // check if the updeshta member id is valid
-		if (member.getUpdeshtaMemberID() != null && !memberRepository.existsById(member.getUpdeshtaMemberID())) {
-			throw Exceptions.InvalidUpdeshtaMemberIDException;
+		if (member.getUpdeshtaMemberID() != null) {
+		    try {
+                Member updeshtaMember = memberRepository.findById(member.getUpdeshtaMemberID()).get();
+                if (isUpdeshta(updeshtaMember)){
+                    throw Exceptions.InvalidUpdeshtaMemberIDException;
+                }
+            }catch (Exception e){
+                throw Exceptions.InvalidUpdeshtaMemberIDException;
+            }
 		}
 
-		if (member.getUpdeshtaName() == null) {
-			member.setUpdeshtaName(createUpdeshtaName(member));
-		}
+        if (member.getUpdeshtaMemberID() != null ){
+            member.setUpdeshtaName(getMemberNameFromMemberID(member.getUpdeshtaMemberID()));
+        }
         
         // check if akshay patra num is unique
         if (member.getAkshayPatra() != null) {
@@ -62,8 +69,8 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-	private String createUpdeshtaName(Member member) {
-		Member memberDetail = memberRepository.findByMemberID(member.getUpdeshtaMemberID());
+	private String getMemberNameFromMemberID(Long memberID) {
+		Member memberDetail = memberRepository.findById(memberID).get();
 		StringBuilder sb = new StringBuilder();
 		sb.append(memberDetail.getFirstName());
 		if (memberDetail.getMiddleName() != null)
@@ -73,6 +80,16 @@ public class MemberService {
 
 		return sb.toString();
 	}
+
+	// TODO : Check if updeshta member is really updeshta
+	private boolean isUpdeshta(Member member){
+        for (MemberDesignation md : member.getMemberDesignations()){
+            if (md.getDesignation().getDesignationName().equals("Updeshta")){
+                return true;
+            }
+        }
+        return false;
+    }
 
     public Page<Member> getMembers(Specification<Member> spec, Pageable pageable) {
         return memberRepository.findAll(spec, pageable);
@@ -100,9 +117,96 @@ public class MemberService {
             throw Exceptions.MemberDoesNotExistException;
         }
         Member memberFromDB = memberRepository.findById(id).get();
-        member.setMemberID(id);
-        member.setCreatedAt(memberFromDB.getCreatedAt());
-        return memberRepository.save(member);
+
+        if (member.getUpdeshtaMemberID() == null && member.getUpdeshtaName() == null) {
+            throw Exceptions.UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
+        }
+
+        // check if the updeshta member id is valid
+        if (member.getUpdeshtaMemberID() != null) {
+            try {
+                Member updeshtaMember = memberRepository.findById(member.getUpdeshtaMemberID()).get();
+                if (isUpdeshta(updeshtaMember)){
+                    throw Exceptions.InvalidUpdeshtaMemberIDException;
+                }
+            }catch (Exception e){
+                throw Exceptions.InvalidUpdeshtaMemberIDException;
+            }
+        }
+
+        // TODO:Akshay Patra validation, insertions and updation
+
+        if (memberFromDB.getAddress() != null) {
+            memberFromDB.getAddress().setAddressLine1(member.getAddress().getAddressLine1());
+            memberFromDB.getAddress().setAddressLine2(member.getAddress().getAddressLine2());
+            memberFromDB.getAddress().setCity(member.getAddress().getCity());
+            memberFromDB.getAddress().setState(member.getAddress().getState());
+            memberFromDB.getAddress().setPostalCode(member.getAddress().getPostalCode());
+            memberFromDB.getAddress().setCountry(member.getAddress().getCountry());
+            memberFromDB.getAddress().setLandmark(member.getAddress().getLandmark());
+            memberFromDB.getAddress().setAlternateAddressLine1(member.getAddress().getAlternateAddressLine1());
+            memberFromDB.getAddress().setAlternateAddressLine2(member.getAddress().getAlternateAddressLine2());
+            memberFromDB.getAddress().setAlternateCity(member.getAddress().getAlternateCity());
+            memberFromDB.getAddress().setAlternateState(member.getAddress().getAlternateState());
+            memberFromDB.getAddress().setAlternateCountry(member.getAddress().getAlternateCountry());
+            memberFromDB.getAddress().setAlternatePostalCode(member.getAddress().getAlternatePostalCode());
+            memberFromDB.getAddress().setAlternateLandmark(member.getAddress().getAlternateLandmark());
+        } else {
+            memberFromDB.setAddress(member.getAddress());
+        }
+
+        if (memberFromDB.getEmail() != null) {
+            memberFromDB.getEmail().setEmailAddress1(member.getEmail().getEmailAddress1());
+            memberFromDB.getEmail().setEmailAddress2(member.getEmail().getEmailAddress2());
+        } else {
+            memberFromDB.setEmail(member.getEmail());
+        }
+
+        memberFromDB.setFirstName(member.getFirstName());
+        memberFromDB.setMiddleName(member.getMiddleName());
+        memberFromDB.setLastName(member.getLastName());
+        memberFromDB.setDateOfBirth(member.getDateOfBirth());
+        memberFromDB.setGender(member.getGender());
+        memberFromDB.setMotherName(member.getMotherName());
+        memberFromDB.setFatherName(member.getFatherName());
+        memberFromDB.setPrimaryPhoneNumber(member.getPrimaryPhoneNumber());
+        memberFromDB.setAlternatePhoneNumber(member.getAlternatePhoneNumber());
+        memberFromDB.setNationality(member.getNationality());
+
+        if (memberFromDB.getMemberPhoto() != null){
+            memberFromDB.getMemberPhoto().setFileAsBase64(member.getMemberPhoto().getFileAsBase64());
+            memberFromDB.getMemberPhoto().setType(member.getMemberPhoto().getType());
+        } else {
+            memberFromDB.setMemberPhoto(member.getMemberPhoto());
+        }
+
+        memberFromDB.setAssociatedSince(member.getAssociatedSince());
+
+        if (memberFromDB.getAkshayPatra() != null) {
+            memberFromDB.getAkshayPatra().setAkshayPatraNum(member.getAkshayPatra().getAkshayPatraNum());
+            memberFromDB.getAkshayPatra().setPatraAllocationDate(member.getAkshayPatra().getPatraAllocationDate());
+        } else {
+            memberFromDB.setAkshayPatra(member.getAkshayPatra());
+        }
+
+        memberFromDB.setProfession(member.getProfession());
+        memberFromDB.setPracticeLevel(member.getPracticeLevel());
+        memberFromDB.setSendEmail(member.isSendEmail());
+        memberFromDB.setCallFlag(member.isCallFlag());
+        memberFromDB.setSms(member.isSms());
+        memberFromDB.setPatrikaSubscribed(member.isPatrikaSubscribed());
+        memberFromDB.setHasSwarved(member.isHasSwarved());
+
+        if (member.getUpdeshtaMemberID() != null ){
+            memberFromDB.setUpdeshtaMemberID(member.getUpdeshtaMemberID());
+            memberFromDB.setUpdeshtaName(getMemberNameFromMemberID(member.getUpdeshtaMemberID()));
+        } else if (member.getUpdeshtaName() != null){
+            memberFromDB.setUpdeshtaName(memberFromDB.getUpdeshtaName());
+        }
+        memberFromDB.setUpdeshVenue(member.getUpdeshVenue());
+        memberFromDB.setCreateSource(member.getCreateSource());
+        memberFromDB.setUpdateSource(member.getUpdateSource());
+        return memberRepository.save(memberFromDB);
     }
 
     @Transactional
