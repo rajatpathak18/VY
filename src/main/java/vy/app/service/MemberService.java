@@ -46,7 +46,7 @@ public class MemberService {
         if (member.getUpdeshtaMemberID() != null) {
             try {
                 Member updeshtaMember = memberRepository.findById(member.getUpdeshtaMemberID()).get();
-                if (isUpdeshta(updeshtaMember)) {
+                if (!isUpdeshta(updeshtaMember)) {
                     throw Exceptions.InvalidUpdeshtaMemberIDException;
                 }
             } catch (Exception e) {
