@@ -37,27 +37,27 @@ public class MemberService {
 
     @Transactional
     public Member createMember(Member member) throws Exception {
-    	//check for updeshmemberid or updeshta name
-		if (member.getUpdeshtaMemberID() == null && member.getUpdeshtaName() == null) {
-			throw Exceptions.UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
-		}
-		
-         // check if the updeshta member id is valid
-		if (member.getUpdeshtaMemberID() != null) {
-		    try {
+        //check for updeshmemberid or updeshta name
+        if (member.getUpdeshtaMemberID() == null && member.getUpdeshtaName() == null) {
+            throw Exceptions.UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
+        }
+
+        // check if the updeshta member id is valid
+        if (member.getUpdeshtaMemberID() != null) {
+            try {
                 Member updeshtaMember = memberRepository.findById(member.getUpdeshtaMemberID()).get();
-                if (isUpdeshta(updeshtaMember)){
+                if (isUpdeshta(updeshtaMember)) {
                     throw Exceptions.InvalidUpdeshtaMemberIDException;
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw Exceptions.InvalidUpdeshtaMemberIDException;
             }
-		}
+        }
 
-        if (member.getUpdeshtaMemberID() != null ){
+        if (member.getUpdeshtaMemberID() != null) {
             member.setUpdeshtaName(getMemberNameFromMemberID(member.getUpdeshtaMemberID()));
         }
-        
+
         // check if akshay patra num is unique
         if (member.getAkshayPatra() != null) {
             if (member.getAkshayPatra().getAkshayPatraNum() != null) {
@@ -69,22 +69,22 @@ public class MemberService {
         return memberRepository.save(member);
     }
 
-	private String getMemberNameFromMemberID(Long memberID) {
-		Member memberDetail = memberRepository.findById(memberID).get();
-		StringBuilder sb = new StringBuilder();
-		sb.append(memberDetail.getFirstName());
-		if (memberDetail.getMiddleName() != null)
-			sb.append(" ").append(memberDetail.getMiddleName());
-		if (memberDetail.getLastName() != null)
-			sb.append(" ").append(memberDetail.getLastName());
+    private String getMemberNameFromMemberID(Long memberID) {
+        Member memberDetail = memberRepository.findById(memberID).get();
+        StringBuilder sb = new StringBuilder();
+        sb.append(memberDetail.getFirstName());
+        if (memberDetail.getMiddleName() != null)
+            sb.append(" ").append(memberDetail.getMiddleName());
+        if (memberDetail.getLastName() != null)
+            sb.append(" ").append(memberDetail.getLastName());
 
-		return sb.toString();
-	}
+        return sb.toString();
+    }
 
-	// TODO : Check if updeshta member is really updeshta
-	private boolean isUpdeshta(Member member){
-        for (MemberDesignation md : member.getMemberDesignations()){
-            if (md.getDesignation().getDesignationName().equals("Updeshta")){
+    // TODO : Check if updeshta member is really updeshta
+    private boolean isUpdeshta(Member member) {
+        for (MemberDesignation md : member.getMemberDesignations()) {
+            if (md.getDesignation().getDesignationName().equals("Updeshta")) {
                 return true;
             }
         }
@@ -126,10 +126,10 @@ public class MemberService {
         if (member.getUpdeshtaMemberID() != null) {
             try {
                 Member updeshtaMember = memberRepository.findById(member.getUpdeshtaMemberID()).get();
-                if (isUpdeshta(updeshtaMember)){
+                if (!isUpdeshta(updeshtaMember)) {
                     throw Exceptions.InvalidUpdeshtaMemberIDException;
                 }
-            }catch (Exception e){
+            } catch (Exception e) {
                 throw Exceptions.InvalidUpdeshtaMemberIDException;
             }
         }
@@ -173,7 +173,7 @@ public class MemberService {
         memberFromDB.setAlternatePhoneNumber(member.getAlternatePhoneNumber());
         memberFromDB.setNationality(member.getNationality());
 
-        if (memberFromDB.getMemberPhoto() != null){
+        if (memberFromDB.getMemberPhoto() != null) {
             memberFromDB.getMemberPhoto().setFileAsBase64(member.getMemberPhoto().getFileAsBase64());
             memberFromDB.getMemberPhoto().setType(member.getMemberPhoto().getType());
         } else {
@@ -197,10 +197,10 @@ public class MemberService {
         memberFromDB.setPatrikaSubscribed(member.isPatrikaSubscribed());
         memberFromDB.setHasSwarved(member.isHasSwarved());
 
-        if (member.getUpdeshtaMemberID() != null ){
+        if (member.getUpdeshtaMemberID() != null) {
             memberFromDB.setUpdeshtaMemberID(member.getUpdeshtaMemberID());
             memberFromDB.setUpdeshtaName(getMemberNameFromMemberID(member.getUpdeshtaMemberID()));
-        } else if (member.getUpdeshtaName() != null){
+        } else if (member.getUpdeshtaName() != null) {
             memberFromDB.setUpdeshtaName(memberFromDB.getUpdeshtaName());
         }
         memberFromDB.setUpdeshVenue(member.getUpdeshVenue());
@@ -218,18 +218,18 @@ public class MemberService {
     }
 
     @Transactional
-    public List<UpdeshSummaryDto> getUpdeshSummary(Long updeshtaMemberID, String associatedAfter, String associatedBefore) throws Exception{
+    public List<UpdeshSummaryDto> getUpdeshSummary(Long updeshtaMemberID, String associatedAfter, String associatedBefore) throws Exception {
         List<Object[]> objects;
 
-        if (updeshtaMemberID != null){
+        if (updeshtaMemberID != null) {
             objects = memberRepository.getUpdeshSummaryByAssociatedSinceAndUpdeshtamemberID(updeshtaMemberID, new SimpleDateFormat("yyyy-MM-dd").parse(associatedAfter), new SimpleDateFormat("yyyy-MM-dd").parse(associatedBefore));
         } else {
             objects = memberRepository.getUpdeshSummaryByAssociatedSince(new SimpleDateFormat("yyyy-MM-dd").parse(associatedAfter), new SimpleDateFormat("yyyy-MM-dd").parse(associatedBefore));
         }
 
         List<UpdeshSummaryDto> updeshSummaryDtos = new ArrayList<>();
-        for (Object[] obj: objects){
-            UpdeshSummaryDto updeshSummaryDto = new UpdeshSummaryDto((Long)obj[0], (String)obj[1], (String)obj[2], (String)obj[3], (String)obj[4], (String)obj[5], (String)obj[6], (Long)obj[7]);
+        for (Object[] obj : objects) {
+            UpdeshSummaryDto updeshSummaryDto = new UpdeshSummaryDto((Long) obj[0], (String) obj[1], (String) obj[2], (String) obj[3], (String) obj[4], (String) obj[5], (String) obj[6], (Long) obj[7]);
             updeshSummaryDtos.add(updeshSummaryDto);
         }
         return updeshSummaryDtos;
