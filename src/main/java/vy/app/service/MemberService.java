@@ -21,6 +21,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
+import static vy.app.Exception.Exceptions.UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
+
 @Service
 public class MemberService {
     @Autowired
@@ -39,7 +41,7 @@ public class MemberService {
     public Member createMember(Member member) throws Exception {
         //check for updeshmemberid or updeshta name
         if (member.getUpdeshtaMemberID() == null && member.getUpdeshtaName() == null) {
-            throw Exceptions.UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
+            throw UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
         }
 
         // check if the updeshta member id is valid
@@ -81,7 +83,6 @@ public class MemberService {
         return sb.toString();
     }
 
-    // TODO : Check if updeshta member is really updeshta
     private boolean isUpdeshta(Member member) {
         for (MemberDesignation md : member.getMemberDesignations()) {
             if (md.getDesignation().getDesignationName().equals("Updeshta")) {
@@ -119,7 +120,7 @@ public class MemberService {
         Member memberFromDB = memberRepository.findById(id).get();
 
         if (member.getUpdeshtaMemberID() == null && member.getUpdeshtaName() == null) {
-            throw Exceptions.UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
+            throw UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
         }
 
         // check if the updeshta member id is valid
@@ -132,6 +133,8 @@ public class MemberService {
             } catch (Exception e) {
                 throw Exceptions.InvalidUpdeshtaMemberIDException;
             }
+        } else {
+
         }
 
         // TODO:Akshay Patra validation, insertions and updation
@@ -201,7 +204,10 @@ public class MemberService {
             memberFromDB.setUpdeshtaMemberID(member.getUpdeshtaMemberID());
             memberFromDB.setUpdeshtaName(getMemberNameFromMemberID(member.getUpdeshtaMemberID()));
         } else if (member.getUpdeshtaName() != null) {
-            memberFromDB.setUpdeshtaName(memberFromDB.getUpdeshtaName());
+            memberFromDB.setUpdeshtaMemberID(null);
+            memberFromDB.setUpdeshtaName(member.getUpdeshtaName());
+        } else {
+            throw UpdeshtaMemberIDOrUpdeshtaNameNotExistException;
         }
         memberFromDB.setUpdeshVenue(member.getUpdeshVenue());
         memberFromDB.setCreateSource(member.getCreateSource());
