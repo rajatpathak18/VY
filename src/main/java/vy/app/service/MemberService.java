@@ -212,6 +212,7 @@ public class MemberService {
         memberFromDB.setUpdeshVenue(member.getUpdeshVenue());
         memberFromDB.setCreateSource(member.getCreateSource());
         memberFromDB.setUpdateSource(member.getUpdateSource());
+        memberFromDB.setUpdeshMode(member.getUpdeshMode());
         return memberRepository.save(memberFromDB);
     }
 

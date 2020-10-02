@@ -126,6 +126,9 @@ public class Member {
     @Column(name = "update_source")
     private String updateSource;
 
+    @Column(name = "updesh_mode")
+    private String updeshMode;
+
     @Column(name = "status", nullable = false, columnDefinition = "boolean default true")
     private boolean status;
 

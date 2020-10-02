@@ -73,4 +73,5 @@ public class MemberDetailsDto {
     private Timestamp updatedAt;
     private String createSource;
     private String updateSource;
+    private String updeshMode;
 }

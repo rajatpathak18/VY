@@ -1,0 +1,1 @@
+ALTER TABLE vy_member ADD `updesh_mode` varchar(60) DEFAULT NULL;
