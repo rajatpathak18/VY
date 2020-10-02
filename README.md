@@ -11,4 +11,11 @@ Setup of the App
 
 Running Backend Service from Commandline
 ========================================
-1. gradlew bootRun
+1. Run these commands when running locally
+
+   export RDS_HOSTNAME="127.0.0.1"
+   export RDS_PORT=3306
+   export RDS_DB_NAME="vy_database_test1"
+   export RDS_USERNAME="root"
+   export RDS_PASSWORD="
+2. gradlew bootRun
